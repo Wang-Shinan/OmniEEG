@@ -34,12 +34,6 @@ AdaBrain跨被试表：EEGPT在BCI-IV-2A为25.81%，LaBraM54.98%；EEGMAT61.66%�
 
 实现核对时重点记录：预处理、实际token形状、位置表示、mask与loss的作用位置、checkpoint版本、可训练模块及读出接口。没有核验到的层数、配置或实现差异不补成确定事实。
 
-## 对本项目的启发
-
-若频谱/读出改进仍不足，才将teacher表征预测作为后备目标；本轮不叠加EMA教师以增加变量。
-
-上述启发是待验证判断。当前研究问题见[REVE改进假设](../research/REVE改进假设.md)，不能把本笔记中的作者模型和我们的改造方案视为同一个模型。
-
 ## 原文与证据
 
 - [EEGPT: Pretrained Transformer…（NeurIPS 2024）](https://proceedings.neurips.cc/paper_files/paper/2024/file/4540d267eeec4e5dbd9dae9448f0b739-Paper-Conference.pdf)：§2、附录；BINE022/EEGPT，对齐型 EEGPT。

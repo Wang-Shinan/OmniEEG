@@ -34,12 +34,6 @@ FAME的13任务同表中，EEGNet精神分裂症71.0%对REVE47.2%；NeuralBench�
 
 实现核对时重点记录：预处理、实际token形状、位置表示、mask与loss的作用位置、checkpoint版本、可训练模块及读出接口。没有核验到的层数、配置或实现差异不补成确定事实。
 
-## 对本项目的启发
-
-局部滤波和功率特征；必须保留为监督基线和新分支单独训练的参照。
-
-上述启发是待验证判断。当前研究问题见[REVE改进假设](../research/REVE改进假设.md)，不能把本笔记中的作者模型和我们的改造方案视为同一个模型。
-
 ## 原文与证据
 
 - [EEGNet（JNE 2018，作者论文）](https://arxiv.org/abs/1611.08024)：depthwise / separable convolution。

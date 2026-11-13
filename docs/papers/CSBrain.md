@@ -40,12 +40,6 @@ $$H^{l+1}=\operatorname{SSA}(\operatorname{CST}(H^l)).$$
 
 实现核对时重点记录：预处理、实际token形状、位置表示、mask与loss的作用位置、checkpoint版本、可训练模块及读出接口。没有核验到的层数、配置或实现差异不补成确定事实。
 
-## 对本项目的启发
-
-只引入多时间尺度和局部/区域交互的思想；先用一个小残差分支验证，不搬入整套CST/SSA。
-
-上述启发是待验证判断。当前研究问题见[REVE改进假设](../research/REVE改进假设.md)，不能把本笔记中的作者模型和我们的改造方案视为同一个模型。
-
 ## 原文与证据
 
 - [CSBrain（NeurIPS 2025，核对 arXiv v1）](https://arxiv.org/html/2506.23075v1)：§2–3、Table 2；区域描述符消融。

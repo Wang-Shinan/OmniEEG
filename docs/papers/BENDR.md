@@ -32,12 +32,6 @@ NeuralBench病理检测81.753%对REVE78.044%，但整体平均排名10.08。不�
 
 实现核对时重点记录：预处理、实际token形状、位置表示、mask与loss的作用位置、checkpoint版本、可训练模块及读出接口。没有核验到的层数、配置或实现差异不补成确定事实。
 
-## 对本项目的启发
-
-借鉴局部卷积和对比预测作为参照；本轮以轻量局部分支优先于完整BENDR复现。
-
-上述启发是待验证判断。当前研究问题见[REVE改进假设](../research/REVE改进假设.md)，不能把本笔记中的作者模型和我们的改造方案视为同一个模型。
-
 ## 原文与证据
 
 - [BENDR（Frontiers 2021）](https://pmc.ncbi.nlm.nih.gov/articles/PMC8261053/)：卷积表征与 masked contrastive prediction。

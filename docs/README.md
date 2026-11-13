@@ -6,7 +6,7 @@
 
 [论文索引](papers/README.md)包含14篇独立笔记。每篇先讲作者面对的问题，再解释输入如何变成token、模块如何连接、模型如何训练，最后讨论实验和我们的理解。
 
-建议首先阅读 [REVE](papers/REVE.md)、[CBraMod](papers/CBraMod.md)、[CSBrain](papers/CSBrain.md)、[FAME](papers/FAME.md)。其它工作通过索引访问，不要求按排行榜顺序阅读。
+阅读顺序和讨论问题由用户决定。每篇笔记都是可修订的解释草稿。
 
 ## 综述
 
@@ -18,13 +18,11 @@
 
 - [赛题与提交要求](competition/赛题与提交要求.md)
 - [待确认事项](competition/待确认事项.md)
-- [REVE改进假设](research/REVE改进假设.md)
-- [实验计划与记录约定](research/实验计划与记录约定.md)
 
 ## 流程
 
 - [文档维护与阅读约定](process/文档维护与阅读约定.md)
-- [研究流程与当前进度](process/研究流程与当前进度.md)
+- [交接摘要与当前协作边界](process/交接摘要.md)
 - [决策记录](process/决策记录.md)
 
 原始论文网页、PDF、结果表和校验信息保存在[资料快照目录](../research/reve_route_20261113/)。这些是阅读证据，不是研究结论的维护入口。

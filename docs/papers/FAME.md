@@ -37,12 +37,6 @@ $$\mathcal L=\frac1{|\mathcal B|}\sum_{b\in\mathcal B}\frac1{|\Omega_b|}\sum_{i\
 
 实现核对时重点记录：预处理、实际token形状、位置表示、mask与loss的作用位置、checkpoint版本、可训练模块及读出接口。没有核验到的层数、配置或实现差异不补成确定事实。
 
-## 对本项目的启发
-
-决赛在相同结构、语料、步数下，独立比较原REVE式目标与频段平衡辅助目标；不直接追求1B。
-
-上述启发是待验证判断。当前研究问题见[REVE改进假设](../research/REVE改进假设.md)，不能把本笔记中的作者模型和我们的改造方案视为同一个模型。
-
 ## 原文与证据
 
 - [Understanding and Correcting Low-Frequency Bias… / FAME（arXiv v1，预印本）](https://arxiv.org/html/2608.01898v1)：Table 1、Table 7，附录 E–G；Table 7 在 PDF 第19页。

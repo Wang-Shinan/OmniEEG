@@ -32,12 +32,6 @@ NeuralBench癫痫检测84.253%对REVE77.608%；mental imagery28.914%对25.581%�
 
 实现核对时重点记录：预处理、实际token形状、位置表示、mask与loss的作用位置、checkpoint版本、可训练模块及读出接口。没有核验到的层数、配置或实现差异不补成确定事实。
 
-## 对本项目的启发
-
-局部卷积前端与轻量序列模块；用于验证REVE表征之外是否还存在可补充的局部信息。
-
-上述启发是待验证判断。当前研究问题见[REVE改进假设](../research/REVE改进假设.md)，不能把本笔记中的作者模型和我们的改造方案视为同一个模型。
-
 ## 原文与证据
 
 - [EEG Conformer（TNSRE 2023，作者仓库）](https://github.com/eeyhsong/EEG-Conformer)：卷积 tokenization 与 Transformer；原论文 DOI 10.1109/TNSRE.2022.3230250。
