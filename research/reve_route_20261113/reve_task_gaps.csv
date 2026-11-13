@@ -1,0 +1,189 @@
+﻿protocol,task,metric,unit,reve,best_model,best,gap,source_url,source_table
+NeuralBench FT,Age,Pearson R,0–1系数,0.721,REVE,0.721,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_age
+NeuralBench FT,Artifact,F1 score (macro),0–1系数,0.539,REVE,0.539,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_artifact
+NeuralBench FT,Audiovisual,Balanced accuracy,%,50.476,Handcrafted,62.262,11.786,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_audiovisual_stimulus
+NeuralBench FT,Clinical event,F1 score (macro),0–1系数,0.547,REVE,0.547,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_clinical_event
+NeuralBench FT,Dementia,Balanced accuracy,%,40.79,Handcrafted,47.459,6.669,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_dementia_diagnosis
+NeuralBench FT,Depression,Balanced accuracy,%,86.989,CBraMod,87.338,0.349,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_depression_diagnosis
+NeuralBench FT,ERN,Balanced accuracy,%,81.381,LaBraM,83.292,1.911,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_ern
+NeuralBench FT,Emotion,Balanced accuracy,%,31.519,LUNA,32.335,0.816,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_emotion
+NeuralBench FT,Image,Top-5 accuracy (per-subject),%,84.75,LaBraM,87.65,2.9,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_image
+NeuralBench FT,LRP,Balanced accuracy,%,79.213,Deep4Net,79.451,0.238,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_lrp
+NeuralBench FT,MMN,Balanced accuracy,%,57.693,CTNet,59.813,2.12,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_mismatch_negativity
+NeuralBench FT,Mental arith.,Balanced accuracy,%,73.876,REVE,73.876,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_mental_arithmetic
+NeuralBench FT,Mental imagery,Balanced accuracy,%,25.581,ShallowFBCSPNet,33.124,7.543,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_mental_imagery
+NeuralBench FT,Motor execution,Balanced accuracy,%,58.771,REVE,58.771,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_motor_execution
+NeuralBench FT,Motor imagery,Balanced accuracy,%,68.041,REVE,68.041,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_motor_imagery
+NeuralBench FT,N170,Balanced accuracy,%,75.538,REVE,75.538,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_n170
+NeuralBench FT,N2pc,Balanced accuracy,%,65.286,Deep4Net,65.326,0.04,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_n2pc
+NeuralBench FT,N400,Balanced accuracy,%,64.479,Handcrafted,66.146,1.667,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_n400
+NeuralBench FT,P300,Balanced accuracy,%,65.382,CTNet,67.418,2.036,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_p3
+NeuralBench FT,Parkinson's,Balanced accuracy,%,69.34,BIOT,77.247,7.907,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_parkinsons_diagnosis
+NeuralBench FT,Pathology,Balanced accuracy,%,78.044,BENDR,81.753,3.709,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_pathology
+NeuralBench FT,Psychopathology,Pearson R,0–1系数,0.05,CBraMod,0.137,0.087,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_psychopathology
+NeuralBench FT,Reaction time,Pearson R,0–1系数,0.523,REVE,0.523,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_reaction_time
+NeuralBench FT,SSVEP,Balanced accuracy,%,96.071,LaBraM,96.488,0.417,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_ssvep
+NeuralBench FT,Schizophrenia,Balanced accuracy,%,43.677,ATCNet,72.859,29.182,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_schizophrenia_diagnosis
+NeuralBench FT,Seizure,Balanced accuracy,%,77.608,BDTCN,85.541,7.933,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_seizure
+NeuralBench FT,Sentence,Top-5 accuracy (per-subject),%,11.334,REVE,11.334,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_sentence
+NeuralBench FT,Sex,Balanced accuracy,%,90.73,ShallowFBCSPNet,91.044,0.314,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_sex
+NeuralBench FT,Sleep arousal,Balanced accuracy,%,55.725,LUNA,59.526,3.801,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_sleep_arousal
+NeuralBench FT,Sleep stage,Balanced accuracy,%,71.181,CBraMod,72.926,1.745,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_sleep_stage
+NeuralBench FT,Speech,Top-5 accuracy (per-subject),%,5.488,REVE,5.488,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_speech
+NeuralBench FT,Typing,Balanced accuracy,%,6.402,REVE,6.402,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_typing
+NeuralBench FT,Video,Top-5 accuracy (per-subject),%,5.345,REVE,5.345,0.0,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_video
+NeuralBench FT,Word,Top-5 accuracy (per-subject),%,21.092,LaBraM,22.545,1.453,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_word
+NeuralBench FT,Workload,Balanced accuracy,%,67.859,ShallowFBCSPNet,74.754,6.895,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_mental_workload
+NeuralBench FT,c-VEP,Balanced accuracy,%,79.093,LaBraM,87.6,8.507,https://github.com/facebookresearch/neuroai/blob/fe31393affab2590e59b0a7e1457aad1a1da908e/docs/_static/neuralbench-results-data.json,eeg_cvep
+OmniEEG LP,AD65,Balanced accuracy,%,52.7,CBraMod,58.199999999999996,5.5,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,ADHD,Balanced accuracy,%,62.6,NeuroGPT,67.30000000000001,4.7,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Awakening,Balanced accuracy,%,96.2,BIOT,97.3,1.1,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,BCI-Speech,Balanced accuracy,%,22.3,CBraMod,28.9,6.6,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,BCIC-IV-1,Balanced accuracy,%,52.5,CBraMod,55.2,2.7,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,BCIC-IV-2a,Balanced accuracy,%,29.799999999999997,CBraMod,32.9,3.1,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,BETA-SSVEP,Balanced accuracy,%,4.3,CBraMod,10.299999999999999,6.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Benchmark-SSVEP,Balanced accuracy,%,5.6000000000000005,CBraMod,42.5,36.9,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Broderick-Cocktail-party,Balanced accuracy,%,39.900000000000006,BrainOmni,51.6,11.7,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Broderick-reverse,Balanced accuracy,%,71.0,REVE,71.0,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,CIRE,Balanced accuracy,%,53.800000000000004,REVE,53.800000000000004,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,ChineseEEG2-RA-Tone,Balanced accuracy,%,25.0,CBraMod,25.3,0.3,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,DEAP-arousal,Balanced accuracy,%,50.8,CBraMod,51.5,0.7,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,DEAP-valence,Balanced accuracy,%,52.1,EEGMamba,53.300000000000004,1.2,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Depression-resting,Balanced accuracy,%,51.1,FEMBA,52.2,1.1,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Dual-Freq-SSVEP,Balanced accuracy,%,3.5000000000000004,CBraMod,7.9,4.4,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,EEG-Controlled Exoskeleton,Balanced accuracy,%,50.9,BrainOmni,52.300000000000004,1.4,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,EEG-SVRec,Balanced accuracy,%,49.9,BrainOmni,51.1,1.2,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,EEGMAT,Balanced accuracy,%,49.9,NeuroLM,61.6,11.7,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,EmoEEG-MC,Balanced accuracy,%,30.5,EEGMamba,34.599999999999994,4.1,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,FACED,Balanced accuracy,%,20.3,CBraMod,48.1,27.8,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,HBN EEG,Balanced accuracy,%,15.8,REVE,15.8,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,HFO,Balanced accuracy,%,60.8,REVE,60.8,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,HMC,Balanced accuracy,%,68.2,REVE,68.2,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,ISRUC-S1,Balanced accuracy,%,65.8,REVE,65.8,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,ISRUC-S2,Balanced accuracy,%,24.9,BrainOmni,28.199999999999996,3.3,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,ISRUC-S3,Balanced accuracy,%,37.4,REVE,37.4,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Longitudinal test-retest,Balanced accuracy,%,72.5,BrainOmni,75.5,3.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,MDD,Balanced accuracy,%,94.8,BrainOmni,99.3,4.5,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,MODMA,Balanced accuracy,%,57.199999999999996,FEMBA,77.3,20.1,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,MPI-LEMON-age,Balanced accuracy,%,49.8,REVE,49.8,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,MPI-LEMON-extraversion,Balanced accuracy,%,50.5,BrainOmni,53.6,3.1,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,MPI-LEMON-gender,Balanced accuracy,%,59.9,CBraMod,64.4,4.5,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Monitoring-Errp,Balanced accuracy,%,49.7,BrainOmni,53.2,3.5,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,MusicEEG,Balanced accuracy,%,52.800000000000004,CBraMod,59.099999999999994,6.3,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,PD-motaility,Balanced accuracy,%,56.8,BIOT,62.3,5.5,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,PD31,Balanced accuracy,%,45.9,BIOT,54.400000000000006,8.5,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,PEARL-Neuro,Balanced accuracy,%,48.4,CBraMod,53.5,5.1,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,RestCog,Balanced accuracy,%,34.599999999999994,CBraMod,36.8,2.2,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,SEED,Balanced accuracy,%,54.300000000000004,REVE,54.300000000000004,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,SEED-FRA,Balanced accuracy,%,35.3,BrainOmni,42.5,7.2,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,SEED-IV,Balanced accuracy,%,29.7,CBraMod,33.4,3.7,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,SEED-V,Balanced accuracy,%,25.7,FEMBA,28.999999999999996,3.3,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,SEED-VIG,Balanced accuracy,%,41.8,CBraMod,44.0,2.2,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,SEED-VII,Balanced accuracy,%,19.1,REVE,19.1,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,SHU-MI,Balanced accuracy,%,52.300000000000004,BrainOmni,53.300000000000004,1.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,SSVEP-9-chn,Balanced accuracy,%,3.2,REVE,3.2,0.0,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Siena EEG,Balanced accuracy,%,41.9,CBraMod,75.5,33.6,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,SleepEDF,Balanced accuracy,%,68.10000000000001,LaBraM,69.3,1.2,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,TDBRAIN,Balanced accuracy,%,43.7,CBraMod,44.6,0.9,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,ThingsEEG2,Balanced accuracy,%,50.0,BrainOmni,50.4,0.4,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG LP,Workload,Balanced accuracy,%,40.9,NeuroLM,49.6,8.7,https://arxiv.org/html/2606.00815v1,Table 5
+OmniEEG FT,AD65,Balanced accuracy,%,42.1,LaBraM,63.1,21.0,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,ADHD,Balanced accuracy,%,56.49999999999999,FEMBA,72.8,16.3,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,Awakening,Balanced accuracy,%,98.2,LaBraM,99.2,1.0,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,BCI-Speech,Balanced accuracy,%,20.8,BIOT,26.700000000000003,5.9,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,BCIC-IV-1,Balanced accuracy,%,51.5,FEMBA,52.7,1.2,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,BCIC-IV-2a,Balanced accuracy,%,27.3,FEMBA,39.1,11.8,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,BETA-SSVEP,Balanced accuracy,%,10.0,CBraMod,15.0,5.0,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,Benchmark-SSVEP,Balanced accuracy,%,67.4,LaBraM,70.1,2.7,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,Broderick-Cocktail-party,Balanced accuracy,%,41.0,EEGConformer,51.4,10.4,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,Broderick-reverse,Balanced accuracy,%,91.8,REVE,91.8,0.0,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,CIRE,Balanced accuracy,%,51.1,LaBraM,55.1,4.0,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,ChineseEEG2-RA-Tone,Balanced accuracy,%,25.0,EEGMamba,25.5,0.5,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,Depression-resting,Balanced accuracy,%,51.9,CBraMod,70.39999999999999,18.5,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,Dual-Freq-SSVEP,Balanced accuracy,%,8.9,CBraMod,17.299999999999997,8.4,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,EEG-SVRec,Balanced accuracy,%,49.7,CBraMod,50.3,0.6,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,HFO,Balanced accuracy,%,52.800000000000004,LaBraM,68.8,16.0,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,ISRUC-S1,Balanced accuracy,%,65.4,FEMBA,69.1,3.7,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,ISRUC-S2,Balanced accuracy,%,24.2,BrainOmni,27.6,3.4,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,ISRUC-S3,Balanced accuracy,%,30.3,BIOT,35.5,5.2,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,MDD,Balanced accuracy,%,90.10000000000001,BrainOmni,97.7,7.6,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,MPI-LEMON-age,Balanced accuracy,%,45.7,NeuroLM,58.199999999999996,12.5,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,MPI-LEMON-extraversion,Balanced accuracy,%,50.8,NeuroGPT,56.2,5.4,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,MPI-LEMON-gender,Balanced accuracy,%,53.300000000000004,CBraMod,69.19999999999999,15.9,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,Monitoring-Errp,Balanced accuracy,%,50.7,EEGConformer,54.2,3.5,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,MusicEEG,Balanced accuracy,%,49.9,EEGNet,59.5,9.6,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,PD-motaility,Balanced accuracy,%,56.10000000000001,BIOT,68.30000000000001,12.2,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,PD31,Balanced accuracy,%,53.7,NeuroGPT,76.4,22.7,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,RestCog,Balanced accuracy,%,28.9,LaBraM,40.0,11.1,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,SEED-VIG,Balanced accuracy,%,39.2,BrainOmni,50.5,11.3,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,SHU-MI,Balanced accuracy,%,53.6,FEMBA,54.400000000000006,0.8,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,SSVEP-9-chn,Balanced accuracy,%,11.0,CBraMod,22.7,11.7,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,Siena EEG,Balanced accuracy,%,57.3,BIOT,79.5,22.2,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,SleepEDF,Balanced accuracy,%,73.3,LaBraM,74.5,1.2,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,TDBRAIN,Balanced accuracy,%,34.5,FEMBA,44.800000000000004,10.3,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,ThingsEEG2,Balanced accuracy,%,50.0,BrainOmni,50.2,0.2,https://arxiv.org/html/2606.00815v1,Table 7
+OmniEEG FT,Workload,Balanced accuracy,%,36.0,NeuroLM,49.2,13.2,https://arxiv.org/html/2606.00815v1,Table 7
+FAME paper LP,AD65,Balanced accuracy,%,48.34,FAME-1B,53.43,5.09,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,ADHD,Balanced accuracy,%,62.97,FAME-1B,86.39,23.42,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,Awakening,Balanced accuracy,%,95.14,FAME-1B,99.31,4.17,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,BCI Speech,Balanced accuracy,%,22.44,CBraMod,28.62,6.18,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,BCIC4-1,Balanced accuracy,%,47.1,FAME-50M,56.87,9.77,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,BETA SSVEP,Balanced accuracy,%,4.23,CBraMod,11.04,6.81,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,Benchmark SSVEP,Balanced accuracy,%,6.03,FAME-1B,42.13,36.1,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,Broderick CP 128,Balanced accuracy,%,46.45,BIOT,52.31,5.86,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,CIRE,Balanced accuracy,%,51.69,FAME-1B,56.95,5.26,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,DEAP Arousal,Balanced accuracy,%,52.39,CBraMod,53.31,0.92,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,DEAP Valence,Balanced accuracy,%,52.52,CBraMod,53.54,1.02,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,DUAL FREQ SSVEP,Balanced accuracy,%,3.58,CBraMod,8.56,4.98,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,Depression Rest,Balanced accuracy,%,51.74,FAME-50M,56.43,4.69,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,EAV,Balanced accuracy,%,20.91,FAME-1B,42.83,21.92,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,EEG Mortality PD,Balanced accuracy,%,58.94,BIOT,65.95,7.01,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,EEG SVRec,Balanced accuracy,%,49.11,FAME-1B,53.91,4.8,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,FACED,Balanced accuracy,%,20.59,CBraMod,49.98,29.39,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,HFO,Balanced accuracy,%,59.78,FAME-1B,79.24,19.46,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,ISRUC-S1,Balanced accuracy,%,57.7,FAME-50M,62.96,5.26,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,ISRUC-S2,Balanced accuracy,%,22.96,FAME-1B,26.37,3.41,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,ISRUC-S3,Balanced accuracy,%,24.6,FAME-1B,29.1,4.5,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,LEMON Age,Balanced accuracy,%,52.78,FAME-1B,76.73,23.95,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,LEMON Extraversion,Balanced accuracy,%,49.5,FAME-50M,53.93,4.43,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,LEMON Gender,Balanced accuracy,%,61.28,CBraMod,71.97,10.69,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,Monitoring ErrP,Balanced accuracy,%,50.99,FAME-1B,60.54,9.55,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,MusicEEG,Balanced accuracy,%,51.49,FAME-1B,54.53,3.04,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,PD31,Balanced accuracy,%,43.65,FAME-1B,57.04,13.39,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,PEARL Neuro,Balanced accuracy,%,47.7,FAME-1B,57.52,9.82,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,PhysioNet MI,Balanced accuracy,%,34.16,FAME-1B,53.86,19.7,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,RestCog,Balanced accuracy,%,36.89,CBraMod,42.19,5.3,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,SEED,Balanced accuracy,%,56.88,FAME-50M,60.3,3.42,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,SEED-IV,Balanced accuracy,%,34.65,BrainOmni,37.86,3.21,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,SEED-V,Balanced accuracy,%,26.19,FAME-1B,28.03,1.84,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,SEED-VII,Balanced accuracy,%,18.72,BrainOmni,20.47,1.75,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,SHU-MI,Balanced accuracy,%,54.53,FAME-1B,62.97,8.44,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,SSVEP,Balanced accuracy,%,4.43,FAME-1B,8.85,4.42,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,Siena EEG,Balanced accuracy,%,62.07,CBraMod,75.28,13.21,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,TDBRAIN,Balanced accuracy,%,30.11,FAME-1B,48.61,18.5,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,TUAB,Balanced accuracy,%,78.41,REVE,78.41,0.0,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,TUEV,Balanced accuracy,%,53.47,FAME-1B,80.7,27.23,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper LP,Workload,Balanced accuracy,%,9.27,FAME-1B,43.62,34.35,https://arxiv.org/html/2608.01898v1,Table 1
+FAME paper FT subset,Audiovisual Stimulus,Balanced accuracy,%,48.9,FAME-1B,57.7,8.8,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,Dementia Diagnosis,Balanced accuracy,%,42.1,BIOT,45.3,3.2,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,Depression Diagnosis,Balanced accuracy,%,86.0,FAME-1B,88.4,2.4,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,Emotion,Balanced accuracy,%,31.7,FAME-1B,37.3,5.6,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,Lrp,Balanced accuracy,%,80.8,REVE,80.8,0.0,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,Mental Arithmetic,Balanced accuracy,%,71.6,FAME-50M,74.3,2.7,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,Mental Imagery,Balanced accuracy,%,26.3,EEGNet,29.6,3.3,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,Mismatch Negativity,Balanced accuracy,%,57.7,CBraMod,58.9,1.2,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,N170,Balanced accuracy,%,76.5,REVE,76.5,0.0,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,N2pc,Balanced accuracy,%,62.4,FAME-50M,64.9,2.5,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,N400,Balanced accuracy,%,63.8,EEGNet,64.6,0.8,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,SSVEP,Balanced accuracy,%,96.6,LaBraM,96.6,0.0,https://arxiv.org/html/2608.01898v1,Table 7
+FAME paper FT subset,Schizophrenia Diagnosis,Balanced accuracy,%,47.2,EEGNet,71.0,23.8,https://arxiv.org/html/2608.01898v1,Table 7
+REVE readout ablation LP,BCIC-IV-2a,Balanced accuracy,%,43.2,REVE-L,60.3,17.1,https://arxiv.org/html/2510.21585v1,Table 4
+REVE readout ablation LP,BCIC2020-3,Balanced accuracy,%,23.400000000000002,REVE-B,39.0,15.6,https://arxiv.org/html/2510.21585v1,Table 4
+REVE readout ablation LP,Faced,Balanced accuracy,%,24.0,REVE-L,46.9,22.9,https://arxiv.org/html/2510.21585v1,Table 4
+REVE readout ablation LP,HMC,Balanced accuracy,%,64.7,REVE-L,71.0,6.3,https://arxiv.org/html/2510.21585v1,Table 4
+REVE readout ablation LP,ISRUC,Balanced accuracy,%,69.69999999999999,REVE-L,75.8,6.1,https://arxiv.org/html/2510.21585v1,Table 4
+REVE readout ablation LP,M. Arithmetic,Balanced accuracy,%,72.5,REVE-B,74.0,1.5,https://arxiv.org/html/2510.21585v1,Table 4
+REVE readout ablation LP,Mumtaz,Balanced accuracy,%,96.2,REVE-L (Pool),98.5,2.3,https://arxiv.org/html/2510.21585v1,Table 4
+REVE readout ablation LP,PhysioNetMI,Balanced accuracy,%,53.7,REVE-L,61.7,8.0,https://arxiv.org/html/2510.21585v1,Table 4
+REVE readout ablation LP,TUAB,Balanced accuracy,%,81.0,REVE-L (Pool),82.1,1.1,https://arxiv.org/html/2510.21585v1,Table 4
+REVE readout ablation LP,TUEV,Balanced accuracy,%,59.199999999999996,REVE-L (Pool),63.0,3.8,https://arxiv.org/html/2510.21585v1,Table 4

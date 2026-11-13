@@ -1,0 +1,7808 @@
+OmniEEG-Bench: A Standardized Evaluation Benchmark for EEG Foundation Models
+Skip to main content
+Report GitHub Issue
+×
+Title:
+Content selection saved. Describe the issue below:
+Description:
+Why HTML?
+Report Issue
+Back to Abstract
+Download PDF
+Contents
+Reading mode
+Colour theme
+License: arXiv.org perpetual non-exclusive license
+arXiv:2606.00815v1 [cs.LG] 30 May 2026
+\keepXColumns
+OmniEEG-Bench: A Standardized Evaluation Benchmark for EEG Foundation Models
+Ziling Lu
+1
+†
+\dagger
+Zongsheng Li
+2,1
+†
+\dagger
+Xinke Shen
+1
+†
+\dagger
+Kexin Lou
+1,3
+†
+\dagger
+Yingyue Xin
+1
+Xiaoqi Chen
+1
+Shinan Wang
+1
+Xiang Chen
+1
+Jiahao Fan
+1
+Chenyu Huang
+1
+Xin Xu
+1
+Zhoujie Hou
+1
+Chen Wei
+1,3
+*
+Quanying Liu
+1,3,4
+*
+1
+Department of Biomedical Engineering, Southern University of Science and Technology, Shenzhen, China
+2
+School of Computer Science and Engineering, The Chinese University of Hong Kong, Shenzhen, China
+3
+Omni-Intelligence, Shenzhen, China
+4
+Shenzhen Loop Area Institute, Shenzhen, China
+†
+\dagger
+Equal contribution
+*
+Corresponding authors:
+liuqy@sustech.edu.cn; chen.wei@omni-intel.cn
+Abstract
+Electroencephalography (EEG) supports a variety of brain-computer interface (BCI) tasks ranging from brain-state monitoring to human-LLM interactions. EEG foundation models are emerging, but evaluation remains fragmented due to heterogeneous datasets and inconsistent task protocols. Here, we introduce OmniEEG-Bench, a unified benchmark and downstream task roadmap for EEG foundation models (FMs). It organizes evaluation of EEG FMs into six task families spanning (i) signal reliability, (ii) biometrics and disease, (iii) consciousness and state, (iv) cognition and emotion, (v) naturalistic stimulus decoding, and (vi) motor and interaction, introducing a new generation of tasks not systematically benchmarked in prior EEG FM work. OmniEEG-Bench standardizes model deployment, task definitions, and metrics through a task-card specification, and unifies 54 EEG datasets with consistent evaluation protocols. We benchmark 10 representative EEG foundation models and report a leaderboard that covers diverse evaluation settings. Both pretraining dataset diversity and model size are significantly associated with better average ranks across datasets, revealing scaling-law behavior in EEG foundation models (Figure
+1
+). These results suggest that scaling EEG foundation models requires not only larger architectures but also broader and more diverse pretraining data. The benchmark code is available at
+https://github.com/ncclab-sustech/omni-eegbench.git
+.
+Figure 1
+:
+Scaling law of pretraining data diversity (a) and model size (b) for linear-probing generalization of EEG foundation models.
+Tests on OmniEEG-Bench with 58 datasets show that EEG foundation models pretrained on a greater number of datasets and models with a larger number of parameters tend to achieve lower average ranks (i.e., better performance).
+1
+Introduction
+EEG foundation models are rapidly emerging as a new paradigm for brain decoding: by pretraining on large-scale, heterogeneous EEG, a single model can be adapted to many downstream tasks, with the long-term promise of capturing universal EEG representations and enabling practical “reading the brain”
+Kuruppu et al. (2025)
+;
+Zhou et al. (2025)
+;
+Wu et al. (2025)
+. Recent models, such as BIOT
+Yang et al. (2023)
+, LaBraM
+Jiang et al. (2024c)
+and BrainOmni
+Xiao et al. (2025)
+, explicitly pursue universal and transferable EEG representations via self-supervised pretraining such as masked autoencoding and contrastive learning. However, the field lacks a fair way to compare them: each model is evaluated on different datasets, tasks, and splits in terms of decoding ability and generalizability, and even for the same task, evaluation settings can substantially alter the results. This fragmentation obscures what foundation models truly improve, and hinders the development of robust and generalizable brain decoding systems.
+This lack of comparability is not only a protocol issue. It also reflects the absence of a shared view of what EEG foundation models should be good at. Different work implicitly prioritizes different task families, making “general-purpose EEG representation” difficult to operationalize. A coherent task roadmap is therefore a prerequisite for fair evaluation: it makes the capability axes explicit and encourages models to be assessed across a broad spectrum of EEG objectives rather than a few isolated settings. EEG tasks span a wide range of regimes, from clinical abnormality detection
+Zhang et al. (2023)
+to global state monitoring (such as sleep staging)
+Phan and Mikkelsen (2022)
+and fast, low-latency BCI control
+Värbu et al. (2022)
+. Meanwhile, recent open datasets increasingly capture EEG under more naturalistic, high-dimensional sensory contexts—such as viewing rich visual scenes
+Grootswagers et al. (2022)
+or listening to continuous speech
+Broderick et al. (2018)
+;
+Chen et al. (2025)
+—where the stimulus space is complex
+Sonkusare et al. (2019)
+. However, most EEG foundation models are still evaluated on a narrow subset of controlled paradigms, and are rarely tested in a standardized way on these naturalistic-context datasets. Therefore, a benchmark should reflect the field’s evolution from tightly controlled experiments toward naturalistic, interaction-centric paradigms, while maintaining standardization through well-defined tasks.
+We introduce OmniEEG-Bench, a standardized evaluation benchmark for EEG foundation models. OmniEEG-Bench organizes downstream evaluation into six task families: (i) signal reliability, (ii) biometrics and disease, (iii) consciousness and state, (iv) cognition and emotion, (v) naturalistic stimulus decoding, and (vi) motor and interaction. This taxonomy is organized by three dimensions: from stable traits to transient states, from slow- to fast-changing temporal scales, and from passive monitoring to active interaction. We standardize preprocessing, task definitions, and metrics through a task-card specification. We benchmark 10 EEG foundation models on 54 EEG datasets with a protocol suite that probes four complementary capabilities: (i) multi-subject cross-trial adaptation, (ii) cross-subject transfer, (iii) label-efficiency via zero-/few-shot adaptation, and (iv) noise robustness under sensor degradation via channel corruption. Our contributions are threefold:
+•
+A unified task roadmap for EEG foundation models.
+We organize EEG downstream evaluation into six task taxonomies and formalize each task with a
+task-card
+specification that standardizes preprocessing, inputs/outputs, and metrics.
+•
+Standardized evaluation protocols that probe transfer, data efficiency, and robustness.
+We report results under multi-subject (trial-level splits with pooled subjects) and cross-subject (held-out subjects) settings, and further include zero-shot/few-shot adaptation and channel corruption tests. These tests systematically characterize the transferability and robustness of pretrained representations.
+•
+Large-scale, reproducible benchmarking with diagnostic insights.
+We benchmark 10 EEG foundation models on 54 EEG datasets, release a public leaderboard, and
+identify the predictive factors that influence the model’s downstream performance
+.
+Figure 2
+:
+Task taxonomy of OmniEEG-Bench. We organize 58 tasks (from 54 datasets) into 6 categories: signal reliability, biometrics and disease, consciousness and state, cognition and emotion, naturalistic stimulus decoding, and motor and interaction.
+2
+EEG Task Taxonomy and Dataset Organization
+OmniEEG-Bench adopts a capability-driven task taxonomy that organizes downstream EEG tasks into a continuous task space, as illustrated in Fig.
+2
+. We use three broad organizing dimensions to guide this design. First, tasks differ in the extent to which they reflect stable
+subject-specific characteristics
+or
+transient brain states
+, consistent with the view that EEG measurements can contain both trait-like and state-dependent components
+Martin et al. (2025)
+. Biometrics and clinical phenotyping emphasize relatively stable individual variability, whereas sleep staging, vigilance, emotion recognition, and task-context decoding emphasize time-varying neural dynamics. Second, tasks differ in
+temporal scale
+, ranging from slow global state estimation to faster perceptual, cognitive, and interaction-related decoding. This dimension separates tasks that can be characterized over extended windows from those requiring more temporally precise predictions. Naturalistic stimulus decoding is included as an important dynamic regime because naturalistic stimuli provide richer and more continuous sensory contexts than classical controlled paradigms
+Sonkusare et al. (2019)
+. Third, tasks differ in their
+interaction regime
+, from passive monitoring to active brain-computer interaction. In passive settings, EEG is used to monitor cognitive, affective, or brain-state variables without requiring the user to actively generate control signals. In active settings, the user intentionally modulates mental activity, such as motor imagery, and model predictions may support closed-loop control
+Gao et al. (2021)
+.
+Under this framing, the six OmniEEG-Bench families cover complementary task regions of EEG:
+signal reliability
+assesses artifact sensitivity and session consistency,
+biometrics and disease
+captures trait-like individual and clinical variability,
+consciousness and state
+targets global brain-state dynamics,
+cognition and emotion
+covers affective and cognitive changes at intermediate time scales,
+naturalistic stimulus decoding
+evaluates perceptual and semantic decoding under dynamic real-world stimuli, and
+motor and interaction
+focuses on time-sensitive intent decoding and control.
+Type-I: Signal reliability.
+This family probes artifact-aware and session-consistent representations. We include (i) ocular artifact/noise identification (EEGDenoiseNet) and (ii) longitudinal stability, where representations of the same participant should remain consistent across sessions (Longitudinal test-retest).
+Type-II: Biometrics and disease.
+This family evaluates clinically and biologically meaningful individual differences. Subtypes include (i) stable traits (MPI-LEMON derived age/gender/personality splits), (ii) epilepsy and abnormalities (HFO, TUAB, TUEP, TUSL, TUEV, and Siena EEG), (iii) neurodevelopmental disorders (ADHD), (iv) neurodegenerative disorders (AD65, PD31, and PD mortality prognosis), and (v) mental disorders (MDD, TDBRAIN, Depression resting, and MODMA).
+Type-III: Consciousness and state.
+This family targets global brain state and slow-to-intermediate dynamics. Subtypes include (i) consciousness level detection (Awakening), (ii) sleep staging (e.g., ISRUC-Sleep I/II/III, Sleep-EDF, and HMC), and (iii) cognitive task identification (e.g., HBN-EEG, PEARL-Neuro, RestCog).
+Type-IV: Cognition and emotion.
+This family covers affective and cognitive labels with more rapid dynamics. We include (i) vigilance detection (SEED-VIG), (ii) emotion recognition across diverse elicitation settings and label granularities, ranging from video-driven affect induction (DEAP, SEED, SEED-IV, SEED-V, SEED-VII, and SEED-FRA, EEG-SVRec, FACED) to music (MusicEEG) and conversational (CIRE) contexts, with label spaces spanning binary valence or arousal classification (DEAP), mid-granularity categorical emotion (SEED/SEED-IV/SEED-V/SEED-VII, 3–7 classes), and more fine-grained categories (FACED, 9 classes), and (iii) cognitive load assessment (EEGMAT and Workload).
+Type-V: Naturalistic stimulus decoding.
+This family targets fast-timescale decoding under naturalistic stimuli, where labels correspond to stimulus attributes or natural listening/reading/viewing context. We include (i) natural speech perception and auditory attention, encompassing multi-class speech phrase discrimination (BCI Speech), selective attention to competing speakers (Broderick, cocktail party), and forward versus reversed speech discrimination (Broderick, reverse); (ii) natural reading with tonal discrimination (ChineseEEG2 reading aloud condition, four Mandarin tones); and (iii) visual semantic categorization (ThingsEEG2, biological vs. non-biological).
+Type-VI: Motor and interaction.
+This family focuses on active intent decoding for control and interaction-centric monitoring. Subtypes include (i) motor imagery (BCIC-IV-2a, BCIC-IV-1, PhysioNet-MI, and SHU-MI), (ii) SSVEP control (BETA-SSVEP, Benchmark-SSVEP, Dual-Freq-SSVEP, SSVEP-9-chn), (iii) error-related potential feedback decoding (Monitoring ErrP), and (iv) closed-loop assistive control (EEG-controlled exoskeleton).
+See Appendix
+A
+for details and references of the 58 tasks in OmniEEG-Bench.
+Figure 3
+:
+OmniEEG-Bench evaluation pipeline, equipped with four evaluation protocols: cross-subject transfer, multi-subject trial-level adaptation, zero-/few-shot adaptation, and channel-masking robustness.
+3
+Evaluation Protocols
+Figure 4
+:
+Primary cross-subject-prioritized leaderboard of ten EEG foundation models.
+To systematically assess the transferability, data efficiency, and robustness of EEG foundation models, we implement four complementary evaluation paradigms: (i) cross-subject transfer, (ii) multi-subject adaptation, (iii) few-shot adaptation, and (iv) channel masking robustness (Fig.
+3
+). These configurations are materialized through flexible data loading strategies, including cross-subject splits, cross-trial splits, few-shot downsampling, and channel masking. We preprocess the 54 EEG datasets through a standardized pipeline of downsampling, band-pass and notch filtering, common average referencing, and window segmentation (See Appendix
+I
+for details). To facilitate efficient benchmarking while maintaining statistical reliability, we randomly select up to 40 samples per subject per class for linear probing (determined by variance stabilization analysis in Appendix
+D
+), from which all subsequent splits derive.
+All backbone architectures are wrapped in a common interface that accepts an EEG sample
+𝒙
+∈
+ℝ
+C
+×
+T
+\boldsymbol{x}\in\mathbb{R}^{C\times T}
+and outputs a representation
+𝒛
+=
+f
+θ
+​
+(
+𝒙
+)
+\boldsymbol{z}=f_{\theta}(\boldsymbol{x})
+. A lightweight linear classifier
+g
+⁡
+(
+⋅
+)
+g(\cdot)
+maps
+𝒛
+\boldsymbol{z}
+to task logits. We adopt linear probing as the primary evaluation method—freezing the pretrained backbone
+θ
+\theta
+and training only the classification head. This protocol enables heterogeneous models to be evaluated under consistent input specifications and optimization settings. To characterize the performance ceiling of each architecture, we additionally perform full fine-tuning on all the datasets from each task category under the cross-subject setting. We benchmark ten representative EEG foundation models: BENDR, BIOT, LaBraM, CBraMod, BrainOmni, FEMBA, Neuro-GPT, NeuroLM, EEGMamba, and REVE. We report results averaged over multiple independent runs, each using a pre-generated, fixed data split derived from a different random seed. Three runs were employed for cross-subject transfer and multi-subject adaptation, and five for zero-/few-shot adaptation and channel masking. This ensures fair and comparable performance estimates in the benchmark. The four evaluation protocols are detailed below:
+Cross-subject transfer and primary leaderboard.
+In the
+cross-subject
+setting, splits are made at the subject level: subjects are partitioned into train/validation/test groups with a ratio of 8:1:1. For the primary leaderboard, we use cross-subject transfer whenever subject-level splitting is meaningful. For the signal-reliability task (Longitudinal test-retest) that do not admit a standard held-out-subject formulation, we use the corresponding multi-subject protocol as a fallback and include them in the main leaderboard for task coverage.
+Multi-subject adaptation.
+In the
+multi-subject
+setting, samples from each subject are split into train/validation/test with an 8:1:1 ratio over trials and pooled across subjects. This setting requires the model to generalize to unseen trials, measuring adaptation when training data spans multiple subjects.
+Zero-shot and few-shot adaptation.
+To quantify data efficiency, we evaluate
+few-shot
+adaptation by sampling labeled examples of ratio
+k
+k
+per class from the training split (
+k
+∈
+{
+0.02
+,
+0.05
+,
+0.1
+,
+0.3
+}
+k\in\{0.02,0.05,0.1,0.3\}
+).
+Zero-shot
+is treated as the
+k
+=
+0
+k=0
+special case with no dataset-specific supervised training. We compute the pairwise cosine similarity between sample embeddings. For each sample from the test split, we identify its most similar sample from the validation split (to avoid information leakage) in the embedding space and check whether the two samples share the same class label. The prediction is counted as correct if the labels match and incorrect otherwise. The data split follows the cross-subject setting.
+Channel masking robustness.
+To measure the model’s robustness to missing or degraded sensors, we apply
+channel masking
+in linear probing:
+For each sample, a random subset of channels is zero-masked with a corruption ratio
+p
+∈
+{
+20
+%
+,
+40
+%
+,
+60
+%
+,
+80
+%
+}
+p\in\{20\%,40\%,60\%,80\%\}
+.
+We report the performance with increasing channel corruptions, using fixed corruption seeds across models. The data split also follows the cross-subject setting.
+4
+Results
+4.1
+Primary cross-subject transfer benchmark
+In the primary linear-probing benchmark, we prioritize cross-subject transfer because EEG foundation models are expected to learn representations that generalize to unseen individuals. For the dataset where cross-subject evaluation is not meaningful or not applicable (Longitudinal test-retest), we use the corresponding multi-subject evaluation as a fallback. Under this cross-subject-prioritized protocol, BrainOmni achieves the best overall average rank, followed by CBraMod and REVE (Fig.
+4
+; see Supplementary Table 5 for detailed accuracy).
+Across tasks, the majority of models achieve above-chance performance. Several tasks are especially difficult, including Parkinson’s detection (PD31), arousal classification (DEAP-arousal), speech attention detection (Broderick-Cocktail-party), natural-versus-reversed speech classification (Broderick-reverse), image concept identification (ThingsEEG2), and error-related potential detection (Monitoring-Errp). Overall, naturalistic stimulus decoding emerges as one of the most challenging task categories for current EEG foundation models.
+Under full fine-tuning, the model rankings change substantially compared with linear probing, with CBraMod, LaBraM, and FEMBA achieving the top three overall ranks with average ranks of 4.51, 4.88, and 5.42, respectively (Supplementary Fig. 3; see Supplementary Table 7 for detailed accuracy). This suggests that these models can benefit substantially from task-specific end-to-end optimization. We further compare EEG foundation models with two task-specific baselines, EEGConformer and EEGNet. Under full fine-tuning, seven foundation models outperform EEGConformer (avg. rank 7.25) and nine outperform EEGNet (avg. rank 8.24), highlighting the advantage of pretrained models after task-specific adaptation. In contrast, under linear probing, only five foundation models surpass EEGConformer (avg. rank 6.66), while five fall behind this baseline (Supplementary Fig. 5), indicating that frozen pretrained representations remain substantially limited for direct transfer.
+4.2
+Zero-shot and few-shot learning
+Under few-shot adaptation, BrainOmni exhibits steeper performance scaling with sample size, indicating superior sample efficiency during linear probing (Fig.
+5
+). Task categories display heterogeneous scaling behaviors: Longitidinal test-retest and HMC datasets show gradual, monotonic gains as training data increases. By contrast, most models plateau in FACED, AD65, and Physionet-MI datasets once the few-shot ratio exceeds 0.05. Notably, several models like BrainOmni defy this saturation trend in FACED as well as Physionet-MI datasets, continuing to improve beyond this threshold.
+Figure 5
+:
+The performance of zero-shot and few-shot learning.
+4.3
+Robustness to channel corruptions
+On the longitudinal test-retest dataset, most models exhibit robustness to channel corruption, except for BrainOmni (Fig.
+6
+). On other tasks, performance degrades gradually as channel dropout increases. Notably, BIOT sustains stable performance under moderate corruption (ratios of 0.2 and 0.4). At severe corruption levels (ratios of 0.6 and 0.8), most models collapse to near-chance performance.
+Figure 6
+:
+The robustness of model performance on channel masking.
+4.4
+Predictive factors of model performance
+To identify the key factors that influence the generalization performance of EEG foundation models, we systematically analyzed the relationships between model performance and the number of pretraining datasets, number of training subjects, training hours, model size, publication year, model architecture, pretraining paradigm, tokenization strategy, and spatial modeling design. First, Fig.
+1
+shows that both the number of pretraining datasets and model size are significantly associated with better average ranks across datasets. Specifically, models pretrained on more datasets tend to achieve lower average ranks, suggesting that dataset diversity is an important factor for improving generalization. Meanwhile, larger models also show better overall rankings, indicating emerging scaling-law behavior in EEG foundation models. Further per-dataset Spearman correlation analyses support this trend. For each dataset, we computed the Spearman correlation between each model factor and the model rank, and then used a Wilcoxon signed-rank test to assess whether the resulting correlations were systematically different from zero. Because lower ranks indicate better performance, a negative correlation means that a larger value of the corresponding factor is associated with better model performance. The number of pretraining datasets shows a median correlation of
+ρ
+=
+−
+0.27
+\rho=-0.27
+with a Wilcoxon
+p
+=
+1.1
+×
+10
+−
+7
+p=1.1\times 10^{-7}
+, indicating that the association between dataset diversity and improved performance is consistent across multiple datasets.
+Fig.
+7
+further compares the effects of different model factors on performance. Among quantitative factors, publication year, model size, and the number of pretraining datasets are all significantly associated with better per-dataset ranks, with publication year showing the strongest correlation. This suggests that more recent EEG foundation models tend to benefit from larger model capacity, richer pretraining data, and updated modeling designs. In contrast, training hours and the number of training subjects show weaker associations with performance, suggesting that simply increasing training time or the number of subjects does not necessarily lead to stable improvements in downstream generalization. Qualitative architecture analyses show that masked reconstruction pretraining, VQ-based tokenization, and Criss-Cross spatial modeling each significantly outperform their respective alternatives, indicating that effective architectural and training-objective designs remain critical determinants of performance. Finally, models pretrained on multiple datasets outperform those pretrained on a single dataset overall, further supporting the importance of dataset diversity for EEG foundation model generalization. Overall, these results indicate that improvements in EEG foundation models are not driven by a single factor, but by the joint effects of pretraining data diversity, model scale, temporal progress in model development, and architectural design.
+Figure 7
+:
+Pretraining design factors and cross-subject linear-probing performance of EEG foundation models. Quantitative factors are evaluated via per-dataset Spearman correlations with Wilcoxon signed-rank tests (a, b). Per-dataset median rho represents the median correlations of model ranks and the predictive factor on each dataset. Avg-rank rho represents the correlation of average model ranks and the predictive factor. Qualitative factors are compared using paired Wilcoxon tests between model groups (c), and single- versus multi-dataset pretraining is compared via Mann–Whitney U test (d).
+5
+Conclusion
+In this work, we present OmniEEG-Bench, a comprehensive benchmark for evaluating EEG foundation models across 54 datasets and 58 tasks. By organizing downstream EEG evaluation into six task families and standardizing preprocessing, task definitions, and evaluation protocols, OmniEEG-Bench provides a unified testbed for assessing the transferability, data efficiency, and robustness of EEG foundation models.
+Our results show that EEG foundation models can benefit substantially from task-specific fine-tuning, whereas frozen representations remain limited under direct linear probing. Performance also varies markedly across task families, with naturalistic stimulus decoding posing one of the greatest challenges for current models. Beyond the leaderboard, our diagnostic analyses reveal scaling-law-like trends: models pretrained on more diverse datasets and models with larger parameter counts tend to achieve better average ranks across datasets. These findings suggest that improving EEG foundation models may require not only larger architectures, but also broader and more diverse pretraining data. In addition, VQ-based tokenization and criss-cross spatial modeling are associated with stronger downstream performance, indicating that architectural and pretraining-design choices remain critical for generalization.
+By providing a public leaderboard, standardized task cards, and transparent evaluation protocols, OmniEEG-Bench aims to support more reproducible and comparable research on EEG foundation models. We hope that this benchmark will serve as a foundation for tracking progress, diagnosing model limitations, and guiding the development of more generalizable EEG representation learning methods.
+6
+Limitations
+In this work, the evaluation is limited to linear probing and full fine-tuning without exploring parameter-efficient transfer strategies. Additionally, the 54 datasets, while diverse, do not exhaustively cover all clinical populations, recording contexts, or geographic regions, and the channel corruption simulation simplifies real-world sensor degradation patterns.
+Impact Statement
+The goal of this paper is to advance the field of brain-computer interfaces through standardized benchmarking of EEG foundation models. EEG data have diverse applications in clinical monitoring, assistive technologies, and neuroscience research, and our work aims to support progress in these areas through systematic, rigorous evaluations. There are potential societal consequences of improvements in EEG-based modeling, including enhanced diagnostic tools and accessible neurotechnologies. However, these developments also raise considerations around data privacy, equitable access, and responsible deployment. Although our benchmark itself does not introduce new modeling techniques, it can accelerate research that impacts users across clinical and consumer domains. We encourage careful consideration of ethical, privacy, and societal implications in subsequent research that builds upon this benchmark.
+References
+[1]
+G. Kuruppu, N. Wagh, V. Kremen, S. Pati, G. Worrell, and Y. Varatharajah
+(2025)
+Eeg foundation models: a critical review of current progress and future directions
+.
+arXiv preprint arXiv:2507.11783
+.
+Cited by:
+§1
+.
+[2]
+X. Zhou, C. Liu, Z. Chen, K. Wang, Y. Ding, Z. Jia, and Q. Wen
+(2025)
+Brain foundation models: a survey on advancements in neural signal processing and brain discovery
+.
+arXiv preprint arXiv:2503.00580
+.
+Cited by:
+§1
+.
+[3]
+J. Wu, Z. Ren, J. Wang, P. Zhu, Y. Song, M. Liu, Q. Zheng, L. Bai, W. Ouyang, and C. Song
+(2025)
+Adabrain-bench: benchmarking brain foundation models for brain-computer interface applications
+.
+arXiv preprint arXiv:2507.09882
+.
+Cited by:
+§1
+.
+[4]
+C. Yang, M. Westover, and J. Sun
+(2023)
+Biot: biosignal transformer for cross-data learning in the wild
+.
+Advances in Neural Information Processing Systems
+36
+,
+pp.
+78240–78260
+.
+Cited by:
+Table 2
+,
+§1
+.
+[5]
+W. Jiang, L. Zhao, and B. Lu
+(2024)
+Large brain model for learning generic representations with tremendous EEG data in BCI
+.
+In
+The Twelfth International Conference on Learning Representations
+,
+External Links:
+Link
+Cited by:
+Table 2
+,
+§1
+.
+[6]
+Q. Xiao, Z. Cui, C. Zhang, S. Chen, W. Wu, A. Thwaites, A. Woolgar, B. Zhou, and C. Zhang
+(2025)
+BrainOmni: a brain foundation model for unified eeg and meg signals
+.
+In
+The Thirty-ninth Annual Conference on Neural Information Processing Systems
+,
+Cited by:
+Table 2
+,
+§1
+.
+[7]
+H. Zhang, Q. Zhou, H. Chen, X. Hu, W. Li, Y. Bai, J. Han, Y. Wang, Z. Liang, D. Chen,
+et al.
+(2023)
+The applied principles of eeg analysis methods in neuroscience and clinical neurology
+.
+Military Medical Research
+10
+(
+1
+),
+pp.
+67
+.
+Cited by:
+§1
+.
+[8]
+H. Phan and K. Mikkelsen
+(2022)
+Automatic sleep staging of eeg signals: recent development, challenges, and future directions
+.
+Physiological Measurement
+43
+(
+4
+),
+pp.
+04TR01
+.
+Cited by:
+§1
+.
+[9]
+K. Värbu, N. Muhammad, and Y. Muhammad
+(2022)
+Past, present, and future of eeg-based bci applications
+.
+Sensors
+22
+(
+9
+),
+pp.
+3331
+.
+Cited by:
+§1
+.
+[10]
+T. Grootswagers, I. Zhou, A. K. Robinson, M. N. Hebart, and T. A. Carlson
+(2022)
+Human eeg recordings for 1,854 concepts presented in rapid serial visual presentation streams
+.
+Scientific Data
+9
+(
+1
+),
+pp.
+3
+.
+Cited by:
+§1
+.
+[11]
+M. P. Broderick, A. J. Anderson, G. M. Di Liberto, M. J. Crosse, and E. C. Lalor
+(2018)
+Electrophysiological correlates of semantic dissimilarity reflect the comprehension of natural, narrative speech
+.
+Current Biology
+28
+(
+5
+),
+pp.
+803–809
+.
+Cited by:
+Table 1
+,
+Table 1
+,
+§1
+.
+[12]
+S. Chen, B. Li, C. He, D. Li, M. Wu, X. Shen, S. Wang, X. Wei, X. Wang, H. Wu,
+et al.
+(2025)
+An eeg dataset for multimodal semantic alignment and neural decoding during reading and listening
+.
+Scientific Data
+.
+Cited by:
+Table 1
+,
+§1
+.
+[13]
+S. Sonkusare, M. Breakspear, and C. Guo
+(2019)
+Naturalistic stimuli in neuroscience: critically acclaimed
+.
+Trends in cognitive sciences
+23
+(
+8
+),
+pp.
+699–714
+.
+Cited by:
+§1
+,
+§2
+.
+[14]
+T. Martin, E. Holliday, C. Okhio, A. Newman, L. LaTella, M. Mcginnis, B. Giordani, V. Kavcic,
+et al.
+(2025)
+States, traits, and the resting state eeg task aftereffect
+.
+International Journal of Psychophysiology
+210
+,
+pp.
+112523
+.
+Cited by:
+§2
+.
+[15]
+X. Gao, Y. Wang, X. Chen, and S. Gao
+(2021)
+Interface, interaction, and intelligence in generalized brain–computer interfaces
+.
+Trends in cognitive sciences
+25
+(
+8
+),
+pp.
+671–684
+.
+Cited by:
+§2
+.
+[16]
+H. Zhang, M. Zhao, C. Wei, D. Mantini, Z. Li, and Q. Liu
+(2021)
+EEGdenoiseNet: a benchmark dataset for deep learning solutions of eeg denoising
+.
+Journal of Neural Engineering
+18
+(
+5
+),
+pp.
+056057
+.
+Cited by:
+Table 1
+.
+[17]
+S. Sarkar, K. Nathan, and J. L. Contreras-Vidal
+(2025)
+"Dataset: eeg-controlled exoskeleton for walking and standing - a longitudinal study of healthy individuals"
+.
+OpenNeuro
+.
+External Links:
+Document
+Cited by:
+Table 1
+,
+Table 1
+.
+[18]
+A. Babayan, M. Erbey, D. Kumral, J. D. Reinelt, A. M. Reiter, J. Röbbig, H. L. Schaare, M. Uhlig, A. Anwander, P. Bazin,
+et al.
+(2019)
+A mind-brain-body dataset of mri, eeg, cognition, emotion, and peripheral physiology in young and old adults
+.
+Scientific data
+6
+(
+1
+),
+pp.
+1–21
+.
+Cited by:
+Table 1
+,
+Table 1
+,
+Table 1
+.
+[19]
+D. Cserpan, E. Boran, R. Rosch, S. P. L. Biundo, G. Ramantani, and J. Sarnthein
+(2021)
+"Dataset of eeg recordings of pediatric patients with epilepsy based on the 10-20 system "
+.
+OpenNeuro
+.
+External Links:
+Document
+Cited by:
+Table 1
+.
+[20]
+I. Obeid and J. Picone
+(2016)
+The temple university hospital eeg data corpus
+.
+Frontiers in Neuroscience
+Volume 10 - 2016
+.
+External Links:
+Link
+,
+Document
+,
+ISSN 1662-453X
+Cited by:
+Table 1
+,
+Table 1
+.
+[21]
+A. Harati, M. Golmohammadi, S. Lopez, I. Obeid, and J. Picone
+(2015)
+Improved eeg event classification using differential energy
+.
+In
+IEEE Signal Processing in Medicine and Biology Symposium (SPMB)
+,
+External Links:
+Document
+,
+Link
+Cited by:
+Table 1
+.
+[22]
+Neural Engineering Data Consortium
+(2026)
+Temple university eeg corpus - downloads
+.
+External Links:
+Link
+Cited by:
+Table 1
+.
+[23]
+P. Detti
+(2020)
+Siena scalp eeg database
+.
+PhysioNet
+.
+External Links:
+Document
+,
+Link
+Cited by:
+Table 1
+.
+[24]
+G. S. Bajestani, S. Abedian, F. Makhloughi, M. Raoufitabar, and H. Saeedi
+(2023)
+A dataset of eeg signals from adults with adhd and healthy controls: resting state, cognitive function, and sound listening paradigm
+.
+Mendeley Data
+.
+Cited by:
+Table 1
+.
+[25]
+A. Miltiadous, K. D. Tzimourta, T. Afrantou, P. Ioannidis, N. Grigoriadis, D. G. Tsalikakis, P. Angelidis, M. G. Tsipouras, E. Glavas, N. Giannakeas,
+et al.
+(2023)
+A dataset of scalp eeg recordings of alzheimer’s disease, frontotemporal dementia and healthy subjects from routine eeg
+.
+Data
+8
+(
+6
+),
+pp.
+95
+.
+Cited by:
+Table 1
+.
+[26]
+A. P. Rockhill, N. Jackson, J. George, A. Aron, and N. C. Swann
+(2021)
+"UC san diego resting state eeg data from patients with parkinson’s disease"
+.
+OpenNeuro
+.
+External Links:
+Document
+Cited by:
+Table 1
+.
+[27]
+S. Jamshidi, A. Espinoza, S. Dasgupta, and N. Narayanan
+(2025)
+"EEG mortality dataset in parkinson’s disease"
+.
+OpenNeuro
+.
+External Links:
+Document
+Cited by:
+Table 1
+.
+[28]
+W. Mumtaz
+(2016)
+MDD Patients and Healthy Controls EEG Data (New)
+.
+External Links:
+Link
+,
+Document
+Cited by:
+Table 1
+.
+[29]
+H. Van Dijk, G. Van Wingen, D. Denys, S. Olbrich, R. Van Ruth, and M. Arns
+(2022)
+The two decades brainclinics research archive for insights in neurophysiology (tdbrain) database
+.
+Scientific data
+9
+(
+1
+),
+pp.
+333
+.
+Cited by:
+Table 1
+.
+[30]
+J. F. C. jcavanagh@unm.edu
+(2021)
+"EEG: depression rest"
+.
+OpenNeuro
+.
+External Links:
+Document
+Cited by:
+Table 1
+.
+[31]
+H. Cai, Y. Gao, S. Sun,
+et al.
+(2020)
+MODMA dataset: a multi-modal open dataset for mental-disorder analysis
+.
+CoRR
+abs/2002.09283
+.
+External Links:
+Link
+Cited by:
+Table 1
+.
+[32]
+I. J. Bajwa, A. S. Nilsen, R. Skukies, A. Aamodt, G. Ernst, J. F. Storm, and B. E. Juel
+(2025)
+A repeated awakening study exploring the capacity of complexity measures to capture dreaming during propofol sedation
+.
+Scientific Reports
+15
+(
+1
+),
+pp.
+32746
+.
+Cited by:
+Table 1
+.
+[33]
+S. Khalighi, T. Sousa, J. M. Santos, and U. Nunes
+(2016)
+ISRUC-sleep: a comprehensive public dataset for sleep researchers
+.
+Computer methods and programs in biomedicine
+124
+,
+pp.
+180–192
+.
+Cited by:
+Table 1
+,
+Table 1
+,
+Table 1
+.
+[34]
+B. Kemp, A. H. Zwinderman, B. Tuk, H. A. Kamphuisen, and J. J. Oberye
+(2000)
+Analysis of a sleep-dependent neuronal feedback loop: the slow-wave microcontinuity of the eeg
+.
+IEEE Transactions on Biomedical Engineering
+47
+(
+9
+),
+pp.
+1185–1194
+.
+Cited by:
+Table 1
+.
+[35]
+D. Alvarez-Estevez and R. Rijsman
+(2022)
+Haaglanden medisch centrum sleep staging database
+.
+PhysioNet
+.
+External Links:
+Document
+,
+Link
+Cited by:
+Table 1
+.
+[36]
+S. Y. Shirazi, A. Franco, M. Scopel Hoffmann, N. B. Esper, D. Truong, A. Delorme, M. P. Milham, and S. Makeig
+(2024)
+HBN-eeg: the fair implementation of the healthy brain network (hbn) electroencephalography dataset
+.
+bioRxiv
+,
+pp.
+2024–10
+.
+Cited by:
+Table 1
+.
+[37]
+L. M. Alexander, J. Escalera, L. Ai, C. Andreotti, K. Febre, A. Mangone, N. Vega-Potler, N. Langer, A. Alexander, M. Kovacs,
+et al.
+(2017)
+An open resource for transdiagnostic research in pediatric mental health and learning disorders
+.
+Scientific data
+4
+(
+1
+),
+pp.
+1–26
+.
+Cited by:
+Table 1
+.
+[38]
+P. Dzianok and E. Kublik
+(2024)
+PEARL-neuro database: eeg, fmri, health and lifestyle data of middle-aged people at risk of dementia
+.
+Scientific Data
+11
+(
+1
+),
+pp.
+276
+.
+Cited by:
+Table 1
+.
+[39]
+I. Daly, N. Nicolaou, D. Williams, F. Hwang, A. Kirke, E. Miranda, and S. J. Nasuto
+(2024)
+"An eeg dataset recorded during affective music listening"
+.
+OpenNeuro
+.
+External Links:
+Document
+Cited by:
+Table 1
+,
+Table 1
+.
+[40]
+W. Zheng and B. Lu
+(2017)
+A multimodal approach to estimating vigilance using eeg and forehead eog
+.
+Journal of neural engineering
+14
+(
+2
+),
+pp.
+026017
+.
+Cited by:
+Table 1
+.
+[41]
+S. Koelstra, C. Muhl, M. Soleymani, J. Lee, A. Yazdani, T. Ebrahimi, T. Pun, A. Nijholt, and I. Patras
+(2011)
+Deap: a database for emotion analysis; using physiological signals
+.
+IEEE transactions on affective computing
+3
+(
+1
+),
+pp.
+18–31
+.
+Cited by:
+Table 1
+,
+Table 1
+.
+[42]
+J. Chen, X. Wang, C. Huang, X. Hu, X. Shen, and D. Zhang
+(2023)
+A large finer-grained affective computing eeg dataset
+.
+Scientific Data
+10
+(
+1
+),
+pp.
+740
+.
+Cited by:
+Table 1
+.
+[43]
+R. Duan, J. Zhu, and B. Lu
+(2013)
+Differential entropy feature for eeg-based emotion classification
+.
+In
+2013 6th international IEEE/EMBS conference on neural engineering (NER)
+,
+pp.
+81–84
+.
+Cited by:
+Table 1
+.
+[44]
+W. Zheng, W. Liu, Y. Lu, B. Lu, and A. Cichocki
+(2018)
+Emotionmeter: a multimodal framework for recognizing human emotions
+.
+IEEE transactions on cybernetics
+49
+(
+3
+),
+pp.
+1110–1122
+.
+Cited by:
+Table 1
+.
+[45]
+W. Liu, J. Qiu, W. Zheng, and B. Lu
+(2021)
+Comparing recognition performance and robustness of multimodal deep learning models for multimodal emotion recognition
+.
+IEEE Transactions on Cognitive and Developmental Systems
+14
+(
+2
+),
+pp.
+715–729
+.
+Cited by:
+Table 1
+.
+[46]
+W. Jiang, X. Liu, W. Zheng, and B. Lu
+(2024)
+Seed-vii: a multimodal dataset of six basic emotions with continuous labels for emotion recognition
+.
+IEEE Transactions on Affective Computing
+.
+Cited by:
+Table 1
+.
+[47]
+S. A. Imtiaz and E. Rodriguez-Villegas
+(2015)
+An open-source toolbox for standardized use of physionet sleep edf expanded database
+.
+In
+2015 37th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC)
+,
+pp.
+6014–6017
+.
+Cited by:
+Table 1
+.
+[48]
+S. Zhang, Z. He, Z. Ye, P. Sun, Q. Ai, M. Zhang, and Y. Liu
+(2024)
+Eeg-svrec: an eeg dataset with user multidimensional affective engagement labels in short video recommendation
+.
+In
+Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval
+,
+pp.
+698–708
+.
+Cited by:
+Table 1
+.
+[49]
+S. He, Z. Li, J. Dang, Y. Luo, and G. Zhang
+(2025)
+CIRE: a chinese eeg dataset for decoding speech intention modulated by prosodic emotion
+.
+Scientific Data
+12
+(
+1
+),
+pp.
+1664
+.
+Cited by:
+Table 1
+.
+[50]
+X. Xu, X. Shen, X. Chen, Q. Zhang, S. Wang, Y. Li, Z. Li, D. Zhang, M. Zhang, and Q. Liu
+(2025)
+A multi-context emotional eeg dataset for cross-context emotion decoding
+.
+Scientific Data
+12
+(
+1
+),
+pp.
+1142
+.
+Cited by:
+Table 1
+.
+[51]
+I. Zyma, S. Tukaev, I. Seleznov, K. Kiyono, A. Popov, M. Chernykh, and O. Shpenkov
+(2019)
+Electroencephalograms during mental arithmetic task performance
+.
+Data
+4
+(
+1
+),
+pp.
+14
+.
+External Links:
+Document
+,
+Link
+Cited by:
+Table 1
+.
+[52]
+M. F. Hinss, E. S. Jahanpour, B. Somon,
+et al.
+(2023)
+Open multi-session and multi-task eeg cognitive dataset for passive brain-computer interface applications
+.
+Scientific Data
+10
+,
+pp.
+85
+.
+External Links:
+Document
+,
+Link
+Cited by:
+Table 1
+.
+[53]
+S. Lee, K. Müller, and J. del R. Millán
+(2020)
+2020 bci competition, track 3
+.
+External Links:
+Document
+,
+Link
+Cited by:
+Table 1
+.
+[54]
+A. T. Gifford, K. Dwivedi, G. Roig, and R. M. Cichy
+(2022)
+A large and rich eeg dataset for modeling human visual object recognition
+.
+NeuroImage
+264
+,
+pp.
+119754
+.
+Cited by:
+Table 1
+.
+[55]
+B. Blankertz, G. Dornhege, M. Krauledat, K. Müller, and G. Curio
+(2007)
+The non-invasive berlin brain–computer interface: fast acquisition of effective performance in untrained subjects
+.
+NeuroImage
+37
+(
+2
+),
+pp.
+539–550
+.
+Cited by:
+Table 1
+.
+[56]
+C. Brunner, R. Leeb, G. Müller-Putz, A. Schlögl, and G. Pfurtscheller
+(2008)
+BCI competition 2008–graz data set a
+.
+Institute for knowledge discovery (laboratory of brain-computer interfaces), Graz University of Technology
+16
+(
+1-6
+),
+pp.
+34
+.
+Cited by:
+Table 1
+.
+[57]
+G. Schalk, D. J. McFarland, T. Hinterberger, N. Birbaumer, and J. R. Wolpaw
+(2004)
+BCI2000: a general-purpose brain-computer interface (bci) system
+.
+IEEE Transactions on biomedical engineering
+51
+(
+6
+),
+pp.
+1034–1043
+.
+Cited by:
+Table 1
+.
+[58]
+J. Ma, B. Yang, W. Qiu, Y. Li, S. Gao, and X. Xia
+(2022)
+SHU Multi-session Dataset
+.
+External Links:
+Link
+,
+Document
+Cited by:
+Table 1
+.
+[59]
+B. Liu, X. Huang, Y. Wang, X. Chen, and X. Gao
+(2020)
+BETA: a large benchmark database toward ssvep-bci application
+.
+Frontiers in neuroscience
+14
+,
+pp.
+627
+.
+Cited by:
+Table 1
+.
+[60]
+Y. Wang, X. Chen, X. Gao, and S. Gao
+(2017)
+A benchmark dataset for ssvep-based brain-computer interfaces
+.
+IEEE Transactions on Neural Systems and Rehabilitation Engineering
+25
+(
+10
+),
+pp.
+1746–1752
+.
+External Links:
+Document
+,
+Link
+Cited by:
+Table 1
+.
+[61]
+Y. Sun, Y. Li, Y. Chen,
+et al.
+(2024)
+Efficient dual-frequency ssvep brain-computer interface system exploiting interocular visual resource disparities
+.
+Expert Systems with Applications
+252
+,
+pp.
+124144
+.
+External Links:
+Document
+,
+Link
+Cited by:
+Table 1
+.
+[62]
+OpenNeuro
+(2025)
+A multimodal neuroimaging dataset to study spatiotemporal dynamics of brain activity and gait during real-world walking with and without a lower-limb exoskeleton
+.
+External Links:
+Document
+,
+Link
+Cited by:
+Table 1
+.
+[63]
+R. Chavarriaga and J. d. R. Millán
+Monitoring error–related potentials
+.
+Cited by:
+Table 1
+.
+[64]
+N. G. Gulenc and M. Ozturk
+(2024)
+Diagnosis of major depressive disorder using eeg signals
+.
+In
+2024 Innovations in Intelligent Systems and Applications Conference (ASYU)
+,
+pp.
+1–6
+.
+Cited by:
+Appendix B
+.
+[65]
+A. Tegon, T. M. Ingolfsson, X. Wang, L. Benini, and Y. Li
+(2025)
+FEMBA: efficient and scalable eeg analysis with a bidirectional mamba foundation model
+.
+arXiv preprint arXiv:2502.06438
+.
+Cited by:
+Table 2
+.
+[66]
+W. Jiang, Y. Wang, B. Lu, and D. Li
+(2024)
+NeuroLM: a universal multi-task foundation model for bridging the gap between language and eeg signals
+.
+arXiv preprint arXiv:2409.00101
+.
+Cited by:
+Table 2
+.
+[67]
+J. Wang, S. Zhao, Z. Luo, Y. Zhou, H. Jiang, S. Li, T. Li, and G. Pan
+(2024)
+Cbramod: a criss-cross brain foundation model for eeg decoding
+.
+arXiv preprint arXiv:2412.07236
+.
+Cited by:
+Table 2
+.
+[68]
+J. Wang, S. Zhao, Z. Luo, Y. Zhou, S. Li, and G. Pan
+(2025)
+Eegmamba: an eeg foundation model with mamba
+.
+Neural Networks
+,
+pp.
+107816
+.
+Cited by:
+Table 2
+.
+[69]
+W. Cui, W. Jeong, P. Thölke, T. Medani, K. Jerbi, A. A. Joshi, and R. M. Leahy
+(2024)
+Neuro-gpt: towards a foundation model for eeg
+.
+In
+2024 IEEE International Symposium on Biomedical Imaging (ISBI)
+,
+pp.
+1–5
+.
+Cited by:
+Table 2
+.
+[70]
+Y. E. Ouahidi, J. Lys, P. Thölke, N. Farrugia, B. Pasdeloup, V. Gripon, K. Jerbi, and G. Lioi
+(2025)
+REVE: a foundation model for eeg–adapting to any setup with large-scale pretraining on 25,000 subjects
+.
+arXiv preprint arXiv:2510.21585
+.
+Cited by:
+Table 2
+.
+[71]
+D. Kostas, S. Aroca-Ouellette, and F. Rudzicz
+(2021)
+BENDR: using transformers and a contrastive self-supervised learning task to learn from massive amounts of eeg data
+.
+Frontiers in Human Neuroscience
+15
+,
+pp.
+653659
+.
+Cited by:
+Table 2
+.
+Appendix A
+Tasks and datasets
+This supplementary section provides a complete inventory of the datasets included in OmniEEG-Bench. Supplementary Table 1 summarizes, for each dataset, its assigned taxonomy and subtype, the number of subjects and channels, and a concise description of the corresponding classification objective. See references for detailed information on the datasets.
+Table 1
+:
+Supplementary Table 1
+. OmniEEG-Bench dataset inventory.
+Task type
+Datasets
+#Subjects
+#Channels
+Sample length
+Task description
+Type-I: Signal reliability
+Artifact identification
+1. EEGDenoiseNet
+[
+16
+]
+1
+1
+2 s
+Single-channel noise-related binary classification (2 classes).
+Test-retest reliability
+2. Longitudinal test-retest
+[
+17
+]
+45
+60
+2 s
+Cross-session subject identification (2 classes in the current mounted version).
+Type-II: Biometrics and disease
+Biometrics
+3. MPI-LEMON-age
+[
+18
+]
+203
+64
+1 s
+Age group classification derived from the MPI-LEMON cohort (4 groups in the current mounted version).
+4. MPI-LEMON-gender
+[
+18
+]
+203
+64
+1 s
+Gender classification derived from the MPI-LEMON cohort (2 classes).
+5. MPI-LEMON-extraversion
+[
+18
+]
+203
+64
+1 s
+Extraversion classification (2 classes).
+Epilepsy and abnormalities
+6. HFO
+[
+19
+]
+30
+18
+2 s
+High-frequency oscillation related binary classification (2 classes).
+7. TUAB
+[
+20
+]
+325
+23
+10 s
+Clinical normal vs. abnormal EEG classification (2 classes).
+8. TUEV
+[
+21
+]
+370
+32
+5 s
+EEG event classification (6 classes).
+9. TUEP
+[
+20
+]
+200
+32
+10 s
+Seizure-related binary classification (2 classes).
+10. TUSL
+[
+22
+]
+38
+32
+10 s
+Sleep-state classification (3 classes).
+11. Siena EEG
+[
+23
+]
+14
+31
+10 s
+Seizure-related binary classification (2 classes).
+Neurodevelopmental disorders
+12. Adult ADHD
+[
+24
+]
+121
+64
+2 s
+Healthy vs. ADHD classification (2 classes).
+Neurodegenerative disorders
+13. AD65
+[
+25
+]
+88
+19
+10 s
+Neurodegenerative disease classification (3 classes).
+14. PD31
+[
+26
+]
+31
+64
+1 s
+Healthy vs. Parkinson’s disease classification (2 classes).
+15. PD-Mortality
+[
+27
+]
+94
+64
+2 s
+Mortality vs. survival classification (2 classes).
+Mental disorders
+16. MDD
+[
+28
+]
+63
+22
+5 s
+Healthy vs. major depressive disorder classification (2 classes).
+17. TDBRAIN
+[
+29
+]
+285
+26
+2 s
+Psychiatric phenotype classification (4 classes in the current mounted version).
+18. Depression resting
+[
+30
+]
+122
+67
+1 s
+Depression severity grouping via BDI.
+19. MODMA
+[
+31
+]
+53
+128
+20 s
+Depression / patient vs. control classification (2 classes).
+Type-III: Consciousness and state
+Consciousness level detection
+20. Awakening
+[
+32
+]
+21
+65
+10 s
+Awake vs. sedation state classification (2 classes).
+Sleep staging
+21. ISRUC-Sleep Subgroup I
+[
+33
+]
+57
+6
+30 s
+Sleep stage classification (5 classes).
+22. ISRUC-Sleep Subgroup II
+[
+33
+]
+8
+6
+30 s
+Sleep stage classification (5 classes).
+23. ISRUC-Sleep Subgroup III
+[
+33
+]
+10
+6
+30 s
+Sleep stage classification (5 classes).
+24. Sleep-EDF
+[
+34
+]
+153
+2
+30 s
+Sleep stage classification (5 classes).
+25. HMC
+[
+35
+]
+124
+8
+30 s
+Sleep stage classification (5 classes).
+Cognitive task identification
+26. HBN-EEG
+[
+36
+,
+37
+]
+136
+129
+2 s
+Multi-context task-type classification (13 classes in the current mounted version).
+27. PEARL-Neuro
+[
+38
+]
+79
+128
+1 s
+Context/task discrimination classification (3 classes in the current mounted version).
+28. RestCog
+[
+39
+]
+60
+61
+1 s
+Task-type classification (5 classes).
+Type-IV: Cognition and emotion
+Vigilance detection
+29. SEED-VIG
+[
+40
+]
+21
+17
+8 s
+Vigilance state classification (3 classes in the current mounted version).
+Emotion recognition
+30. DEAP-arousal
+[
+41
+]
+32
+32
+10 s
+High/low arousal classification (2 classes).
+31. DEAP-valence
+[
+41
+]
+32
+32
+10 s
+High/low valence classification (2 classes).
+32. FACED
+[
+42
+]
+123
+32
+10 s
+Fine-grained emotion classification (9 classes).
+33. SEED
+[
+43
+]
+15
+62
+10 s
+Positive/negative/neutral video-elicited emotion classification (3 classes).
+34. SEED-IV
+[
+44
+]
+15
+62
+4 s
+Emotion classification (4 classes).
+35. SEED-V
+[
+45
+]
+16
+62
+1 s
+Audio-visual elicited emotion classification (5 classes).
+36. SEED-VII
+[
+46
+]
+20
+62
+10 s
+Audio-visual elicited emotion classification (7 classes).
+37. SEED-FRA
+[
+47
+]
+8
+60
+10 s
+Emotion classification with French movie stimuli (3 classes).
+38. EEG-SvRec
+[
+48
+]
+30
+69
+1 s
+Affective / preference related binary classification (2 classes in the current mounted version).
+39. CIRE
+[
+49
+]
+38
+128
+2 s
+Speech-related affective classification (2 classes in the current mounted version).
+40. MusicEEG
+[
+39
+]
+31
+19
+1 s
+Music-evoked emotion classification (2 classes).
+41. EmoEEG-MC
+[
+50
+]
+53
+64
+5 s
+Multi-context emotion classification.
+Workload detection
+42. EEGMAT
+[
+51
+]
+36
+21
+5 s
+Cognitive workload / task-state classification (2 classes).
+43. Workload
+[
+52
+]
+12
+61
+2 s
+Workload level classification (3 classes).
+Type-V: Naturalistic stimulus decoding
+Imagined speech
+44. BCI-speech
+[
+53
+]
+45
+64
+3 s
+Speech intention / keyword classification (5 classes).
+Listening
+45. Broderick (cocktail party)
+[
+11
+]
+33
+69
+2 s
+Left–right auditory attention classification (2 classes).
+46. Broderick (reverse)
+[
+11
+]
+19
+69
+2 s
+Natural vs. time-reversed speech classification (2 classes).
+Reading
+47. ChineseEEG2
+[
+12
+]
+4
+128
+2 s
+Tone classification (4 classes).
+Visual
+48. Things-EEG2
+[
+54
+]
+10
+17
+1 s
+Animate vs. inanimate concept classification (2 classes).
+Type-VI: Motor and interaction
+Motor imagery
+49. BCI Competition IV-1
+[
+55
+]
+7
+59
+4 s
+Motor imagery classification (2 classes).
+50. BCI Competition IV-2A
+[
+56
+]
+9
+22
+4 s
+Motor imagery classification (4 classes).
+51. PhysioNet-MI
+[
+57
+]
+109
+64
+4 s
+Motor imagery classification (4 classes).
+52. SHU-MI
+[
+58
+]
+25
+32
+4 s
+Motor imagery classification (2 classes).
+SSVEP
+53. BETA
+[
+59
+]
+70
+64
+1 s
+SSVEP target classification (40 classes).
+54. Benchmark-SSVEP
+[
+60
+]
+35
+64
+2 s
+SSVEP target classification (40 classes).
+55. Dual-Freq-SSVEP
+[
+61
+]
+14
+64
+1 s
+Dual-frequency SSVEP target classification (40 classes).
+56. SSVEP-9-ch
+[
+62
+]
+20
+9
+3 s
+SSVEP target classification (160 classes).
+ErrP feedback
+57. Monitoring ErrP
+[
+63
+]
+6
+64
+1 s
+Error-related potential classification (2 classes in the current mounted version).
+Closed-loop assistive control
+58. EEG-Controlled Exoskeleton
+[
+17
+]
+7
+60
+1 s
+Closed-loop control of walking and stopping (2 classes).
+Appendix B
+The rationale of data windowing
+Because OmniEEG-Bench integrates datasets with heterogeneous experimental designs, sample length was determined at the dataset level rather than fixed globally. When a dataset or clinical convention defines a standard epoch, we follow that convention. Sleep-staging datasets are segmented into 30-s epochs, consistent with standard sleep-scoring practice and the annotations used in ISRUC-Sleep and Sleep-EDF. EEGDenoiseNet is kept at its native 2-s segment length. For motor imagery datasets, we use the task-relevant imagery interval when available, such as the 4-s cue or imagery period in BCI Competition IV datasets.
+For datasets with longer continuous recordings but no single canonical trial length, we choose windows according to the dominant temporal scale of the downstream task. Resting-state and clinical-state datasets are segmented into windows long enough to capture stable spectral or state-level features while remaining approximately stationary. For example, MODMA uses longer windows (20s) following prior depression-classification practice with long resting-state segments
+[
+64
+]
+. For naturalistic language and speech datasets, such as ChineseEEG2 and Broderick, the window length (2s) is designed to retain local linguistic or prosodic context while avoiding excessive mixing across adjacent words, sentences, or stimulus events. For SSVEP and closed-loop BCI tasks, we use short windows to emphasize low-latency decoding.
+All segmentation choices are fixed before model evaluation and are applied identically to all models within each dataset.
+Appendix C
+Benchmarked EEG foundation models
+We selected EEG-FMs to provide a representative and reproducible coverage of current foundation-model designs for EEG. Models were included if they provide accessible pretrained weights or reproducible implementations, are intended for general-purpose or cross-dataset EEG representation learning, and can be adapted to the unified OmniEEG-Bench evaluation interface. The selected models span several major methodological families: Transformer-based masked modeling, state-space or Mamba-based sequence modeling, contrastive biosignal representation learning, and multi-task or task-aligned pretraining. They also differ substantially in pretraining scale, data diversity, input modality, channel-processing strategy, and model size. This diversity allows OmniEEG-Bench to evaluate not only which model performs best, but also which design factors are associated with stronger transfer across heterogeneous EEG tasks. Supplementary Table 2 summarizes characteristics of EEG-FMs included in OmniEEG-Bench. Because papers often differ in how they report data volume and parameter counts (e.g., multiple model sizes or partially reported hours), we keep the table faithful to the original disclosures and mark unreported fields accordingly. The underlined parameter size is that of the "base" model and is used in our benchmark. To quantify the data diversity used in the pre-training of each model and exclude the training datasets from evaluation, we list the pre-training datasets for each model in Supplementary Table 3. To ensure reproducibility, we summarize the implementation details of each model in Supplementary Table 4, including the target sampling rate, input shape, channel input policy, and normalization strategy. Notably, models differ substantially in how they handle channel configurations: some accept arbitrary layouts via adaptive encoding (CBraMod) or coordinate-based mapping (BrainOmni), while others require fixed montages such as the 10–20 system (LaBraM, NeuroLM) or predefined bipolar derivations (FEMBA, Neuro-GPT, BIOT).
+Appendix D
+Validity of the Downsampled Evaluation Protocol
+To justify the use of a downsampled evaluation protocol in linear probing, we provide
+two complementary analyses. We first determine an appropriate number of training samples
+per class by examining how performance and its variance evolve with increasing sample
+size. As shown in Supplementary Fig. 1, performance stabilizes
+beyond approximately 40 samples per class, after which variance across repeated
+subsampling runs also diminishes. This supports the choice of 40 samples per subject
+per class as a reliable operating point. We then verify that this downsampled protocol
+preserves the relative ranking of models compared to using the full dataset, as shown
+in Supplementary Fig. 2. Model rankings under both protocols
+remain largely consistent across task categories and evaluation settings, confirming
+that downsampling does not introduce systematic bias in comparative evaluation.
+Figure 8:
+Supplementary Fig. 1. Model performance as a function of the number of
+training samples per class under the downsampled linear probing setting, shown for
+two representative datasets (ISRUC-S1 and HMC). Error bars denote standard deviation
+across 15 random subsampling runs.
+Figure 9:
+Supplementary Fig. 2. Rank consistency between full-sample and downsampled
+evaluation settings.
+Top
+: Scatter plots comparing model ranks under
+cross-subject (left) and multi-subject (right) protocols, where each point encodes
+a model (shape) and task category (color).
+Bottom
+: Overall model ranking
+curves under cross-subject (left) and multi-subject (right) protocols; the blue
+solid line and shaded band denote the mean and min–max range across three seeds
+under the downsampled setting, and the red dashed line denotes the full-sample rank.
+Appendix E
+Full Fine-tuning Results
+We report full fine-tuning results under the cross-subject setting in
+Supplementary Fig. 4. Note that these results are
+obtained under the same downsampled evaluation protocol (40 samples per
+subject per class) as described in Supplementary Section D.
+Compared to linear probing, model rankings shift substantially under full
+fine-tuning, with LaBraM, NeuroLM, and FEMBA achieving the top three
+overall ranks. Notably, EEGConformer, included as a task-specific baseline,
+ranks competitively among foundation models, highlighting the benefit of
+end-to-end optimization for task-specific adaptation.
+Figure 10:
+Supplementary Fig. 3. Full fine-tuning results under the
+cross-subject setting.
+Top
+: Average rank across all datasets
+for each model.
+Bottom
+: Per-dataset rank heatmap; lower rank
+(darker color) indicates better performance. “PT” denotes that the
+dataset was used in the model’s pretraining and is excluded from ranking.
+Appendix F
+Multi-subject adaptation
+In the linear probing setting for multi-subject adaptation, CBraMod, REVE, and BrainOmni achieve the top three overall ranks with average ranks of 2.76, 3.25, and 4.36, respectively (Fig.
+11
+; see Supplementary Table 6 for detailed accuracy). The model ranking is broadly consistent with that observed in the cross-subject setting — where BrainOmni, CBraMod, and REVE also occupied the top three positions — with only minor reordering, suggesting that stronger pretrained representations tend to perform well under both cross-trial adaptation and cross-subject transfer. Several tasks remain difficult in the multi-subject setting. Eight models perform near chance on Chinese tone classification (ChineseEEG2-RA-Tone), and seven models perform near chance on workload classification (Workload), indicating that current EEG foundation models still have limited cross-trial discriminability for these tasks.
+Figure 11:
+Supplementary Fig. 4. Multi-subject transfer ranks of ten EEG foundation models using OmniEEG-Bench.
+Appendix G
+Comparison between Full Fine-tuning and Linear Probing
+We compare model performance under full fine-tuning and linear probing in Supplementary Fig. 5. Task-specific baselines (EEGConformer and EEGNet, highlighted in blue) are included for reference.
+Under full fine-tuning, the majority of foundation models outperform both task-specific baselines, suggesting that pretrained representations can be effectively adapted through end-to-end optimization. In contrast, under linear probing, the advantage of foundation models diminishes significantly. Many foundation models fail to match or surpass the task-specific baseline EEGConformer (average rank of 6.66), with only five top-performing models outperforming it. This clear performance drop indicates that while some advanced models show promise, many current EEG foundation models still struggle to provide sufficiently strong frozen representations that transfer across heterogeneous datasets without task-specific adaptation.
+j
+Figure 12:
+Supplementary Fig. 5. Model ranks in full finetuning and linear probing.
+Appendix H
+Average model ranks on each task taxonomy
+Supplementary Fig. 6 summarizes the average rank of each model across different task families under both evaluation protocols (where points closer to the outer edge indicate better ranks).
+Under multi-subject adaptation (left), CBraMod and REVE exhibit the most consistently strong performance, forming the outermost boundaries of the radar chart. Specifically, CBraMod demonstrates exceptional strength in motor & interaction and cognition & emotion tasks, while REVE excels in signal reliability and naturalistic stimulus decoding.
+Under cross-subject transfer (right), the performance landscape shifts, revealing distinct category-specific strengths. BrainOmni emerges as highly competitive, achieving top ranks in motor & interaction and naturalistic stimulus decoding. Other models also display targeted advantages: BIOT notably spikes to the top rank in biometrics & disease, REVE maintains dominance in consciousness & state, and CBraMod remains a strong contender in cognition & emotion.
+Notably, no single model dominates uniformly across all task axes in either setting. The varying shapes of the radar webs emphasize that different model architectures capture complementary aspects of EEG represeantations, and their relative advantages depend heavily on the specific characteristics of the downstream task.
+Figure 13:
+Supplementary Fig. 6. Average model ranks on each task taxonomy. Left: multi-subject adaptation; Right: cross-subject transfer.
+Table 2:
+Supplementary Table 2
+. Summary of 10 EEG foundation models included in the benchmark.
+Model
+#Training
+subj.
+Training data
+(h)
+#Params
+1
+1
+1
+Parameter counts are reported in millions. Underlined numbers denote the total parameter count of the model instance used in our benchmark framework, as initialized by our
+get_model
+implementation.
+Input
+Pre-training paradigm
+Backbone
+Channel processing
+BrainOmni
+[
+6
+]
+6550
+1,997 (EEG) + 656 (MEG)
+8.4M,
+37.7M
+EEG/MEG
+Masked reconstruction (temporal)
+Criss-Cross Transformer
+Sensor Encoder
+FEMBA
+[
+65
+]
+14,987
+27,062
+7.8M,
+16.1M
+, 77.8M, 389M
+EEG
+Masked reconstruction (temporal)
+Mamba
+fixed channel (10/20)
+NeuroLM
+[
+66
+]
+15,444
+27,762
+255.1M
+, 500M, 1.69B
+EEG
+Multi-task / autoregressive
+Transformer
+Unified channel vocabulary (10–20-based)
+CBraMod
+[
+67
+]
+14,987
+27,062
+5.0M
+EEG
+Masked reconstruction (temporal)
+Criss-Cross Transformer
+Asymmetric Conditional Positional Encoding
+EEGMamba
+[
+68
+]
+Unreported
+16,724
+3.3M
+EEG
+Masked reconstruction (temporal)
+Mamba
+ST-Adaptive Module
+LaBraM
+[
+5
+]
+Unreported
+2534.78
+5.8M
+EEG
+Masked reconstruction (frequency)
+Transformer
+Unified channel vocabulary (10–20-based)
+Neuro-GPT
+[
+69
+]
+14,987
+27,062
+78.4M
+EEG
+Masked reconstruction (temporal)
+GPT-2
+fixed channel (10/20)
+REVE
+[
+70
+]
+24,274
+61,415
+69.2M
+EEG
+Masked Autoencoder
+Transformer
+Unified channel embedding
+BIOT
+[
+4
+]
+Unreported
+Unreported
+3.2M
+EEG/ECG
+Contrastive learning
+Linear Transformer
+fixed channel (18-channel bipolar montage)
+BENDR
+[
+71
+]
+14,987
+27,062
+4.0M
+EEG
+Contrastive predictive coding
+Transformer
+fixed channel (10/20)
+Table 3:
+Supplementary Table 3
+. Pre-training datasets of the foundation models.
+Model
+Pre-training Dataset(s)
+BrainOmni
+EEG:
+Go-Nogo, MusicEEG, HFO, SRM, RestCog, HBN EO/EC, Features-EEG,
+PEARL-Neuro, HBN-EEG, Awakening
+MEG:
+MEG-MASC, MEG-Narrative-Dataset, OMEGA, CC700, AversiveMEG, MIND,
+SMN4Lang, THINGS-MEG, ASWR-MEG, ImageLine, NeuroMorph, Kymata-SOTO.
+Total number: 22
+FEMBA
+TUEG.
+Total number: 1
+NeuroLM
+TUEG, SEED-IV, SEED-V, SEED-GER, SEED-FRA, BCI Competition IV-1, Emobrain, Grasp and Lift, Inria BCI, Motor Movement/Imagery, Raw EEG Data, Resting State, Siena Scalp EEG Database, SPIS Resting State, Target Versus Non-Target, Self-collected EEG corpus.
+Total number: 16
+CBraMod
+TUEG.
+Total number: 1
+EEGMamba
+TUEG (clean subset) , PhysioNet 2018, Raw EEG Data, Siena Scalp EEG Database, B-SNIP1 (clean subset).
+Total number: 5
+LaBraM
+BCI Competition IV-1, Emobrain, Grasp and Lift EEG Challenge, Inria BCI Challenge,
+EEG Motor Movement/Imagery Dataset, Raw EEG Data, Resting State EEG Data, SEED,
+SEED-IV, SEED-GER, SEED-FRA, Siena Scalp EEG Database, SPIS Resting State Dataset,
+Target Versus Non-Target, TUAR, TUEP, TUSZ, TUSL, Self-collected EEG Data
+Total number: 19
+Neuro-GPT
+TUEG.
+Total number: 1
+REVE
+TUH, Physionet, OpenNeuro (), MOABB.
+Total number: 92
+BIOT
+EEG:
+SHHS, PREST
+ECG:
+Cardiology
+Total number: 3
+BENDR
+TUEG.
+Total number: 1
+Table 4:
+Supplementary Table 4
+. Implementation details of the 10 EEG foundation models included in the benchmark.
+Model
+Target
+SR (Hz)
+Bandpass
+Filter (Hz)
+Channel Policy
+Normalization
+Sequence
+Length
+BrainOmni
+256
+0.1–96
+Maps input channels to standard electrode positions via 3D coordinates
+Z-score
+Any
+FEMBA
+200
+0.1–75
+Interpolates to 22-channel TUEG bipolar montage via SSI
+IQR normalization
+1280 pts
+NeuroLM
+200
+0.1–75
+Retains channels matching the 10–20 system vocabulary
+÷
+\div
+100 (
+μ
+\mu
+V to 0.1 mV)
+200 pts/patch
+CBraMod
+200
+0.3–75
+Accepts arbitrary channel configurations via ACPE adaptive positional encoding
+÷
+\div
+100 (
+μ
+\mu
+V to 0.1 mV)
+200 pts/patch
+EEGMamba
+200
+0.1–50
+Reorders to 19-channel standard layout; missing channels zero-padded
+Identity
+6000 pts
+LaBraM
+200
+0.1–75
+Maps channels via 10–20 system vocabulary; requires channel ID as input
+÷
+\div
+100 (
+μ
+\mu
+V to 0.1 mV)
+200 pts/patch
+Neuro-GPT
+250
+0.5–100
+Interpolates to 22-channel standard montage via SSI
+Z-score
+500 pts/chunk
+REVE
+256
+0.5–99.5
+Maps channels via unified channel embedding; accepts variable configurations
+Z-score
+Any
+BIOT
+200
+–
+Constructs 18-channel bipolar montage (BIOT-18); missing channels zero-padded
+P95 absolute scaling
+Any
+BENDR
+256
+0.1–100
+Maps to 19 standard channels plus one relative-amplitude auxiliary channel
+Identity (internal min-max)
+Any
+Appendix I
+Data preprocessing
+As EEG signals are inherently noisy and complex, rigorous data preprocessing is critical to enhance signal quality and mitigate artifacts. To ensure consistency across heterogeneous datasets and facilitate efficient training of foundation models, we developed a unified HDF5-based benchmarking infrastructure. The standardized pipeline includes filtering, resampling, segmentation, and hierarchical storage.
+Band-pass and notch filtering.
+EEG signals span a wide frequency range, but only specific bands are relevant to cognitive and emotional decoding tasks. We employ a standard 0.1–75 Hz band-pass filter using MNE-Python, preserving crucial task-relevant frequency components (from
+δ
+\delta
+to
+γ
+\gamma
+bands) while suppressing low-frequency drifts and high-frequency noise. In addition, a notch filter is dynamically configured (typically 60 Hz or 50 Hz) based on the data collection environment, effectively attenuating mains hum. The 0.1–75 band-pass filter is employed in the original implementation of a majority of EEG foundation models.
+Resampling.
+Raw EEG recordings from different datasets are typically acquired at varying sampling rates (ranging from 128 Hz to 1000 Hz). We resample the EEG signals according to the requirement of each foundation model (250 Hz for Neuro-GPT, 256 Hz for BrainOmni and BENDR, and 200 Hz for others, Supplementary Table 4).
+Windowing and segmentation.
+The data are segmented to generate fixed-length inputs for the model. We employ a sliding window strategy with a dataset-specific window ranging from 1s to 30s (non-overlapping). See Supplementary Table 1 for details.
+Unified data storage.
+To resolve the disparity in raw data formats (e.g., .mat, .edf), all preprocessed data are organized into a standardized HDF5 schema. The root level stores subject-specific attributes (e.g., montage, sampling rate), trial groups organize recording sessions, and segment groups contain the actual preprocessed EEG matrices and synchronized labels, minimizing I/O latency while supporting flexible data splitting strategies during training. The data are split into train/val/test sets separately.
+Appendix J
+Detailed results
+We report the means and standard deviations of balanced accuracy across three runs for linear probing of cross-subject transfer and multi-subject adaptation in Supplementary Tables 5 and 6, respectively. The cross-subject full-finetuning results are reported in Supplementary Table 7. In each table,
+bold
+entries indicate the best-performing model per dataset,
+underlined
+entries indicate the second best, and
+italic
+entries indicate performance below the chance level. “–” indicates that the model is incompatible with the dataset due to channel configuration constraints.
+Table 5:
+Supplementary Table 5
+. Cross-subject transfer results (balanced accuracy, mean
+±
+\pm
+std over 3 runs).
+Dataset
+#Classes
+BrainOmni
+CBraMod
+REVE
+FEMBA
+BIOT
+LaBraM
+NeuroLM
+NeuroGPT
+EEGMamba
+BENDR
+Type-I
+Longitudinal test-retest
+2
+0.755
+±
+\pm
+0.006
+0.743
+±
+\pm
+0.020
+0.725
+±
+\pm
+0.025
+0.683
+±
+\pm
+0.038
+0.677
+±
+\pm
+0.005
+0.745
+±
+\pm
+0.018
+0.703
+±
+\pm
+0.005
+0.695
+±
+\pm
+0.022
+0.639
+±
+\pm
+0.014
+0.500
+±
+\pm
+0.000
+Type-II
+MPI-LEMON-age
+4
+0.479
+±
+\pm
+0.018
+0.462
+±
+\pm
+0.048
+0.498
+±
+\pm
+0.030
+0.480
+±
+\pm
+0.025
+0.477
+±
+\pm
+0.033
+0.439
+±
+\pm
+0.048
+0.403
+±
+\pm
+0.052
+0.426
+±
+\pm
+0.046
+0.332
+±
+\pm
+0.001
+0.333
+±
+\pm
+0.000
+MPI-LEMON-gender
+2
+0.532
+±
+\pm
+0.020
+0.644
+±
+\pm
+0.048
+0.599
+±
+\pm
+0.030
+0.569
+±
+\pm
+0.058
+0.587
+±
+\pm
+0.060
+0.571
+±
+\pm
+0.073
+0.553
+±
+\pm
+0.052
+0.545
+±
+\pm
+0.055
+0.499
+±
+\pm
+0.001
+0.500
+±
+\pm
+0.000
+MPI-LEMON-extraversion
+2
+0.536
+±
+\pm
+0.013
+0.481
+±
+\pm
+0.017
+0.505
+±
+\pm
+0.026
+0.490
+±
+\pm
+0.012
+0.463
+±
+\pm
+0.013
+0.509
+±
+\pm
+0.039
+0.518
+±
+\pm
+0.026
+0.464
+±
+\pm
+0.026
+0.504
+±
+\pm
+0.005
+0.500
+±
+\pm
+0.000
+HFO
+2
+–
+0.563
+±
+\pm
+0.026
+0.608
+±
+\pm
+0.016
+0.525
+±
+\pm
+0.011
+0.586
+±
+\pm
+0.029
+0.541
+±
+\pm
+0.015
+0.537
+±
+\pm
+0.009
+0.544
+±
+\pm
+0.010
+0.580
+±
+\pm
+0.022
+0.500
+±
+\pm
+0.000
+TUAB
+2
+0.727
+±
+\pm
+0.034
+–
+–
+–
+0.793
+±
+\pm
+0.006
+0.732
+±
+\pm
+0.009
+–
+–
+–
+–
+TUEV
+6
+0.467
+±
+\pm
+0.034
+–
+–
+–
+0.683
+±
+\pm
+0.075
+0.417
+±
+\pm
+0.056
+–
+–
+–
+–
+TUEP
+2
+0.596
+±
+\pm
+0.053
+–
+–
+–
+0.588
+±
+\pm
+0.031
+–
+–
+–
+–
+–
+TUSL
+3
+0.450
+±
+\pm
+0.051
+–
+–
+–
+0.645
+±
+\pm
+0.055
+–
+–
+–
+–
+–
+Siena EEG
+2
+0.694
+±
+\pm
+0.086
+0.755
+±
+\pm
+0.171
+0.419
+±
+\pm
+0.178
+0.439
+±
+\pm
+0.206
+0.691
+±
+\pm
+0.080
+–
+–
+0.479
+±
+\pm
+0.106
+–
+0.333
+±
+\pm
+0.236
+ADHD
+2
+0.627
+±
+\pm
+0.076
+0.666
+±
+\pm
+0.077
+0.626
+±
+\pm
+0.059
+0.602
+±
+\pm
+0.018
+0.535
+±
+\pm
+0.035
+0.580
+±
+\pm
+0.084
+0.662
+±
+\pm
+0.057
+0.673
+±
+\pm
+0.110
+0.552
+±
+\pm
+0.082
+0.500
+±
+\pm
+0.000
+AD65
+3
+0.462
+±
+\pm
+0.111
+0.582
+±
+\pm
+0.130
+0.527
+±
+\pm
+0.153
+0.470
+±
+\pm
+0.056
+0.491
+±
+\pm
+0.089
+0.457
+±
+\pm
+0.081
+0.339
+±
+\pm
+0.025
+0.410
+±
+\pm
+0.071
+0.390
+±
+\pm
+0.060
+0.333
+±
+\pm
+0.000
+PD31
+2
+0.406
+±
+\pm
+0.128
+0.369
+±
+\pm
+0.167
+0.459
+±
+\pm
+0.076
+0.511
+±
+\pm
+0.140
+0.544
+±
+\pm
+0.129
+0.280
+±
+\pm
+0.062
+0.414
+±
+\pm
+0.126
+0.323
+±
+\pm
+0.135
+0.336
+±
+\pm
+0.136
+0.333
+±
+\pm
+0.236
+PD-motaility
+2
+0.501
+±
+\pm
+0.003
+0.530
+±
+\pm
+0.016
+0.568
+±
+\pm
+0.045
+0.500
+±
+\pm
+0.010
+0.623
+±
+\pm
+0.049
+0.516
+±
+\pm
+0.017
+0.560
+±
+\pm
+0.075
+0.530
+±
+\pm
+0.046
+0.501
+±
+\pm
+0.003
+0.500
+±
+\pm
+0.000
+MDD
+2
+0.993
+±
+\pm
+0.008
+0.826
+±
+\pm
+0.121
+0.948
+±
+\pm
+0.063
+0.742
+±
+\pm
+0.058
+0.861
+±
+\pm
+0.075
+0.743
+±
+\pm
+0.133
+0.883
+±
+\pm
+0.090
+0.640
+±
+\pm
+0.055
+0.701
+±
+\pm
+0.045
+0.500
+±
+\pm
+0.000
+TDBRAIN
+4
+0.413
+±
+\pm
+0.007
+0.446
+±
+\pm
+0.023
+0.437
+±
+\pm
+0.019
+0.396
+±
+\pm
+0.018
+0.393
+±
+\pm
+0.030
+0.391
+±
+\pm
+0.027
+0.413
+±
+\pm
+0.006
+0.362
+±
+\pm
+0.008
+0.323
+±
+\pm
+0.021
+0.278
+±
+\pm
+0.039
+Depression-resting
+2
+0.501
+±
+\pm
+0.001
+0.509
+±
+\pm
+0.009
+0.511
+±
+\pm
+0.000
+0.522
+±
+\pm
+0.017
+0.505
+±
+\pm
+0.006
+0.500
+±
+\pm
+0.000
+0.503
+±
+\pm
+0.002
+0.503
+±
+\pm
+0.003
+0.499
+±
+\pm
+0.001
+0.500
+±
+\pm
+0.000
+MODMA
+2
+0.657
+±
+\pm
+0.152
+0.500
+±
+\pm
+0.000
+0.572
+±
+\pm
+0.076
+0.773
+±
+\pm
+0.072
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+–
+0.544
+±
+\pm
+0.000
+0.610
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+Type-III
+Awakening
+2
+–
+0.890
+±
+\pm
+0.046
+0.962
+±
+\pm
+0.026
+0.961
+±
+\pm
+0.026
+0.973
+±
+\pm
+0.019
+0.934
+±
+\pm
+0.041
+0.811
+±
+\pm
+0.023
+0.781
+±
+\pm
+0.089
+0.833
+±
+\pm
+0.024
+0.500
+±
+\pm
+0.000
+ISRUC-S1
+5
+0.615
+±
+\pm
+0.021
+0.570
+±
+\pm
+0.030
+0.658
+±
+\pm
+0.018
+0.586
+±
+\pm
+0.010
+0.557
+±
+\pm
+0.017
+0.558
+±
+\pm
+0.032
+0.562
+±
+\pm
+0.084
+0.549
+±
+\pm
+0.026
+0.501
+±
+\pm
+0.046
+0.200
+±
+\pm
+0.000
+ISRUC-S2
+5
+0.282
+±
+\pm
+0.010
+0.206
+±
+\pm
+0.006
+0.249
+±
+\pm
+0.023
+0.242
+±
+\pm
+0.016
+0.250
+±
+\pm
+0.014
+0.189
+±
+\pm
+0.012
+0.207
+±
+\pm
+0.008
+0.266
+±
+\pm
+0.011
+0.197
+±
+\pm
+0.007
+0.200
+±
+\pm
+0.000
+ISRUC-S3
+5
+0.345
+±
+\pm
+0.014
+0.319
+±
+\pm
+0.021
+0.374
+±
+\pm
+0.025
+0.321
+±
+\pm
+0.010
+0.345
+±
+\pm
+0.033
+0.304
+±
+\pm
+0.008
+0.298
+±
+\pm
+0.002
+0.289
+±
+\pm
+0.030
+0.306
+±
+\pm
+0.010
+0.200
+±
+\pm
+0.000
+SleepEDF
+5
+0.667
+±
+\pm
+0.019
+0.690
+±
+\pm
+0.016
+0.681
+±
+\pm
+0.009
+0.625
+±
+\pm
+0.014
+0.200
+±
+\pm
+0.000
+0.693
+±
+\pm
+0.008
+0.685
+±
+\pm
+0.015
+0.638
+±
+\pm
+0.018
+0.526
+±
+\pm
+0.010
+0.200
+±
+\pm
+0.000
+HMC
+5
+0.664
+±
+\pm
+0.017
+0.658
+±
+\pm
+0.005
+0.682
+±
+\pm
+0.017
+0.611
+±
+\pm
+0.012
+0.569
+±
+\pm
+0.018
+0.630
+±
+\pm
+0.011
+0.615
+±
+\pm
+0.021
+0.572
+±
+\pm
+0.020
+0.551
+±
+\pm
+0.014
+0.200
+±
+\pm
+0.000
+HBN EEG
+13
+–
+0.136
+±
+\pm
+0.007
+0.158
+±
+\pm
+0.004
+0.118
+±
+\pm
+0.006
+0.133
+±
+\pm
+0.012
+0.114
+±
+\pm
+0.007
+0.090
+±
+\pm
+0.004
+0.103
+±
+\pm
+0.004
+0.100
+±
+\pm
+0.003
+0.077
+±
+\pm
+0.000
+PEARL-Neuro
+3
+–
+0.535
+±
+\pm
+0.006
+0.484
+±
+\pm
+0.014
+0.465
+±
+\pm
+0.005
+0.462
+±
+\pm
+0.012
+0.478
+±
+\pm
+0.017
+0.438
+±
+\pm
+0.013
+0.437
+±
+\pm
+0.012
+0.419
+±
+\pm
+0.008
+0.333
+±
+\pm
+0.000
+RestCog
+5
+–
+0.368
+±
+\pm
+0.029
+0.346
+±
+\pm
+0.027
+0.308
+±
+\pm
+0.024
+0.350
+±
+\pm
+0.025
+0.318
+±
+\pm
+0.023
+0.309
+±
+\pm
+0.024
+0.276
+±
+\pm
+0.017
+0.229
+±
+\pm
+0.006
+0.200
+±
+\pm
+0.000
+Type-IV
+SEED-VIG
+3
+0.432
+±
+\pm
+0.014
+0.440
+±
+\pm
+0.035
+0.418
+±
+\pm
+0.064
+0.414
+±
+\pm
+0.026
+0.333
+±
+\pm
+0.000
+0.437
+±
+\pm
+0.025
+0.360
+±
+\pm
+0.028
+0.432
+±
+\pm
+0.028
+0.350
+±
+\pm
+0.059
+0.333
+±
+\pm
+0.000
+DEAP-arousal
+2
+0.505
+±
+\pm
+0.024
+0.515
+±
+\pm
+0.021
+0.508
+±
+\pm
+0.029
+0.503
+±
+\pm
+0.005
+0.484
+±
+\pm
+0.031
+0.478
+±
+\pm
+0.007
+0.500
+±
+\pm
+0.017
+0.510
+±
+\pm
+0.011
+0.487
+±
+\pm
+0.025
+0.500
+±
+\pm
+0.000
+DEAP-valence
+2
+0.530
+±
+\pm
+0.011
+0.519
+±
+\pm
+0.020
+0.521
+±
+\pm
+0.008
+0.517
+±
+\pm
+0.020
+0.498
+±
+\pm
+0.049
+0.507
+±
+\pm
+0.033
+0.500
+±
+\pm
+0.014
+0.494
+±
+\pm
+0.023
+0.533
+±
+\pm
+0.005
+0.500
+±
+\pm
+0.000
+SEED
+3
+0.492
+±
+\pm
+0.013
+0.525
+±
+\pm
+0.027
+0.543
+±
+\pm
+0.010
+0.434
+±
+\pm
+0.008
+0.430
+±
+\pm
+0.015
+–
+0.399
+±
+\pm
+0.015
+0.466
+±
+\pm
+0.035
+0.471
+±
+\pm
+0.012
+0.333
+±
+\pm
+0.000
+SEED-IV
+4
+0.316
+±
+\pm
+0.017
+0.334
+±
+\pm
+0.005
+0.297
+±
+\pm
+0.013
+0.303
+±
+\pm
+0.009
+0.259
+±
+\pm
+0.029
+–
+–
+0.292
+±
+\pm
+0.006
+0.288
+±
+\pm
+0.008
+0.250
+±
+\pm
+0.000
+SEED-V
+5
+0.235
+±
+\pm
+0.003
+0.234
+±
+\pm
+0.008
+0.257
+±
+\pm
+0.007
+0.290
+±
+\pm
+0.006
+0.257
+±
+\pm
+0.010
+0.241
+±
+\pm
+0.010
+–
+0.242
+±
+\pm
+0.011
+0.204
+±
+\pm
+0.006
+0.200
+±
+\pm
+0.000
+SEED-VII
+7
+0.185
+±
+\pm
+0.008
+0.176
+±
+\pm
+0.009
+0.191
+±
+\pm
+0.006
+0.189
+±
+\pm
+0.015
+0.159
+±
+\pm
+0.006
+0.187
+±
+\pm
+0.018
+0.161
+±
+\pm
+0.005
+0.176
+±
+\pm
+0.008
+0.181
+±
+\pm
+0.013
+0.143
+±
+\pm
+0.000
+SEED-FRA
+3
+0.425
+±
+\pm
+0.011
+0.417
+±
+\pm
+0.013
+0.353
+±
+\pm
+0.006
+0.398
+±
+\pm
+0.023
+0.385
+±
+\pm
+0.013
+–
+–
+0.366
+±
+\pm
+0.014
+0.409
+±
+\pm
+0.003
+0.333
+±
+\pm
+0.000
+EEG-SVRec
+2
+0.511
+±
+\pm
+0.003
+0.508
+±
+\pm
+0.012
+0.499
+±
+\pm
+0.002
+0.506
+±
+\pm
+0.002
+0.503
+±
+\pm
+0.003
+0.510
+±
+\pm
+0.005
+0.501
+±
+\pm
+0.009
+0.500
+±
+\pm
+0.004
+0.504
+±
+\pm
+0.005
+0.500
+±
+\pm
+0.000
+FACED
+9
+0.204
+±
+\pm
+0.002
+0.481
+±
+\pm
+0.034
+0.203
+±
+\pm
+0.016
+0.174
+±
+\pm
+0.014
+0.156
+±
+\pm
+0.006
+0.155
+±
+\pm
+0.020
+0.170
+±
+\pm
+0.022
+0.146
+±
+\pm
+0.004
+0.151
+±
+\pm
+0.011
+0.111
+±
+\pm
+0.000
+MusicEEG
+2
+–
+0.591
+±
+\pm
+0.012
+0.528
+±
+\pm
+0.059
+0.486
+±
+\pm
+0.023
+0.475
+±
+\pm
+0.014
+0.524
+±
+\pm
+0.032
+0.519
+±
+\pm
+0.031
+0.480
+±
+\pm
+0.039
+0.528
+±
+\pm
+0.045
+0.500
+±
+\pm
+0.000
+EmoEEG-MC
+10
+0.322
+±
+\pm
+0.015
+0.340
+±
+\pm
+0.017
+0.305
+±
+\pm
+0.035
+0.326
+±
+\pm
+0.010
+0.332
+±
+\pm
+0.017
+0.340
+±
+\pm
+0.017
+0.327
+±
+\pm
+0.009
+0.328
+±
+\pm
+0.013
+0.346
+±
+\pm
+0.020
+0.333
+±
+\pm
+0.000
+CIRE
+2
+0.531
+±
+\pm
+0.017
+0.526
+±
+\pm
+0.018
+0.538
+±
+\pm
+0.017
+0.532
+±
+\pm
+0.029
+0.513
+±
+\pm
+0.012
+0.535
+±
+\pm
+0.025
+0.523
+±
+\pm
+0.022
+0.524
+±
+\pm
+0.036
+0.528
+±
+\pm
+0.021
+0.500
+±
+\pm
+0.000
+EEGMAT
+2
+0.485
+±
+\pm
+0.022
+0.500
+±
+\pm
+0.000
+0.499
+±
+\pm
+0.013
+0.602
+±
+\pm
+0.021
+0.549
+±
+\pm
+0.079
+0.495
+±
+\pm
+0.007
+0.616
+±
+\pm
+0.082
+0.522
+±
+\pm
+0.035
+0.503
+±
+\pm
+0.004
+0.498
+±
+\pm
+0.002
+Workload
+3
+0.444
+±
+\pm
+0.007
+0.470
+±
+\pm
+0.042
+0.409
+±
+\pm
+0.046
+0.411
+±
+\pm
+0.016
+0.466
+±
+\pm
+0.009
+0.478
+±
+\pm
+0.028
+0.496
+±
+\pm
+0.019
+0.358
+±
+\pm
+0.023
+0.406
+±
+\pm
+0.022
+0.333
+±
+\pm
+0.000
+Type-V
+BCI-Speech
+5
+0.225
+±
+\pm
+0.010
+0.289
+±
+\pm
+0.033
+0.223
+±
+\pm
+0.009
+0.210
+±
+\pm
+0.013
+0.204
+±
+\pm
+0.014
+0.203
+±
+\pm
+0.011
+0.211
+±
+\pm
+0.004
+0.212
+±
+\pm
+0.008
+0.197
+±
+\pm
+0.012
+0.200
+±
+\pm
+0.000
+Broderick-Cocktail-party
+2
+0.516
+±
+\pm
+0.004
+0.384
+±
+\pm
+0.052
+0.399
+±
+\pm
+0.068
+0.358
+±
+\pm
+0.039
+0.346
+±
+\pm
+0.085
+0.465
+±
+\pm
+0.042
+0.443
+±
+\pm
+0.061
+0.336
+±
+\pm
+0.229
+0.425
+±
+\pm
+0.092
+0.333
+±
+\pm
+0.236
+Broderick-reverse
+2
+0.466
+±
+\pm
+0.046
+0.580
+±
+\pm
+0.049
+0.710
+±
+\pm
+0.138
+0.499
+±
+\pm
+0.001
+0.481
+±
+\pm
+0.026
+0.464
+±
+\pm
+0.052
+0.492
+±
+\pm
+0.058
+0.465
+±
+\pm
+0.049
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+ChineseEEG2-RA-Tone
+4
+0.252
+±
+\pm
+0.002
+0.253
+±
+\pm
+0.004
+0.250
+±
+\pm
+0.005
+0.250
+±
+\pm
+0.001
+0.253
+±
+\pm
+0.002
+0.250
+±
+\pm
+0.003
+0.252
+±
+\pm
+0.001
+0.250
+±
+\pm
+0.004
+0.252
+±
+\pm
+0.001
+0.250
+±
+\pm
+0.000
+ThingsEEG2
+2
+0.504
+±
+\pm
+0.001
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.502
+±
+\pm
+0.002
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+Type-VI
+BCIC-IV-2a
+4
+0.303
+±
+\pm
+0.028
+0.329
+±
+\pm
+0.006
+0.298
+±
+\pm
+0.009
+0.256
+±
+\pm
+0.002
+0.250
+±
+\pm
+0.000
+–
+–
+0.283
+±
+\pm
+0.016
+0.289
+±
+\pm
+0.009
+0.250
+±
+\pm
+0.000
+BCIC-IV-1
+2
+0.510
+±
+\pm
+0.011
+0.552
+±
+\pm
+0.031
+0.525
+±
+\pm
+0.035
+0.507
+±
+\pm
+0.005
+0.505
+±
+\pm
+0.004
+0.513
+±
+\pm
+0.008
+0.503
+±
+\pm
+0.015
+0.463
+±
+\pm
+0.009
+0.508
+±
+\pm
+0.010
+0.500
+±
+\pm
+0.000
+Physionet-MI
+4
+0.307
+±
+\pm
+0.011
+0.499
+±
+\pm
+0.007
+–
+0.293
+±
+\pm
+0.007
+0.256
+±
+\pm
+0.008
+0.280
+±
+\pm
+0.011
+0.312
+±
+\pm
+0.016
+0.305
+±
+\pm
+0.016
+–
+0.250
+±
+\pm
+0.000
+SHU-MI
+2
+0.533
+±
+\pm
+0.018
+0.515
+±
+\pm
+0.009
+0.523
+±
+\pm
+0.003
+0.511
+±
+\pm
+0.002
+0.519
+±
+\pm
+0.014
+0.507
+±
+\pm
+0.011
+0.504
+±
+\pm
+0.012
+0.504
+±
+\pm
+0.002
+0.490
+±
+\pm
+0.012
+0.500
+±
+\pm
+0.000
+BETA-SSVEP
+40
+0.037
+±
+\pm
+0.004
+0.103
+±
+\pm
+0.014
+0.043
+±
+\pm
+0.006
+0.040
+±
+\pm
+0.007
+0.031
+±
+\pm
+0.004
+0.032
+±
+\pm
+0.004
+0.033
+±
+\pm
+0.004
+0.030
+±
+\pm
+0.005
+0.028
+±
+\pm
+0.008
+0.025
+±
+\pm
+0.000
+Benchmark-SSVEP
+40
+0.078
+±
+\pm
+0.021
+0.425
+±
+\pm
+0.103
+0.056
+±
+\pm
+0.008
+0.051
+±
+\pm
+0.009
+0.065
+±
+\pm
+0.019
+0.033
+±
+\pm
+0.003
+0.032
+±
+\pm
+0.002
+0.026
+±
+\pm
+0.005
+0.033
+±
+\pm
+0.006
+0.025
+±
+\pm
+0.000
+Dual-Freq-SSVEP
+40
+0.050
+±
+\pm
+0.004
+0.079
+±
+\pm
+0.006
+0.035
+±
+\pm
+0.005
+0.030
+±
+\pm
+0.003
+0.023
+±
+\pm
+0.006
+0.028
+±
+\pm
+0.003
+0.027
+±
+\pm
+0.005
+0.033
+±
+\pm
+0.008
+0.032
+±
+\pm
+0.003
+0.025
+±
+\pm
+0.000
+SSVEP-9-chn
+160
+0.016
+±
+\pm
+0.006
+0.029
+±
+\pm
+0.002
+0.032
+±
+\pm
+0.001
+0.008
+±
+\pm
+0.002
+0.006
+±
+\pm
+0.000
+0.007
+±
+\pm
+0.001
+0.013
+±
+\pm
+0.004
+0.009
+±
+\pm
+0.002
+0.011
+±
+\pm
+0.002
+0.006
+±
+\pm
+0.000
+Monitoring-Errp
+2
+0.532
+±
+\pm
+0.022
+0.498
+±
+\pm
+0.008
+0.497
+±
+\pm
+0.006
+0.493
+±
+\pm
+0.014
+0.498
+±
+\pm
+0.002
+0.518
+±
+\pm
+0.014
+0.487
+±
+\pm
+0.004
+0.482
+±
+\pm
+0.014
+0.510
+±
+\pm
+0.014
+0.500
+±
+\pm
+0.000
+EEG-Controlled Exoskeleton
+2
+0.523
+±
+\pm
+0.001
+0.513
+±
+\pm
+0.021
+0.509
+±
+\pm
+0.016
+0.502
+±
+\pm
+0.009
+0.488
+±
+\pm
+0.057
+0.492
+±
+\pm
+0.016
+0.518
+±
+\pm
+0.028
+0.522
+±
+\pm
+0.023
+0.491
+±
+\pm
+0.017
+0.500
+±
+\pm
+0.000
+Table 6:
+Supplementary Table 6
+. Multi-subject adaptation results (balanced accuracy, mean
+±
+\pm
+std over 3 runs).
+Dataset
+#Classes
+CBraMod
+REVE
+BrainOmni
+FEMBA
+LaBraM
+NeuroLM
+BIOT
+NeuroGPT
+EEGMamba
+BENDR
+Type-I
+Longitudinal test-retest
+2
+0.755
+±
+\pm
+0.006
+0.743
+±
+\pm
+0.020
+0.725
+±
+\pm
+0.025
+0.683
+±
+\pm
+0.038
+0.677
+±
+\pm
+0.005
+0.745
+±
+\pm
+0.018
+0.703
+±
+\pm
+0.005
+0.695
+±
+\pm
+0.022
+0.639
+±
+\pm
+0.014
+0.500
+±
+\pm
+0.000
+Type-III
+Awakening
+2
+0.888
+±
+\pm
+0.049
+0.976
+±
+\pm
+0.008
+–
+0.927
+±
+\pm
+0.025
+0.854
+±
+\pm
+0.077
+0.823
+±
+\pm
+0.086
+0.964
+±
+\pm
+0.005
+0.776
+±
+\pm
+0.067
+0.707
+±
+\pm
+0.066
+0.500
+±
+\pm
+0.000
+HMC
+5
+0.664
+±
+\pm
+0.003
+0.684
+±
+\pm
+0.005
+0.657
+±
+\pm
+0.001
+0.588
+±
+\pm
+0.005
+0.643
+±
+\pm
+0.005
+0.620
+±
+\pm
+0.004
+0.575
+±
+\pm
+0.001
+0.575
+±
+\pm
+0.006
+0.570
+±
+\pm
+0.001
+0.200
+±
+\pm
+0.000
+HBN EEG
+13
+0.087
+±
+\pm
+0.004
+0.138
+±
+\pm
+0.006
+–
+0.108
+±
+\pm
+0.009
+0.117
+±
+\pm
+0.006
+0.088
+±
+\pm
+0.003
+0.120
+±
+\pm
+0.005
+0.097
+±
+\pm
+0.006
+0.108
+±
+\pm
+0.006
+0.079
+±
+\pm
+0.003
+RestCog
+5
+0.413
+±
+\pm
+0.001
+0.362
+±
+\pm
+0.004
+–
+0.321
+±
+\pm
+0.001
+0.339
+±
+\pm
+0.002
+0.334
+±
+\pm
+0.002
+0.367
+±
+\pm
+0.002
+0.293
+±
+\pm
+0.001
+0.234
+±
+\pm
+0.003
+0.200
+±
+\pm
+0.000
+Type-IV
+DEAP-arousal
+2
+0.513
+±
+\pm
+0.004
+0.514
+±
+\pm
+0.009
+0.502
+±
+\pm
+0.017
+0.484
+±
+\pm
+0.009
+0.495
+±
+\pm
+0.010
+0.512
+±
+\pm
+0.010
+0.511
+±
+\pm
+0.020
+0.505
+±
+\pm
+0.006
+0.483
+±
+\pm
+0.005
+0.500
+±
+\pm
+0.000
+DEAP-valence
+2
+0.516
+±
+\pm
+0.016
+0.524
+±
+\pm
+0.014
+0.505
+±
+\pm
+0.013
+0.531
+±
+\pm
+0.004
+0.506
+±
+\pm
+0.007
+0.504
+±
+\pm
+0.003
+0.524
+±
+\pm
+0.004
+0.504
+±
+\pm
+0.021
+0.509
+±
+\pm
+0.009
+0.500
+±
+\pm
+0.000
+SEED
+3
+0.546
+±
+\pm
+0.055
+0.576
+±
+\pm
+0.070
+0.518
+±
+\pm
+0.102
+0.457
+±
+\pm
+0.129
+–
+0.438
+±
+\pm
+0.041
+0.474
+±
+\pm
+0.090
+0.433
+±
+\pm
+0.039
+0.420
+±
+\pm
+0.070
+0.333
+±
+\pm
+0.000
+SEED-IV
+4
+0.341
+±
+\pm
+0.014
+0.340
+±
+\pm
+0.023
+0.305
+±
+\pm
+0.013
+0.300
+±
+\pm
+0.020
+–
+–
+0.303
+±
+\pm
+0.006
+0.287
+±
+\pm
+0.002
+0.278
+±
+\pm
+0.005
+0.250
+±
+\pm
+0.000
+SEED-V
+5
+0.263
+±
+\pm
+0.032
+0.251
+±
+\pm
+0.029
+0.243
+±
+\pm
+0.018
+0.229
+±
+\pm
+0.007
+0.211
+±
+\pm
+0.033
+–
+0.216
+±
+\pm
+0.005
+0.219
+±
+\pm
+0.021
+0.214
+±
+\pm
+0.013
+0.200
+±
+\pm
+0.000
+SEED-VII
+7
+0.191
+±
+\pm
+0.008
+0.212
+±
+\pm
+0.021
+0.210
+±
+\pm
+0.008
+0.194
+±
+\pm
+0.006
+0.191
+±
+\pm
+0.009
+0.154
+±
+\pm
+0.019
+0.164
+±
+\pm
+0.006
+0.185
+±
+\pm
+0.017
+0.175
+±
+\pm
+0.011
+0.143
+±
+\pm
+0.000
+SEED-FRA
+3
+0.441
+±
+\pm
+0.004
+0.350
+±
+\pm
+0.012
+0.422
+±
+\pm
+0.009
+0.421
+±
+\pm
+0.028
+–
+–
+0.440
+±
+\pm
+0.007
+0.372
+±
+\pm
+0.016
+0.376
+±
+\pm
+0.001
+0.333
+±
+\pm
+0.000
+FACED
+9
+0.484
+±
+\pm
+0.023
+0.197
+±
+\pm
+0.010
+0.194
+±
+\pm
+0.018
+0.170
+±
+\pm
+0.004
+0.145
+±
+\pm
+0.006
+0.171
+±
+\pm
+0.016
+0.147
+±
+\pm
+0.009
+0.151
+±
+\pm
+0.004
+0.144
+±
+\pm
+0.004
+0.111
+±
+\pm
+0.000
+MusicEEG
+2
+0.480
+±
+\pm
+0.034
+0.468
+±
+\pm
+0.019
+–
+0.458
+±
+\pm
+0.024
+0.465
+±
+\pm
+0.015
+0.470
+±
+\pm
+0.020
+0.462
+±
+\pm
+0.022
+0.453
+±
+\pm
+0.039
+0.490
+±
+\pm
+0.010
+0.500
+±
+\pm
+0.000
+CIRE
+2
+0.545
+±
+\pm
+0.014
+0.535
+±
+\pm
+0.028
+0.554
+±
+\pm
+0.021
+0.553
+±
+\pm
+0.018
+0.509
+±
+\pm
+0.056
+0.518
+±
+\pm
+0.019
+0.537
+±
+\pm
+0.034
+0.549
+±
+\pm
+0.025
+0.519
+±
+\pm
+0.064
+0.500
+±
+\pm
+0.000
+Workload
+3
+0.315
+±
+\pm
+0.032
+0.242
+±
+\pm
+0.081
+0.313
+±
+\pm
+0.029
+0.318
+±
+\pm
+0.022
+0.335
+±
+\pm
+0.002
+0.356
+±
+\pm
+0.024
+0.297
+±
+\pm
+0.053
+0.259
+±
+\pm
+0.073
+0.334
+±
+\pm
+0.002
+0.333
+±
+\pm
+0.000
+Type-V
+BCI-Speech
+5
+0.321
+±
+\pm
+0.011
+0.225
+±
+\pm
+0.013
+0.198
+±
+\pm
+0.022
+0.214
+±
+\pm
+0.014
+0.229
+±
+\pm
+0.011
+0.226
+±
+\pm
+0.005
+0.213
+±
+\pm
+0.007
+0.210
+±
+\pm
+0.003
+0.219
+±
+\pm
+0.010
+0.200
+±
+\pm
+0.000
+Broderick-Cocktail-party
+2
+0.804
+±
+\pm
+0.006
+0.616
+±
+\pm
+0.010
+0.525
+±
+\pm
+0.000
+0.540
+±
+\pm
+0.005
+0.582
+±
+\pm
+0.009
+0.558
+±
+\pm
+0.002
+0.588
+±
+\pm
+0.004
+0.506
+±
+\pm
+0.001
+0.502
+±
+\pm
+0.005
+0.500
+±
+\pm
+0.000
+Broderick-reverse
+2
+0.838
+±
+\pm
+0.017
+0.769
+±
+\pm
+0.017
+0.554
+±
+\pm
+0.013
+0.570
+±
+\pm
+0.015
+0.573
+±
+\pm
+0.007
+0.634
+±
+\pm
+0.014
+0.527
+±
+\pm
+0.017
+0.506
+±
+\pm
+0.002
+0.500
+±
+\pm
+0.001
+0.500
+±
+\pm
+0.000
+ChineseEEG2-RA-Tone
+4
+0.248
+±
+\pm
+0.007
+0.253
+±
+\pm
+0.002
+0.247
+±
+\pm
+0.010
+0.248
+±
+\pm
+0.002
+0.245
+±
+\pm
+0.004
+0.248
+±
+\pm
+0.004
+0.248
+±
+\pm
+0.001
+0.250
+±
+\pm
+0.006
+0.247
+±
+\pm
+0.004
+0.250
+±
+\pm
+0.000
+Type-VI
+BCIC-IV-2a
+4
+0.401
+±
+\pm
+0.020
+0.335
+±
+\pm
+0.005
+0.308
+±
+\pm
+0.005
+0.300
+±
+\pm
+0.019
+–
+–
+0.250
+±
+\pm
+0.000
+0.284
+±
+\pm
+0.011
+0.291
+±
+\pm
+0.005
+0.250
+±
+\pm
+0.000
+Physionet-MI
+4
+0.490
+±
+\pm
+0.016
+–
+0.291
+±
+\pm
+0.010
+0.264
+±
+\pm
+0.015
+0.263
+±
+\pm
+0.016
+0.285
+±
+\pm
+0.026
+0.236
+±
+\pm
+0.011
+0.279
+±
+\pm
+0.016
+–
+0.250
+±
+\pm
+0.000
+SHU-MI
+2
+0.589
+±
+\pm
+0.011
+0.538
+±
+\pm
+0.013
+0.557
+±
+\pm
+0.027
+0.535
+±
+\pm
+0.019
+0.506
+±
+\pm
+0.015
+0.501
+±
+\pm
+0.013
+0.528
+±
+\pm
+0.008
+0.497
+±
+\pm
+0.012
+0.507
+±
+\pm
+0.003
+0.500
+±
+\pm
+0.000
+BETA-SSVEP
+40
+0.097
+±
+\pm
+0.003
+0.037
+±
+\pm
+0.006
+0.035
+±
+\pm
+0.004
+0.038
+±
+\pm
+0.006
+0.029
+±
+\pm
+0.003
+0.027
+±
+\pm
+0.001
+0.033
+±
+\pm
+0.003
+0.025
+±
+\pm
+0.006
+0.026
+±
+\pm
+0.001
+0.025
+±
+\pm
+0.000
+Dual-Freq-SSVEP
+40
+0.087
+±
+\pm
+0.002
+0.036
+±
+\pm
+0.009
+0.052
+±
+\pm
+0.007
+0.032
+±
+\pm
+0.005
+0.020
+±
+\pm
+0.011
+0.025
+±
+\pm
+0.005
+0.031
+±
+\pm
+0.006
+0.023
+±
+\pm
+0.003
+0.023
+±
+\pm
+0.004
+0.025
+±
+\pm
+0.000
+SSVEP-9-chn
+160
+0.023
+±
+\pm
+0.006
+0.043
+±
+\pm
+0.002
+0.018
+±
+\pm
+0.003
+0.006
+±
+\pm
+0.001
+0.007
+±
+\pm
+0.002
+0.011
+±
+\pm
+0.003
+0.006
+±
+\pm
+0.000
+0.007
+±
+\pm
+0.003
+0.012
+±
+\pm
+0.003
+0.006
+±
+\pm
+0.000
+Monitoring-Errp
+2
+0.540
+±
+\pm
+0.014
+0.503
+±
+\pm
+0.016
+0.509
+±
+\pm
+0.008
+0.502
+±
+\pm
+0.013
+0.519
+±
+\pm
+0.006
+0.509
+±
+\pm
+0.012
+0.480
+±
+\pm
+0.018
+0.501
+±
+\pm
+0.007
+0.507
+±
+\pm
+0.010
+0.500
+±
+\pm
+0.000
+EEG-Controlled Exoskeleton
+2
+0.544
+±
+\pm
+0.004
+0.516
+±
+\pm
+0.004
+0.519
+±
+\pm
+0.009
+0.519
+±
+\pm
+0.008
+0.528
+±
+\pm
+0.003
+0.518
+±
+\pm
+0.003
+0.546
+±
+\pm
+0.003
+0.513
+±
+\pm
+0.018
+0.505
+±
+\pm
+0.005
+0.500
+±
+\pm
+0.000
+Table 7:
+Supplementary Table 7
+. Cross-subject full-finetuning results (balanced accuracy, mean
+±
+\pm
+std over 3 runs).
+Dataset
+#Classes
+CBraMod
+LaBraM
+FEMBA
+NeuroGPT
+NeuroLM
+BIOT
+BrainOmni
+REVE
+EEGMamba
+EEGConformer
+EEGNet
+BENDR
+Type-II
+MPI-LEMON-age
+4
+0.581
+±
+\pm
+0.051
+0.518
+±
+\pm
+0.031
+0.540
+±
+\pm
+0.010
+0.537
+±
+\pm
+0.019
+0.582
+±
+\pm
+0.030
+0.485
+±
+\pm
+0.008
+0.527
+±
+\pm
+0.007
+0.457
+±
+\pm
+0.021
+0.502
+±
+\pm
+0.004
+0.343
+±
+\pm
+0.028
+0.333
+±
+\pm
+0.000
+0.333
+±
+\pm
+0.000
+MPI-LEMON-gender
+2
+0.692
+±
+\pm
+0.022
+0.682
+±
+\pm
+0.006
+0.587
+±
+\pm
+0.023
+0.636
+±
+\pm
+0.010
+0.569
+±
+\pm
+0.027
+0.593
+±
+\pm
+0.052
+0.587
+±
+\pm
+0.002
+0.533
+±
+\pm
+0.011
+0.564
+±
+\pm
+0.031
+0.578
+±
+\pm
+0.033
+0.513
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+MPI-LEMON-extraversion
+2
+0.552
+±
+\pm
+0.010
+0.556
+±
+\pm
+0.033
+0.531
+±
+\pm
+0.000
+0.562
+±
+\pm
+0.014
+0.541
+±
+\pm
+0.002
+0.463
+±
+\pm
+0.000
+0.502
+±
+\pm
+0.000
+0.508
+±
+\pm
+0.017
+0.506
+±
+\pm
+0.015
+0.486
+±
+\pm
+0.041
+0.471
+±
+\pm
+0.033
+0.500
+±
+\pm
+0.000
+HFO
+2
+0.603
+±
+\pm
+0.016
+0.688
+±
+\pm
+0.004
+0.546
+±
+\pm
+0.012
+0.545
+±
+\pm
+0.015
+0.595
+±
+\pm
+0.000
+0.647
+±
+\pm
+0.030
+–
+0.528
+±
+\pm
+0.022
+0.596
+±
+\pm
+0.009
+0.535
+±
+\pm
+0.012
+0.529
+±
+\pm
+0.014
+0.500
+±
+\pm
+0.000
+TUAB
+2
+–
+0.767
+±
+\pm
+0.009
+–
+–
+–
+0.761
+±
+\pm
+0.016
+0.703
+±
+\pm
+0.021
+–
+–
+0.687
+±
+\pm
+0.037
+0.666
+±
+\pm
+0.015
+–
+TUEV
+6
+–
+0.606
+±
+\pm
+0.032
+–
+–
+–
+0.707
+±
+\pm
+0.014
+0.615
+±
+\pm
+0.046
+–
+–
+0.506
+±
+\pm
+0.110
+0.434
+±
+\pm
+0.117
+–
+TUEP
+2
+–
+–
+–
+–
+–
+0.623
+±
+\pm
+0.022
+0.634
+±
+\pm
+0.013
+–
+–
+0.634
+±
+\pm
+0.021
+0.585
+±
+\pm
+0.011
+–
+TUSL
+3
+–
+–
+–
+–
+–
+0.742
+±
+\pm
+0.066
+0.624
+±
+\pm
+0.180
+–
+–
+0.425
+±
+\pm
+0.066
+0.287
+±
+\pm
+0.005
+–
+Siena EEG
+2
+0.742
+±
+\pm
+0.041
+–
+0.733
+±
+\pm
+0.151
+0.491
+±
+\pm
+0.082
+–
+0.795
+±
+\pm
+0.033
+0.445
+±
+\pm
+0.129
+0.573
+±
+\pm
+0.022
+–
+0.715
+±
+\pm
+0.117
+0.632
+±
+\pm
+0.158
+0.750
+±
+\pm
+0.250
+ADHD
+2
+0.640
+±
+\pm
+0.093
+0.718
+±
+\pm
+0.099
+0.728
+±
+\pm
+0.017
+0.714
+±
+\pm
+0.127
+0.713
+±
+\pm
+0.093
+0.593
+±
+\pm
+0.004
+0.702
+±
+\pm
+0.055
+0.565
+±
+\pm
+0.035
+0.645
+±
+\pm
+0.108
+0.593
+±
+\pm
+0.060
+0.627
+±
+\pm
+0.022
+0.500
+±
+\pm
+0.000
+AD65
+3
+0.612
+±
+\pm
+0.048
+0.631
+±
+\pm
+0.136
+0.616
+±
+\pm
+0.133
+0.405
+±
+\pm
+0.105
+0.499
+±
+\pm
+0.096
+0.567
+±
+\pm
+0.001
+0.423
+±
+\pm
+0.064
+0.421
+±
+\pm
+0.048
+0.546
+±
+\pm
+0.192
+0.364
+±
+\pm
+0.044
+0.380
+±
+\pm
+0.044
+0.333
+±
+\pm
+0.000
+PD31
+2
+0.563
+±
+\pm
+0.000
+0.585
+±
+\pm
+0.000
+0.745
+±
+\pm
+0.000
+0.764
+±
+\pm
+0.000
+0.098
+±
+\pm
+0.000
+0.602
+±
+\pm
+0.000
+0.651
+±
+\pm
+0.000
+0.537
+±
+\pm
+0.000
+0.188
+±
+\pm
+0.000
+0.377
+±
+\pm
+0.190
+0.272
+±
+\pm
+0.179
+0.000
+±
+\pm
+0.000
+PD-motaility
+2
+0.664
+±
+\pm
+0.106
+0.642
+±
+\pm
+0.033
+0.545
+±
+\pm
+0.040
+0.506
+±
+\pm
+0.008
+0.518
+±
+\pm
+0.018
+0.683
+±
+\pm
+0.047
+0.499
+±
+\pm
+0.014
+0.561
+±
+\pm
+0.042
+0.579
+±
+\pm
+0.006
+0.499
+±
+\pm
+0.003
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+MDD
+2
+0.736
+±
+\pm
+0.259
+0.773
+±
+\pm
+0.173
+0.775
+±
+\pm
+0.145
+0.885
+±
+\pm
+0.048
+0.961
+±
+\pm
+0.036
+0.853
+±
+\pm
+0.010
+0.977
+±
+\pm
+0.015
+0.901
+±
+\pm
+0.003
+0.870
+±
+\pm
+0.083
+0.927
+±
+\pm
+0.045
+0.947
+±
+\pm
+0.028
+0.500
+±
+\pm
+0.000
+TDBRAIN
+4
+0.370
+±
+\pm
+0.002
+0.421
+±
+\pm
+0.009
+0.448
+±
+\pm
+0.044
+0.385
+±
+\pm
+0.011
+0.423
+±
+\pm
+0.069
+0.392
+±
+\pm
+0.034
+0.378
+±
+\pm
+0.008
+0.345
+±
+\pm
+0.000
+0.381
+±
+\pm
+0.021
+0.389
+±
+\pm
+0.013
+0.379
+±
+\pm
+0.024
+0.250
+±
+\pm
+0.000
+Depression-resting
+2
+0.704
+±
+\pm
+0.000
+0.519
+±
+\pm
+0.000
+0.562
+±
+\pm
+0.000
+0.531
+±
+\pm
+0.000
+0.580
+±
+\pm
+0.000
+0.613
+±
+\pm
+0.000
+0.537
+±
+\pm
+0.000
+0.519
+±
+\pm
+0.000
+0.572
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+Type-III
+Awakening
+2
+0.979
+±
+\pm
+0.010
+0.992
+±
+\pm
+0.008
+0.975
+±
+\pm
+0.006
+0.975
+±
+\pm
+0.009
+0.893
+±
+\pm
+0.051
+0.986
+±
+\pm
+0.014
+–
+0.982
+±
+\pm
+0.014
+0.955
+±
+\pm
+0.033
+0.805
+±
+\pm
+0.001
+0.668
+±
+\pm
+0.008
+0.500
+±
+\pm
+0.000
+ISRUC-S1
+5
+0.586
+±
+\pm
+0.026
+0.653
+±
+\pm
+0.051
+0.691
+±
+\pm
+0.001
+0.666
+±
+\pm
+0.005
+0.551
+±
+\pm
+0.089
+0.650
+±
+\pm
+0.032
+0.629
+±
+\pm
+0.030
+0.654
+±
+\pm
+0.016
+0.633
+±
+\pm
+0.053
+0.495
+±
+\pm
+0.027
+0.453
+±
+\pm
+0.033
+0.200
+±
+\pm
+0.000
+ISRUC-S2
+5
+0.218
+±
+\pm
+0.002
+0.196
+±
+\pm
+0.012
+0.235
+±
+\pm
+0.015
+0.240
+±
+\pm
+0.012
+0.199
+±
+\pm
+0.004
+0.265
+±
+\pm
+0.036
+0.276
+±
+\pm
+0.000
+0.242
+±
+\pm
+0.013
+0.241
+±
+\pm
+0.019
+0.227
+±
+\pm
+0.024
+0.206
+±
+\pm
+0.007
+0.200
+±
+\pm
+0.000
+ISRUC-S3
+5
+0.233
+±
+\pm
+0.011
+0.327
+±
+\pm
+0.010
+0.333
+±
+\pm
+0.064
+0.304
+±
+\pm
+0.020
+0.298
+±
+\pm
+0.048
+0.355
+±
+\pm
+0.039
+0.326
+±
+\pm
+0.001
+0.303
+±
+\pm
+0.021
+0.335
+±
+\pm
+0.010
+0.290
+±
+\pm
+0.017
+0.255
+±
+\pm
+0.029
+0.200
+±
+\pm
+0.000
+SleepEDF
+5
+0.733
+±
+\pm
+0.011
+0.745
+±
+\pm
+0.015
+0.736
+±
+\pm
+0.002
+0.703
+±
+\pm
+0.015
+0.740
+±
+\pm
+0.006
+0.200
+±
+\pm
+0.000
+0.700
+±
+\pm
+0.003
+0.733
+±
+\pm
+0.008
+0.677
+±
+\pm
+0.001
+0.631
+±
+\pm
+0.009
+0.587
+±
+\pm
+0.018
+0.200
+±
+\pm
+0.000
+RestCog
+5
+0.389
+±
+\pm
+0.023
+0.400
+±
+\pm
+0.026
+0.351
+±
+\pm
+0.021
+0.390
+±
+\pm
+0.033
+0.345
+±
+\pm
+0.016
+0.396
+±
+\pm
+0.030
+–
+0.289
+±
+\pm
+0.014
+0.345
+±
+\pm
+0.020
+0.284
+±
+\pm
+0.004
+0.267
+±
+\pm
+0.008
+0.200
+±
+\pm
+0.000
+Type-IV
+SEED-VIG
+3
+0.458
+±
+\pm
+0.008
+0.479
+±
+\pm
+0.031
+0.321
+±
+\pm
+0.065
+0.406
+±
+\pm
+0.013
+0.439
+±
+\pm
+0.012
+0.333
+±
+\pm
+0.000
+0.505
+±
+\pm
+0.007
+0.392
+±
+\pm
+0.003
+0.396
+±
+\pm
+0.025
+0.340
+±
+\pm
+0.008
+0.342
+±
+\pm
+0.000
+0.333
+±
+\pm
+0.000
+EEG-SVRec
+2
+0.503
+±
+\pm
+0.001
+0.497
+±
+\pm
+0.003
+0.502
+±
+\pm
+0.006
+0.498
+±
+\pm
+0.000
+0.499
+±
+\pm
+0.001
+0.499
+±
+\pm
+0.005
+0.498
+±
+\pm
+0.003
+0.497
+±
+\pm
+0.003
+0.500
+±
+\pm
+0.001
+0.498
+±
+\pm
+0.004
+0.492
+±
+\pm
+0.005
+0.500
+±
+\pm
+0.000
+MusicEEG
+2
+0.556
+±
+\pm
+0.027
+0.454
+±
+\pm
+0.008
+0.492
+±
+\pm
+0.067
+0.485
+±
+\pm
+0.031
+0.532
+±
+\pm
+0.074
+0.378
+±
+\pm
+0.068
+–
+0.499
+±
+\pm
+0.038
+0.471
+±
+\pm
+0.045
+0.546
+±
+\pm
+0.005
+0.595
+±
+\pm
+0.030
+0.500
+±
+\pm
+0.000
+CIRE
+2
+0.524
+±
+\pm
+0.006
+0.551
+±
+\pm
+0.007
+0.515
+±
+\pm
+0.010
+0.528
+±
+\pm
+0.041
+0.506
+±
+\pm
+0.017
+0.523
+±
+\pm
+0.013
+0.523
+±
+\pm
+0.009
+0.511
+±
+\pm
+0.001
+0.544
+±
+\pm
+0.031
+0.517
+±
+\pm
+0.002
+0.519
+±
+\pm
+0.001
+0.500
+±
+\pm
+0.000
+Workload
+3
+0.400
+±
+\pm
+0.011
+0.437
+±
+\pm
+0.020
+0.395
+±
+\pm
+0.013
+0.404
+±
+\pm
+0.010
+0.492
+±
+\pm
+0.021
+0.447
+±
+\pm
+0.037
+0.473
+±
+\pm
+0.018
+0.360
+±
+\pm
+0.003
+0.400
+±
+\pm
+0.015
+0.476
+±
+\pm
+0.012
+0.402
+±
+\pm
+0.013
+0.333
+±
+\pm
+0.000
+Type-V
+BCI-Speech
+5
+0.262
+±
+\pm
+0.010
+0.225
+±
+\pm
+0.003
+0.249
+±
+\pm
+0.003
+0.210
+±
+\pm
+0.022
+0.207
+±
+\pm
+0.005
+0.267
+±
+\pm
+0.025
+0.199
+±
+\pm
+0.007
+0.208
+±
+\pm
+0.012
+0.200
+±
+\pm
+0.008
+0.222
+±
+\pm
+0.022
+0.206
+±
+\pm
+0.009
+0.200
+±
+\pm
+0.000
+Broderick-Cocktail-party
+2
+0.400
+±
+\pm
+0.144
+0.332
+±
+\pm
+0.061
+0.432
+±
+\pm
+0.028
+0.202
+±
+\pm
+0.202
+0.255
+±
+\pm
+0.255
+0.388
+±
+\pm
+0.051
+0.431
+±
+\pm
+0.113
+0.410
+±
+\pm
+0.015
+0.421
+±
+\pm
+0.064
+0.514
+±
+\pm
+0.002
+0.503
+±
+\pm
+0.004
+0.250
+±
+\pm
+0.250
+Broderick-reverse
+2
+0.688
+±
+\pm
+0.116
+0.656
+±
+\pm
+0.035
+0.566
+±
+\pm
+0.067
+0.570
+±
+\pm
+0.051
+0.570
+±
+\pm
+0.029
+0.459
+±
+\pm
+0.002
+0.443
+±
+\pm
+0.035
+0.918
+±
+\pm
+0.049
+0.392
+±
+\pm
+0.108
+0.496
+±
+\pm
+0.003
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+ChineseEEG2-RA-Tone
+4
+0.253
+±
+\pm
+0.003
+0.251
+±
+\pm
+0.003
+0.252
+±
+\pm
+0.002
+0.251
+±
+\pm
+0.001
+0.251
+±
+\pm
+0.001
+0.252
+±
+\pm
+0.002
+0.246
+±
+\pm
+0.000
+0.250
+±
+\pm
+0.001
+0.255
+±
+\pm
+0.007
+0.253
+±
+\pm
+0.005
+0.252
+±
+\pm
+0.003
+0.250
+±
+\pm
+0.000
+ThingsEEG2
+2
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.498
+±
+\pm
+0.002
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.498
+±
+\pm
+0.002
+0.502
+±
+\pm
+0.002
+0.500
+±
+\pm
+0.000
+0.500
+±
+\pm
+0.000
+0.498
+±
+\pm
+0.002
+0.498
+±
+\pm
+0.002
+0.500
+±
+\pm
+0.000
+Type-VI
+BCIC-IV-2a
+4
+0.372
+±
+\pm
+0.005
+–
+0.391
+±
+\pm
+0.016
+0.309
+±
+\pm
+0.026
+–
+0.250
+±
+\pm
+0.000
+0.338
+±
+\pm
+0.011
+0.273
+±
+\pm
+0.007
+0.324
+±
+\pm
+0.010
+0.374
+±
+\pm
+0.004
+0.348
+±
+\pm
+0.023
+0.250
+±
+\pm
+0.000
+BCIC-IV-1
+2
+0.517
+±
+\pm
+0.022
+0.507
+±
+\pm
+0.028
+0.527
+±
+\pm
+0.033
+0.502
+±
+\pm
+0.013
+0.487
+±
+\pm
+0.003
+0.458
+±
+\pm
+0.043
+0.482
+±
+\pm
+0.028
+0.515
+±
+\pm
+0.015
+0.490
+±
+\pm
+0.000
+0.502
+±
+\pm
+0.007
+0.495
+±
+\pm
+0.030
+0.500
+±
+\pm
+0.000
+Physionet-MI
+4
+0.549
+±
+\pm
+0.000
+0.501
+±
+\pm
+0.022
+0.519
+±
+\pm
+0.020
+0.480
+±
+\pm
+0.007
+0.508
+±
+\pm
+0.004
+0.261
+±
+\pm
+0.001
+0.387
+±
+\pm
+0.017
+–
+–
+0.489
+±
+\pm
+0.015
+0.437
+±
+\pm
+0.016
+0.250
+±
+\pm
+0.000
+SHU-MI
+2
+0.520
+±
+\pm
+0.018
+0.525
+±
+\pm
+0.009
+0.544
+±
+\pm
+0.002
+0.500
+±
+\pm
+0.002
+0.502
+±
+\pm
+0.000
+0.527
+±
+\pm
+0.013
+0.536
+±
+\pm
+0.021
+0.536
+±
+\pm
+0.019
+0.481
+±
+\pm
+0.015
+0.525
+±
+\pm
+0.034
+0.530
+±
+\pm
+0.012
+0.500
+±
+\pm
+0.000
+BETA-SSVEP
+40
+0.150
+±
+\pm
+0.009
+0.100
+±
+\pm
+0.010
+0.041
+±
+\pm
+0.000
+0.095
+±
+\pm
+0.005
+0.082
+±
+\pm
+0.003
+0.044
+±
+\pm
+0.009
+0.081
+±
+\pm
+0.001
+0.100
+±
+\pm
+0.022
+0.037
+±
+\pm
+0.005
+0.027
+±
+\pm
+0.000
+0.028
+±
+\pm
+0.001
+0.025
+±
+\pm
+0.000
+Benchmark-SSVEP
+40
+0.678
+±
+\pm
+0.090
+0.701
+±
+\pm
+0.096
+0.291
+±
+\pm
+0.078
+0.617
+±
+\pm
+0.090
+0.340
+±
+\pm
+0.065
+0.310
+±
+\pm
+0.048
+0.268
+±
+\pm
+0.011
+0.674
+±
+\pm
+0.140
+0.116
+±
+\pm
+0.002
+0.036
+±
+\pm
+0.004
+0.062
+±
+\pm
+0.006
+0.025
+±
+\pm
+0.000
+Dual-Freq-SSVEP
+40
+0.173
+±
+\pm
+0.027
+0.057
+±
+\pm
+0.012
+0.033
+±
+\pm
+0.005
+0.052
+±
+\pm
+0.002
+0.037
+±
+\pm
+0.007
+0.043
+±
+\pm
+0.010
+0.067
+±
+\pm
+0.013
+0.089
+±
+\pm
+0.009
+0.033
+±
+\pm
+0.002
+0.033
+±
+\pm
+0.005
+0.027
+±
+\pm
+0.004
+0.025
+±
+\pm
+0.000
+SSVEP-9-chn
+160
+0.227
+±
+\pm
+0.001
+0.016
+±
+\pm
+0.004
+0.005
+±
+\pm
+0.002
+0.015
+±
+\pm
+0.001
+0.140
+±
+\pm
+0.026
+0.006
+±
+\pm
+0.000
+0.043
+±
+\pm
+0.010
+0.110
+±
+\pm
+0.009
+0.020
+±
+\pm
+0.009
+0.008
+±
+\pm
+0.001
+0.010
+±
+\pm
+0.000
+0.006
+±
+\pm
+0.000
+Monitoring-Errp
+2
+0.527
+±
+\pm
+0.006
+0.491
+±
+\pm
+0.015
+0.510
+±
+\pm
+0.006
+0.515
+±
+\pm
+0.003
+0.509
+±
+\pm
+0.006
+0.501
+±
+\pm
+0.007
+0.493
+±
+\pm
+0.017
+0.507
+±
+\pm
+0.008
+0.502
+±
+\pm
+0.006
+0.542
+±
+\pm
+0.038
+0.513
+±
+\pm
+0.019
+0.500
+±
+\pm
+0.000
+Appendix K
+Regression Tasks
+We evaluate on SEED-VIG, a vigilance estimation dataset containing 20,355 EEG segments
+from 21 subjects, where the label is a per-segment continuous value (ratio of eye closure,
+range
+[
+0.02
+,
+1.00
+]
+[0.02,1.00]
+). As shown in Table
+8
+, most models yield
+near-zero or negative
+R
+2
+R^{2}
+with high variance across seeds, indicating that frozen EEG
+representations generalize poorly to cross-subject prediction with continuous labels.
+Table 8:
+Supplementary Table 8.
+Linear probing on SEED-VIG vigilance regression (cross-subject, mean
+±
+\pm
+std over 3 seeds).
+Model
+R
+2
+↑
+R^{2}\uparrow
+r
+↑
+r\uparrow
+RMSE
+↓
+\downarrow
+BENDR
+−
+0.009
+±
+.008
+-0.009_{\pm.008}
+0.042
+±
+.038
+0.042_{\pm.038}
+0.257
+±
+.039
+0.257_{\pm.039}
+BIOT
+−
+0.064
+±
+.080
+-0.064_{\pm.080}
+−
+0.082
+±
+.008
+-0.082_{\pm.008}
+0.270
+±
+.032
+0.270_{\pm.032}
+BrainOmni
+−
+0.073
+±
+.277
+-0.073_{\pm.277}
+0.428
+±
+.239
+0.428_{\pm.239}
+0.259
+±
+.047
+0.259_{\pm.047}
+CBraMod
+−
+0.023
+±
+.433
+-0.023_{\pm.433}
+0.548
+±
+.207
+0.548_{\pm.207}
+0.242
+±
+.028
+0.242_{\pm.028}
+EEGMamba
+−
+0.002
+±
+.272
+-0.002_{\pm.272}
+0.463
+±
+.139
+0.463_{\pm.139}
+0.247
+±
+.025
+0.247_{\pm.025}
+FEMBA
++
+0.054
+±
+.190
++0.054_{\pm.190}
+0.441
+±
+.167
+0.441_{\pm.167}
+0.242
+±
+.032
+0.242_{\pm.032}
+LaBraM
+−
+0.033
+±
+.340
+-0.033_{\pm.340}
+0.458
+±
+.207
+0.458_{\pm.207}
+0.252
+±
+.032
+0.252_{\pm.032}
+NeuroGPT
++
+0.076
+±
+.100
++0.076_{\pm.100}
+0.443
+±
+.204
+0.443_{\pm.204}
+0.238
+±
+.043
+0.238_{\pm.043}
+NeuroLM
+−
+0.019
+±
+.335
+-0.019_{\pm.335}
+0.550
+±
+.113
+0.550_{\pm.113}
+0.249
+±
+.021
+0.249_{\pm.021}
+REVE
+−
+0.296
+±
+.905
+-0.296_{\pm.905}
+0.559
+±
+.167
+0.559_{\pm.167}
+0.270
+±
+.059
+0.270_{\pm.059}

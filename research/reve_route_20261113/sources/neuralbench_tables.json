@@ -1,0 +1,773 @@
+[
+  {
+    "index": 0,
+    "id": "S2.T1.18",
+    "caption": "Table 1: Tasks and datasets in NeuralBench-EEG v1.0 . For each task, we indicate the Core dataset name, the machine learning objective ( reg : regression, clf : classification, retr : retrieval), the number of unique EEG channels, the number of unique subjects, the dimensionality of the target ( i . e ., the number of outputs), and the number of additional datasets in the Full variant, if any.",
+    "rows": [
+      [
+        "Task",
+        "Core dataset",
+        "Obj.",
+        "#Ch.",
+        "#Subj.",
+        "#Hours",
+        "#Out.",
+        "+Datasets"
+      ],
+      [
+        "Age",
+        "Shirazi2024",
+        "reg",
+        "129",
+        "2,858",
+        "95.3",
+        "1",
+        ""
+      ],
+      [
+        "Artifact",
+        "Hamid2020",
+        "clf",
+        "26",
+        "213",
+        "300.2",
+        "5",
+        ""
+      ],
+      [
+        "Audiovisual stimulus",
+        "MneSample2013",
+        "clf",
+        "60",
+        "1",
+        "0.1",
+        "4",
+        ""
+      ],
+      [
+        "Clinical event",
+        "Harati2015",
+        "clf",
+        "21",
+        "370",
+        "20.1",
+        "6",
+        ""
+      ],
+      [
+        "C-VEP",
+        "Thielen2021",
+        "clf",
+        "8",
+        "30",
+        "50.0",
+        "20",
+        "7"
+      ],
+      [
+        "Dementia diagnosis",
+        "Miltiadous2023",
+        "clf",
+        "19",
+        "88",
+        "19.5",
+        "3",
+        ""
+      ],
+      [
+        "Depression diagnosis",
+        "Mumtaz2018",
+        "clf",
+        "19",
+        "64",
+        "20.4",
+        "2",
+        ""
+      ],
+      [
+        "Emotion",
+        "Chen2023",
+        "clf",
+        "32",
+        "123",
+        "28.7",
+        "9",
+        ""
+      ],
+      [
+        "Error-related negativity",
+        "Kappenman2021Ern",
+        "clf",
+        "30",
+        "40",
+        "4.4",
+        "2",
+        "2"
+      ],
+      [
+        "Image",
+        "Gifford2022",
+        "retr",
+        "63",
+        "10",
+        "230.7",
+        "1,536",
+        ""
+      ],
+      [
+        "Mental arithmetic",
+        "Zyma2019",
+        "clf",
+        "20",
+        "35",
+        "2.3",
+        "2",
+        "1"
+      ],
+      [
+        "Mental imagery",
+        "Scherer2015",
+        "clf",
+        "30",
+        "9",
+        "3.9",
+        "5",
+        ""
+      ],
+      [
+        "Mental workload",
+        "Hinss2023",
+        "clf",
+        "63",
+        "29",
+        "21.4",
+        "3",
+        "2"
+      ],
+      [
+        "Mismatch negativity",
+        "Kappenman2021Mmn",
+        "clf",
+        "30",
+        "40",
+        "11.1",
+        "2",
+        ""
+      ],
+      [
+        "Motor execution",
+        "Srisrisawang2024",
+        "clf",
+        "60",
+        "20",
+        "16.0",
+        "16",
+        "2"
+      ],
+      [
+        "Motor imagery",
+        "Stieger2021",
+        "clf",
+        "60",
+        "62",
+        "141.5",
+        "4",
+        "17"
+      ],
+      [
+        "N170",
+        "Kappenman2021N170",
+        "clf",
+        "30",
+        "40",
+        "3.6",
+        "2",
+        ""
+      ],
+      [
+        "N2pc",
+        "Kappenman2021N2pc",
+        "clf",
+        "30",
+        "40",
+        "3.6",
+        "2",
+        "1"
+      ],
+      [
+        "N400",
+        "Kappenman2021N400",
+        "clf",
+        "30",
+        "40",
+        "1.3",
+        "2",
+        ""
+      ],
+      [
+        "P300",
+        "Schreuder2010",
+        "clf",
+        "60",
+        "21",
+        "70.5",
+        "2",
+        "23"
+      ],
+      [
+        "Parkinsons diagnosis",
+        "Singh2021",
+        "clf",
+        "60",
+        "129",
+        "54.9",
+        "2",
+        ""
+      ],
+      [
+        "Pathology",
+        "Lopez2017",
+        "clf",
+        "21",
+        "2,329",
+        "971.7",
+        "2",
+        ""
+      ],
+      [
+        "Psychopathology",
+        "Shirazi2024",
+        "reg",
+        "129",
+        "2,820",
+        "94.0",
+        "1",
+        ""
+      ],
+      [
+        "Reaction time",
+        "Shirazi2024",
+        "reg",
+        "129",
+        "1,945",
+        "70.8",
+        "1",
+        ""
+      ],
+      [
+        "Lateralized readiness potential",
+        "Kappenman2021Lrp",
+        "clf",
+        "30",
+        "40",
+        "4.4",
+        "2",
+        ""
+      ],
+      [
+        "Schizophrenia diagnosis",
+        "Albrecht2019",
+        "clf",
+        "62",
+        "77",
+        "34.6",
+        "2",
+        ""
+      ],
+      [
+        "Seizure",
+        "Dan2023",
+        "clf",
+        "24",
+        "23",
+        "982.9",
+        "2",
+        ""
+      ],
+      [
+        "Sentence",
+        "Hollenstein2018",
+        "retr",
+        "128",
+        "12",
+        "21.5",
+        "768",
+        ""
+      ],
+      [
+        "Sex",
+        "Shirazi2024",
+        "clf",
+        "129",
+        "2,858",
+        "95.3",
+        "2",
+        ""
+      ],
+      [
+        "Sleep arousal",
+        "Ghassemi2018",
+        "clf",
+        "6",
+        "994",
+        "7,662.3",
+        "2",
+        ""
+      ],
+      [
+        "Sleep stage",
+        "Kemp2000",
+        "clf",
+        "2",
+        "78",
+        "1,635.2",
+        "5",
+        ""
+      ],
+      [
+        "Speech",
+        "Brennan2019",
+        "retr",
+        "60",
+        "33",
+        "58.5",
+        "4,096",
+        ""
+      ],
+      [
+        "Typing",
+        "Levy2025",
+        "clf",
+        "61",
+        "20",
+        "40.7",
+        "29",
+        ""
+      ],
+      [
+        "Video",
+        "Liu2024",
+        "retr",
+        "62",
+        "20",
+        "16.3",
+        "1,408",
+        ""
+      ],
+      [
+        "Steady-state visually evoked potential",
+        "Wang2017",
+        "clf",
+        "64",
+        "34",
+        "9.1",
+        "40",
+        "6"
+      ],
+      [
+        "Word",
+        "Nieuwland2018",
+        "retr",
+        "74",
+        "222",
+        "441.4",
+        "1,024",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 1,
+    "id": "S2.E1",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ C ​ L ​ I ​ P ( θ ) = − 1 B ∑ i = 1 B log exp ⁡ ( s ⁡ ( 𝒛 ^ i , 𝒛 i ) / τ ) ∑ j = 1 B exp ⁡ ( s ⁡ ( 𝒛 ^ i , 𝒛 j ) / τ ) \\mathcal{L}_{CLIP}(\\theta)=-\\frac{1}{B}\\sum_{i=1}^{B}\\log\\frac{\\exp(s(\\hat{\\bm{z}}_{i},\\bm{z}_{i})/\\tau)}{\\sum_{j=1}^{B}\\exp(s(\\hat{\\bm{z}}_{i},\\bm{z}_{j})/\\tau)}",
+        "",
+        "(1)"
+      ]
+    ]
+  },
+  {
+    "index": 2,
+    "id": "S2.E2",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "s ~ = s − s dummy s perfect − s dummy \\tilde{s}=\\frac{s-s_{\\text{dummy}}}{s_{\\text{perfect}}-s_{\\text{dummy}}}",
+        "",
+        "(2)"
+      ]
+    ]
+  },
+  {
+    "index": 3,
+    "id": "A1.T1.6",
+    "caption": "Table S1: Dataset references for all NeuralBench-EEG v1.0 tasks, grouped by category. References for the primary dataset are listed first; additional dataset references follow.",
+    "rows": [
+      [
+        "Category",
+        "Task",
+        "Dataset references"
+      ],
+      [
+        "Cognitive",
+        "Image",
+        "Gifford et al. (2022a) , Hebart et al. (2023) , Allen et al. (2022)"
+      ],
+      [
+        "Sentence",
+        "Hollenstein et al. (2018)"
+      ],
+      [
+        "Speech",
+        "Brennan and Hale (2019)"
+      ],
+      [
+        "Typing",
+        "Lévy et al. (2025) ; Zhang et al. (2025)"
+      ],
+      [
+        "Video",
+        "Liu et al. (2024b)"
+      ],
+      [
+        "Word",
+        "Nieuwland et al. (2018)"
+      ],
+      [
+        "BCI",
+        "c-VEP",
+        "Cabrera Castillos et al. (2023) , Martínez-Cagigal (2023) , Martínez-Cagigal (2024) , Thielen et al. (2015) , Thielen et al. (2021)"
+      ],
+      [
+        "Mental imagery",
+        "Scherer et al. (2015)"
+      ],
+      [
+        "Motor execution",
+        "Srisrisawang and Müller-Putz (2024) , Schirrmeister et al. (2017) , Ofner et al. (2017)"
+      ],
+      [
+        "Motor imagery",
+        "Stieger et al. (2021) , Schalk et al. (2004) , Barachant (2012) , Cho et al. (2017) , Dornhege et al. (2004) , Dreyer et al. (2023) , Faller et al. (2012) , Grosse-Wentrup et al. (2009) , Lee et al. (2019) , Leeb et al. (2007) , Liu et al. (2024a) , Schwarz et al. (2020) , Shin et al. (2017) , Scherer et al. (2012) , Tangermann et al. (2012) , Wei et al. (2022) , Yi et al. (2014) , Zhou et al. (2016)"
+      ],
+      [
+        "P300",
+        "Schreuder et al. (2010) , Kappenman et al. (2021) , Acqualagna and Blankertz (2013) , Aricò et al. (2014) , Cattan et al. (2019) , Vaineau et al. (2018) , Guger et al. (2009) , Haufe et al. (2011) , Hoffmann et al. (2008) , Hübner et al. (2017) , Hübner (2016) , Kojima and Kanoh (2024) , Kojima (2024) , Korczowski et al. (2019b) , Korczowski et al. (2019c) , Korczowski et al. (2019a) , Lee et al. (2019) , Riccio et al. (2013) , Romani et al. (2025) , Schaeff et al. (2012) , Höhne (2011) , Sosulski and Tangermann (2019) , Treder et al. (2011) , Treder et al. (2014) , Van Veen et al. (2019)"
+      ],
+      [
+        "SSVEP",
+        "Wang et al. (2017) , Lee et al. (2019) , Kalunga et al. (2016) , Nakanishi et al. (2015) , Oikonomou et al. (2016)"
+      ],
+      [
+        "Evoked Responses",
+        "Audiovisual stimulus",
+        "Gramfort et al. (2013)"
+      ],
+      [
+        "Error-related negativity",
+        "Kappenman et al. (2021) , Kueper et al. (2024) , Chavarriaga and Millan (2010)"
+      ],
+      [
+        "MMN",
+        "Kappenman et al. (2021)"
+      ],
+      [
+        "N170",
+        "Kappenman et al. (2021)"
+      ],
+      [
+        "N2pc",
+        "Kappenman et al. (2021) , Reichert et al. (2020)"
+      ],
+      [
+        "N400",
+        "Kappenman et al. (2021)"
+      ],
+      [
+        "Lateralized readiness potential",
+        "Kappenman et al. (2021)"
+      ],
+      [
+        "Clinical",
+        "Clinical event detection",
+        "Harati et al. (2015)"
+      ],
+      [
+        "Dementia diagnosis",
+        "Miltiadous et al. (2023)"
+      ],
+      [
+        "Depression diagnosis",
+        "Mumtaz et al. (2018)"
+      ],
+      [
+        "Parkinson’s diagnosis",
+        "Singh et al. (2021)"
+      ],
+      [
+        "Pathology",
+        "Lopez de Diego (2017)"
+      ],
+      [
+        "Schizophrenia diagnosis",
+        "Albrecht et al. (2019)"
+      ],
+      [
+        "Seizure detection",
+        "Dan and Shoeb (2023)"
+      ],
+      [
+        "Internal State",
+        "Emotion recognition",
+        "Chen et al. (2023)"
+      ],
+      [
+        "Mental arithmetic",
+        "Zyma et al. (2019) , Shin et al. (2017)"
+      ],
+      [
+        "Mental workload",
+        "Hinss et al. (2022) , Hinss et al. (2023) , Jao et al. (2023)"
+      ],
+      [
+        "Sleep",
+        "Sleep arousal",
+        "Ghassemi et al. (2018)"
+      ],
+      [
+        "Sleep stage",
+        "Kemp et al. (2000)"
+      ],
+      [
+        "Phenotyping",
+        "Age",
+        "Shirazi et al. (2024)"
+      ],
+      [
+        "Psychopathology",
+        "Shirazi et al. (2024)"
+      ],
+      [
+        "Sex",
+        "Shirazi et al. (2024)"
+      ],
+      [
+        "Misc",
+        "Artifact detection",
+        "Hamid et al. (2020)"
+      ],
+      [
+        "Reaction time",
+        "Shirazi et al. (2024)"
+      ]
+    ]
+  },
+  {
+    "index": 4,
+    "id": "A2.T2.4",
+    "caption": "Table S2: Task-specific EEG models evaluated in NeuralBench-EEG v1.0 .\nParameter counts are backbone-only (excluding the task-specific output head)\nand are approximate as they depend on the number of input channels\n(we use a representative value of C = 22 C{=}22 ) here.",
+    "rows": [
+      [
+        "Model",
+        "# Params",
+        "Reference"
+      ],
+      [
+        "ShallowFBCSPNet",
+        "36K",
+        "Schirrmeister et al. (2017)"
+      ],
+      [
+        "Deep4Net",
+        "146K",
+        "Schirrmeister et al. (2017)"
+      ],
+      [
+        "EEGNet",
+        "1.5K",
+        "Lawhern et al. (2018)"
+      ],
+      [
+        "BDTCN",
+        "27K",
+        "Gemein et al. (2020)"
+      ],
+      [
+        "EEGConformer",
+        "277K",
+        "Song et al. (2022)"
+      ],
+      [
+        "ATCNet",
+        "29K",
+        "Altaheri et al. (2022)"
+      ],
+      [
+        "SimpleConvTimeAgg",
+        "4.2M",
+        "El Ouahidi et al. (2023)"
+      ],
+      [
+        "CTNet",
+        "150K",
+        "Zhao et al. (2024)"
+      ]
+    ]
+  },
+  {
+    "index": 5,
+    "id": "A2.T3.6",
+    "caption": "Table S3: Handcrafted features-based sklearn baselines evaluated in NeuralBench-EEG v1.0 .\nThese pipelines are fit once on the concatenation of the training and validation sets and evaluated with the exact same preprocessing and splits as the deep learning models.\nA single pipeline is used per task type; see Tasks column.",
+    "rows": [
+      [
+        "Pipeline",
+        "Description",
+        "Tasks",
+        "Reference"
+      ],
+      [
+        "XdawnTsLR",
+        "xDAWN covariances → \\rightarrow shrinkage → \\rightarrow tangent space → \\rightarrow standard scaling → \\rightarrow logistic regression (CV-tuned C C )",
+        "Classification: Evoked response and P300",
+        "Rivet et al. (2009) , Barachant and Congedo (2014)"
+      ],
+      [
+        "CovTsLR",
+        "sample covariances → \\rightarrow shrinkage → \\rightarrow tangent space → \\rightarrow standard scaling → \\rightarrow logistic regression (CV-tuned C C ; one-vs-rest for multilabel)",
+        "Classification: BCI (except P300 and SSVEP), Internal State , Clinical , Sleep , sex , artifact",
+        "Barachant et al. (2011)"
+      ],
+      [
+        "CoSpectraLogLR",
+        "Welch co-spectra → \\rightarrow upper-triangular flatten with log ⁡ ( 1 + x ) \\log(1+x) on the diagonal (per-channel PSD) → \\rightarrow standard scaling → \\rightarrow logistic regression (CV-tuned C C )",
+        "Classification: SSVEP",
+        "Kalunga et al. (2016)"
+      ],
+      [
+        "CovTsRidge",
+        "sample covariances → \\rightarrow shrinkage → \\rightarrow tangent space → \\rightarrow standard scaling → \\rightarrow ridge regression (CV-tuned α \\alpha )",
+        "Regression: age , psychopathology , reaction time ; Retrieval (treated as multivariate regression here): Cognitive",
+        "Barachant et al. (2011) , Hoerl and Kennard (1970)"
+      ]
+    ]
+  },
+  {
+    "index": 6,
+    "id": "A2.T4.4",
+    "caption": "Table S4: EEG foundation models evaluated in NeuralBench-EEG v1.0 .\nParameter counts are backbone-only (excluding the task-specific linear probe).\nPretraining data quantities are reported as published;\nTUEG refers to the Temple University Hospital EEG Corpus.",
+    "rows": [
+      [
+        "Model",
+        "Variant",
+        "# Params",
+        "Pretraining",
+        "Data",
+        "Reference"
+      ],
+      [
+        "BENDR",
+        "—",
+        "157.1M",
+        "Wav2vec-like contrastive",
+        "TUEG, ∼ {\\sim} 1.5K h",
+        "Kostas et al. (2021)"
+      ],
+      [
+        "BIOT",
+        "6-datasets-18chs",
+        "3.2M",
+        "Contrastive + supervised",
+        "6 datasets (CHB-MIT, TUAB, TUEV, +3 private)",
+        "Yang et al. (2023)"
+      ],
+      [
+        "LaBraM",
+        "Base",
+        "5.8M",
+        "VQ-VAE masked prediction",
+        "16 datasets, ∼ {\\sim} 2.5K h",
+        "Jiang et al. (2024)"
+      ],
+      [
+        "CBraMod",
+        "—",
+        "4.9M",
+        "Masked patch reconstruction",
+        "TUEG, ∼ {\\sim} 27K h",
+        "Wang et al. (2025b)"
+      ],
+      [
+        "LUNA",
+        "Large",
+        "40.4M",
+        "Masked patch reconstruction",
+        "TUEG + Siena",
+        "Döner et al. (2025)"
+      ],
+      [
+        "REVE",
+        "Base",
+        "69.2M",
+        "Masked patch reconstruction",
+        "92 datasets, ∼ {\\sim} 60K h",
+        "El Ouahidi et al. (2025)"
+      ]
+    ]
+  },
+  {
+    "index": 7,
+    "id": "A4.E1",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "Balanced Accuracy = 1 C ​ ∑ c = 1 C T ​ P c T ​ P c + F ​ N c \\text{Balanced Accuracy}=\\frac{1}{C}\\sum_{c=1}^{C}\\frac{TP_{c}}{TP_{c}+FN_{c}}",
+        "",
+        "(S1)"
+      ]
+    ]
+  },
+  {
+    "index": 8,
+    "id": "A4.E2",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "Macro F1 = 1 C ​ ∑ c = 1 C F ​ 1 c = 1 C ​ ∑ c = 1 C 2 ​ P c ​ R c P c + R c \\text{Macro F1}=\\frac{1}{C}\\sum_{c=1}^{C}F1_{c}=\\frac{1}{C}\\sum_{c=1}^{C}\\frac{2P_{c}R_{c}}{P_{c}+R_{c}}",
+        "",
+        "(S2)"
+      ]
+    ]
+  },
+  {
+    "index": 9,
+    "id": "A4.E3",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "r = ∑ i = 1 n ( y i − y ¯ ) ​ ( y ^ i − y ^ ¯ ) ∑ i = 1 n ( y i − y ¯ ) 2 ​ ∑ i = 1 n ( y ^ i − y ^ ¯ ) 2 r=\\frac{\\sum_{i=1}^{n}(y_{i}-\\bar{y})(\\hat{y}_{i}-\\bar{\\hat{y}})}{\\sqrt{\\sum_{i=1}^{n}(y_{i}-\\bar{y})^{2}}\\sqrt{\\sum_{i=1}^{n}(\\hat{y}_{i}-\\bar{\\hat{y}})^{2}}}",
+        "",
+        "(S3)"
+      ]
+    ]
+  },
+  {
+    "index": 10,
+    "id": "A4.E4",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "Top- k Accuracy = 1 N ∑ i = 1 N 𝟙 [ y i ∈ Y ^ i ( k ) ] \\text{Top-}k\\text{ Accuracy}=\\frac{1}{N}\\sum_{i=1}^{N}\\mathds{1}\\left[y_{i}\\in\\hat{Y}_{i}^{(k)}\\right]",
+        "",
+        "(S4)"
+      ]
+    ]
+  }
+]

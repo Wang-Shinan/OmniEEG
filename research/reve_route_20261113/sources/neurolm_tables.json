@@ -1,0 +1,1096 @@
+[
+  {
+    "index": 0,
+    "id": "p1.1",
+    "caption": "",
+    "rows": [
+      [
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 1,
+    "id": "S2.E1",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "z i = arg ⁡ min j ⁡ ‖ ℓ 2 ​ ( h i ) − ℓ 2 ​ ( v i ) ‖ 2 , z_{i}=\\mathop{\\arg\\min}\\limits_{j}\\|\\ell_{2}(h_{i})-\\ell_{2}(v_{i})\\|_{2},",
+        "",
+        "(1)"
+      ]
+    ]
+  },
+  {
+    "index": 2,
+    "id": "S2.E2",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "x ~ i , j m = ∑ n = 1 M x ⁡ [ n ] ​ cos ⁡ ( 2 ​ π M ​ m ​ n ) − 𝒋 ​ x ​ [ n ] ​ sin ⁡ ( 2 ​ π M ​ m ​ n ) . \\tilde{x}_{i,j}^{m}=\\sum_{n=1}^{M}x[n]\\cos(\\frac{2\\pi}{M}mn)-\\bm{j}x[n]\\sin(\\frac{2\\pi}{M}mn).",
+        "",
+        "(2)"
+      ]
+    ]
+  },
+  {
+    "index": 3,
+    "id": "S2.E3",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ 1 = ∑ 𝒙 ∈ 𝒟 ∑ i ‖ o i t − x i ‖ 2 2 + ‖ o i f − f i ‖ 2 2 ⏟ reconstruction loss + ‖ 𝒔 ​ 𝒈 ​ ( ℓ 2 ​ ( h i ) ) − ℓ 2 ​ ( v z i ) ‖ 2 2 ⏟ codebook loss + ‖ ℓ 2 ​ ( h i ) − 𝒔 ​ 𝒈 ​ ( ℓ 2 ​ ( v z i ) ) ‖ 2 2 ⏟ commitment loss , \\mathcal{L}_{1}=\\sum_{\\bm{x}\\in\\mathcal{D}}\\sum_{i}\\underbrace{\\|o_{i}^{t}-x_{i}\\|_{2}^{2}+\\|o_{i}^{f}-f_{i}\\|_{2}^{2}}_{\\text{reconstruction loss}}+\\underbrace{\\|\\bm{sg}(\\ell_{2}(h_{i}))-\\ell_{2}(v_{z_{i}})\\|_{2}^{2}}_{\\text{codebook loss}}+\\underbrace{\\|\\ell_{2}(h_{i})-\\bm{sg}(\\ell_{2}(v_{z_{i}}))\\|_{2}^{2}}_{\\text{commitment loss}},",
+        "",
+        "(3)"
+      ]
+    ]
+  },
+  {
+    "index": 4,
+    "id": "S2.E4",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "min ⁡ ℒ 1 + λ ​ ∑ i d i ​ log ⁡ 𝒞 ⁡ ( h i ) , \\min\\mathcal{L}_{1}+\\lambda\\sum_{i}d_{i}\\log\\mathcal{C}(h_{i}),",
+        "",
+        "(4)"
+      ]
+    ]
+  },
+  {
+    "index": 5,
+    "id": "S2.E5",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "p ( I 11 , I 12 , … , I C ​ N ) = ∏ n = 1 N p ( I 1 ​ n , I 2 ​ n , … , I C ​ n | h 11 , h 12 , … , h C ⁡ ( n − 1 ) ) . p(I_{11},I_{12},...,I_{CN})=\\prod\\limits_{n=1}^{N}p(I_{1n},I_{2n},...,I_{Cn}|h_{11},h_{12},...,h_{C(n-1)}).",
+        "",
+        "(5)"
+      ]
+    ]
+  },
+  {
+    "index": 6,
+    "id": "S2.E6",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "∑ i = 1 N log p ( y i | x i ) ≥ − ∑ i = 1 N ( 𝔼 z i ∼ q ϕ ​ ( 𝒛 | x i ) [ − log p ψ ( y i | z i ) ] + K L ( q ϕ ( 𝒛 | x i ) , p θ ( 𝒛 | x i ) ) , \\sum_{i=1}^{N}\\log p(y_{i}|x_{i})\\geq-\\sum_{i=1}^{N}(\\mathbb{E}_{z_{i}\\sim q_{\\phi}(\\bm{z}|x_{i})}[-\\log p_{\\psi}(y_{i}|z_{i})]+KL(q_{\\phi}(\\bm{z}|x_{i}),p_{\\theta}(\\bm{z}|x_{i})),",
+        "",
+        "(6)"
+      ]
+    ]
+  },
+  {
+    "index": 7,
+    "id": "S2.E7",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "− ∑ i = 1 N ( 𝔼 z i ∼ q ϕ ​ ( 𝒛 | x i ) [ − log p ψ ( y i | z i ) ] − log p θ ( z i | x i ) ) , -\\sum_{i=1}^{N}(\\mathbb{E}_{z_{i}\\sim q_{\\phi}(\\bm{z}|x_{i})}[-\\log p_{\\psi}(y_{i}|z_{i})]-\\log p_{\\theta}(z_{i}|x_{i})),",
+        "",
+        "(7)"
+      ]
+    ]
+  },
+  {
+    "index": 8,
+    "id": "S2.E8",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "p ( t a | x p ) = ∏ i = 1 L p ( t i a | x p , t , < i a ) , p(t^{a}|x^{p})=\\prod\\limits_{i=1}^{L}p(t^{a}_{i}|x^{p},t^{a}_{,<i}),",
+        "",
+        "(8)"
+      ]
+    ]
+  },
+  {
+    "index": 9,
+    "id": "S3.T1.2",
+    "caption": "Table 1: Information of datasets used for downstream evaluation.",
+    "rows": [
+      [
+        "Dataset",
+        "#Channel",
+        "Sampling Rate",
+        "Duration",
+        "#Sample",
+        "Task"
+      ],
+      [
+        "TUAB",
+        "23",
+        "256 Hz",
+        "10 seconds",
+        "409,455",
+        "Binary classification"
+      ],
+      [
+        "TUEV",
+        "23",
+        "256 Hz",
+        "5 seconds",
+        "112,491",
+        "6-class classification"
+      ],
+      [
+        "SEED",
+        "62",
+        "1000 Hz",
+        "4 seconds",
+        "38,475",
+        "3-class classification"
+      ],
+      [
+        "HMC",
+        "4",
+        "256 Hz",
+        "30 seconds",
+        "137,243",
+        "5-class classification"
+      ],
+      [
+        "Workload",
+        "19",
+        "500 Hz",
+        "4 seconds",
+        "2,088",
+        "Binary classification"
+      ],
+      [
+        "TUSL",
+        "23",
+        "256 Hz",
+        "10 seconds",
+        "245",
+        "3-class classification"
+      ]
+    ]
+  },
+  {
+    "index": 10,
+    "id": "S3.T2.2.1",
+    "caption": "Table 2: Results on TUAB and TUEV.",
+    "rows": [
+      [
+        "Methods",
+        "Multi-task",
+        "TUAB",
+        "TUEV"
+      ],
+      [
+        "Balanced Acc.",
+        "AUC-PR",
+        "AUROC",
+        "Balanced Acc.",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "SPaRCNet",
+        "✗",
+        "0.7896 ± \\pm 0.0018",
+        "0.8414 ± \\pm 0.0018",
+        "0.8676 ± \\pm 0.0012",
+        "0.4161 ± \\pm 0.0262",
+        "0.4233 ± \\pm 0.0181",
+        "0.7024 ± \\pm 0.0104"
+      ],
+      [
+        "ContraWR",
+        "✗",
+        "0.7746 ± \\pm 0.0041",
+        "0.8421 ± \\pm 0.0104",
+        "0.8456 ± \\pm 0.0074",
+        "0.4384 ± \\pm 0.0349",
+        "0.3912 ± \\pm 0.0237",
+        "0.6893 ± \\pm 0.0136"
+      ],
+      [
+        "CNN-Transformer",
+        "✗",
+        "0.7777 ± \\pm 0.0022",
+        "0.8433 ± \\pm 0.0039",
+        "0.8461 ± \\pm 0.0013",
+        "0.4087 ± \\pm 0.0161",
+        "0.3815 ± \\pm 0.0134",
+        "0.6854 ± \\pm 0.0293"
+      ],
+      [
+        "FFCL",
+        "✗",
+        "0.7848 ± \\pm 0.0038",
+        "0.8448 ± \\pm 0.0065",
+        "0.8569 ± \\pm 0.0051",
+        "0.3979 ± \\pm 0.0104",
+        "0.3732 ± \\pm 0.0188",
+        "0.6783 ± \\pm 0.0120"
+      ],
+      [
+        "ST-Transformer",
+        "✗",
+        "0.7966 ± \\pm 0.0023",
+        "0.8521 ± \\pm 0.0026",
+        "0.8707 ± \\pm 0.0019",
+        "0.3984 ± \\pm 0.0228",
+        "0.3765 ± \\pm 0.0306",
+        "0.6823 ± \\pm 0.0190"
+      ],
+      [
+        "BIOT",
+        "✗",
+        "0.7959 ± \\pm 0.0057",
+        "0.8792 ± \\pm 0.0023",
+        "0.8815 ± \\pm 0.0043",
+        "0.5281 ± \\pm 0.0225",
+        "0.5273 ± \\pm 0.0249",
+        "0.7492 ± \\pm 0.0082"
+      ],
+      [
+        "LaBraM",
+        "✗",
+        "0.8140 ± \\pm 0.0019",
+        "0.8965 ± \\pm 0.0016",
+        "0.9022 ± \\pm 0.0009",
+        "0.6409 ± \\pm 0.0065",
+        "0.6637 ± \\pm 0.0093",
+        "0.8312 ± \\pm 0.0052"
+      ],
+      [
+        "NeuroLM-B",
+        "✓",
+        "0.7826 ± \\pm 0.0065",
+        "0.6975 ± \\pm 0.0081",
+        "0.7816 ± \\pm 0.0079",
+        "0.4560 ± \\pm 0.0048",
+        "0.4285 ± \\pm 0.0048",
+        "0.7153 ± \\pm 0.0028"
+      ],
+      [
+        "NeuroLM-L",
+        "✓",
+        "0.7876 ± \\pm 0.0034",
+        "0.7099 ± \\pm 0.0034",
+        "0.7876 ± \\pm 0.0034",
+        "0.4132 ± \\pm 0.1235",
+        "0.4414 ± \\pm 0.0996",
+        "0.7387 ± \\pm 0.0400"
+      ],
+      [
+        "NeuroLM-XL",
+        "✓",
+        "0.7969 ± \\pm 0.0091",
+        "0.7219 ± \\pm 0.0082",
+        "0.7884 ± \\pm 0.0194",
+        "0.4679 ± \\pm 0.0356",
+        "0.4570 ± \\pm 0.0498",
+        "0.7359 ± \\pm 0.0219"
+      ]
+    ]
+  },
+  {
+    "index": 11,
+    "id": "S3.T3.2.1",
+    "caption": "Table 3: Results on SEED and HMC.",
+    "rows": [
+      [
+        "Methods",
+        "Multi-task",
+        "SEED",
+        "HMC"
+      ],
+      [
+        "Balanced Acc.",
+        "Cohen’s Kappa",
+        "Weighted F1",
+        "Balanced Acc.",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "SPaRCNet",
+        "✗",
+        "0.5596 ± \\pm 0.0244",
+        "0.3464 ± \\pm 0.0372",
+        "0.5585 ± \\pm 0.0297",
+        "0.4756 ± \\pm 0.1109",
+        "0.3147 ± \\pm 0.1315",
+        "0.4108 ± \\pm 0.1310"
+      ],
+      [
+        "ContraWR",
+        "✗",
+        "0.6106 ± \\pm 0.0078",
+        "0.4220 ± \\pm 0.0129",
+        "0.6137 ± \\pm 0.0085",
+        "0.4242 ± \\pm 0.0541",
+        "0.2340 ± \\pm 0.0554",
+        "0.2987 ± \\pm 0.0288"
+      ],
+      [
+        "CNN-Transformer",
+        "✗",
+        "0.6161 ± \\pm 0.0384",
+        "0.4262 ± \\pm 0.0601",
+        "0.6150 ± \\pm 0.0463",
+        "0.6573 ± \\pm 0.0141",
+        "0.5961 ± \\pm 0.0105",
+        "0.6896 ± \\pm 0.0065"
+      ],
+      [
+        "FFCL",
+        "✗",
+        "0.5808 ± \\pm 0.0322",
+        "0.3732 ± \\pm 0.0462",
+        "0.5743 ± \\pm 0.0402",
+        "0.4427 ± \\pm 0.0702",
+        "0.2542 ± \\pm 0.0654",
+        "0.2902 ± \\pm 0.0485"
+      ],
+      [
+        "ST-Transformer",
+        "✗",
+        "0.5479 ± \\pm 0.0091",
+        "0.3261 ± \\pm 0.0169",
+        "0.5505 ± \\pm 0.0091",
+        "0.2559 ± \\pm 0.0141",
+        "0.0503 ± \\pm 0.0183",
+        "0.1428 ± \\pm 0.0122"
+      ],
+      [
+        "BIOT",
+        "✗",
+        "0.7097 ± \\pm 0.0024",
+        "0.5682 ± \\pm 0.0051",
+        "0.7134 ± \\pm 0.0027",
+        "0.6862 ± \\pm 0.0041",
+        "0.6295 ± \\pm 0.0113",
+        "0.7091 ± \\pm 0.0147"
+      ],
+      [
+        "LaBraM",
+        "✗",
+        "0.7318 ± \\pm 0.0019",
+        "0.5994 ± \\pm 0.0031",
+        "0.7354 ± \\pm 0.0021",
+        "0.7286 ± \\pm 0.0101",
+        "0.6812 ± \\pm 0.0073",
+        "0.7554 ± \\pm 0.0024"
+      ],
+      [
+        "NeuroLM-B",
+        "✓",
+        "0.5554 ± \\pm 0.0075",
+        "0.3393 ± \\pm 0.0117",
+        "0.5599 ± \\pm 0.0068",
+        "0.6737 ± \\pm 0.0050",
+        "0.6188 ± \\pm 0.0057",
+        "0.7126 ± \\pm 0.0034"
+      ],
+      [
+        "NeuroLM-L",
+        "✓",
+        "0.6006 ± \\pm 0.0047",
+        "0.4067 ± \\pm 0.0063",
+        "0.6048 ± \\pm 0.0050",
+        "0.6658 ± \\pm 0.0550",
+        "0.5929 ± \\pm 0.0715",
+        "0.6896 ± \\pm 0.0504"
+      ],
+      [
+        "NeuroLM-XL",
+        "✓",
+        "0.6034 ± \\pm 0.0010",
+        "0.4082 ± \\pm 0.0036",
+        "0.6063 ± \\pm 0.0030",
+        "0.5761 ± \\pm 0.1084",
+        "0.4795 ± \\pm 0.1466",
+        "0.5883 ± \\pm 0.1286"
+      ]
+    ]
+  },
+  {
+    "index": 12,
+    "id": "S3.T4.2.1",
+    "caption": "Table 4: Results on Workload and TUSL.",
+    "rows": [
+      [
+        "Methods",
+        "Multi-task",
+        "Workload",
+        "TUSL"
+      ],
+      [
+        "Balanced Acc.",
+        "AUC-PR",
+        "AUROC",
+        "Balanced Acc.",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "SPaRCNet",
+        "✗",
+        "0.5977 ± \\pm 0.0071",
+        "0.6638 ± \\pm 0.0314",
+        "0.6717 ± \\pm 0.0172",
+        "0.4185 ± \\pm 0.0452",
+        "0.1399 ± \\pm 0.0799",
+        "0.3500 ± \\pm 0.0968"
+      ],
+      [
+        "ContraWR",
+        "✗",
+        "0.6966 ± \\pm 0.0332",
+        "0.7668 ± \\pm 0.0408",
+        "0.7685 ± \\pm 0.0317",
+        "0.5857 ± \\pm 0.0662",
+        "0.3567 ± \\pm 0.0968",
+        "0.5458 ± \\pm 0.0798"
+      ],
+      [
+        "CNN-Transformer",
+        "✗",
+        "0.5793 ± \\pm 0.0230",
+        "0.5306 ± \\pm 0.0459",
+        "0.5663 ± \\pm 0.0349",
+        "0.3575 ± \\pm 0.0151",
+        "0.0306 ± \\pm 0.0179",
+        "0.2235 ± \\pm 0.0251"
+      ],
+      [
+        "FFCL",
+        "✗",
+        "0.7069 ± \\pm 0.0197",
+        "0.7823 ± \\pm 0.0099",
+        "0.7857 ± \\pm 0.0234",
+        "0.3819 ± \\pm 0.0688",
+        "0.0628 ± \\pm 0.0888",
+        "0.2120 ± \\pm 0.0786"
+      ],
+      [
+        "ST-Transformer",
+        "✗",
+        "0.6103 ± \\pm 0.0056",
+        "0.5716 ± \\pm 0.0071",
+        "0.6375 ± \\pm 0.0078",
+        "0.4000 ± \\pm 0.0329",
+        "0.0860 ± \\pm 0.0449",
+        "0.3793 ± \\pm 0.0459"
+      ],
+      [
+        "BIOT",
+        "✗",
+        "0.6655 ± \\pm 0.0665",
+        "0.7189 ± \\pm 0.0722",
+        "0.7342 ± \\pm 0.0536",
+        "0.5758 ± \\pm 0.0303",
+        "0.2012 ± \\pm 0.0212",
+        "0.2394 ± \\pm 0.0040"
+      ],
+      [
+        "LaBraM",
+        "✗",
+        "0.6609 ± \\pm 0.0204",
+        "0.7174 ± \\pm 0.0234",
+        "0.7272 ± \\pm 0.0165",
+        "0.7625 ± \\pm 0.0131",
+        "0.6407 ± \\pm 0.0304",
+        "0.7614 ± \\pm 0.0210"
+      ],
+      [
+        "NeuroLM-B",
+        "✓",
+        "0.6172 ± \\pm 0.0113",
+        "0.5824 ± \\pm 0.0080",
+        "0.6253 ± \\pm 0.0160",
+        "0.6734 ± \\pm 0.0436",
+        "0.5107 ± \\pm 0.0617",
+        "0.6743 ± \\pm 0.0394"
+      ],
+      [
+        "NeuroLM-L",
+        "✓",
+        "0.6311 ± \\pm 0.0250",
+        "0.5869 ± \\pm 0.0155",
+        "0.6247 ± \\pm 0.0339",
+        "0.5314 ± \\pm 0.0530",
+        "0.2961 ± \\pm 0.0810",
+        "0.5243 ± \\pm 0.0680"
+      ],
+      [
+        "NeuroLM-XL",
+        "✓",
+        "0.6345 ± \\pm 0.0442",
+        "0.5889 ± \\pm 0.0423",
+        "0.6130 ± \\pm 0.0764",
+        "0.6845 ± \\pm 0.0304",
+        "0.5194 ± \\pm 0.0461",
+        "0.6839 ± \\pm 0.0297"
+      ]
+    ]
+  },
+  {
+    "index": 13,
+    "id": "A2.T5.2",
+    "caption": "Table 5: Information of instruction design for downstream datasets.",
+    "rows": [
+      [
+        "Dataset",
+        "Instruction Description"
+      ],
+      [
+        "TUAB",
+        "[ [ SEP ] ] Question: Is this EEG segment abnormal? Answer: {Yes, No} [ [ END ] ]"
+      ],
+      [
+        "TUEV",
+        "[ [ SEP ] ] Question: Which event type does this EEG segment belong to? Options: (A) spike and slow wave. (B) generalized periodic epileptiform discharge. (C) periodic lateralized epileptiform discharge. (D) eye movement. (E) artifact. (F) background. Answer: {(A), (B), (C), (D), (E), (F)} [ [ END ] ]"
+      ],
+      [
+        "SEED",
+        "[ [ SEP ] ] Question: Which emotion type does this EEG segment belong to? Answer: {Positive, Neutral, Negative} [ [ END ] ]"
+      ],
+      [
+        "HMC",
+        "[ [ SEP ] ] Question: Which sleep type does this EEG segment belong to? Options: (A) Wake. (B) NREM-1. (C) NREM-2. (D) NREM-3. (E) REM. Answer: {(A), (B), (C), (D), (E)} [ [ END ] ]"
+      ],
+      [
+        "Workload",
+        "[ [ SEP ] ] Question: Is this EEG segment of high workload? Answer: {Yes, No} [ [ END ] ]"
+      ],
+      [
+        "TUSL",
+        "[ [ SEP ] ] Question: Which type does this EEG segment belong to? Options: (A) background. (B) seizure. (C) slowing. Answer: {(A), (B), (C)} [ [ END ] ]"
+      ]
+    ]
+  },
+  {
+    "index": 14,
+    "id": "A3.T6.2",
+    "caption": "Table 6: Information of datasets used for pre-training.",
+    "rows": [
+      [
+        "Dataset",
+        "#Channel",
+        "Rate (Hz)",
+        "Time (h)",
+        "Description"
+      ],
+      [
+        "TUEG ( Obeid & Picone, 2016 )",
+        "17-23",
+        "250-1024",
+        "∼ \\sim 24,000",
+        "A corpus of 26,846 clinical EEG recordings collected at Temple University Hospital."
+      ],
+      [
+        "SEED Series ( Zheng et al., 2018 ; Liu et al., 2021 ; Liu et al., 2022 )",
+        "62",
+        "1000",
+        "170.54",
+        "These datasets including SEED-IV (15 subjects), SEED-V (20 subjects), SEED-GER (8 subjects), and SEED-FRA (8 subjects) in response to emotional videos."
+      ],
+      [
+        "BCI Competition IV-1 ( Blankertz et al., 2007 )",
+        "59",
+        "1000",
+        "8.21",
+        "A motor imagery dataset containing 2 classes of left hand, right hand, foot (+ idle state) for 7 subjects."
+      ],
+      [
+        "Emobrain ( Savran et al., 2006 )",
+        "64",
+        "1024",
+        "4.94",
+        "A multimodal emotion dataset including 16 subjects. The emotions were elicited through a selected subset of the IAPS dataset."
+      ],
+      [
+        "Grasp and Lift ( Luciw et al., 2014 )",
+        "32",
+        "500",
+        "11.72",
+        "A dataset containing 12 subjects performing grasp-and-lift (GAL) trials."
+      ],
+      [
+        "Inria BCI ( Margaux et al., 2012 )",
+        "56",
+        "600",
+        "29.98",
+        "A P300-based spelling dataset including 26 subjects."
+      ],
+      [
+        "Motor Movement/Imagery ( Schalk et al., 2004 )",
+        "64",
+        "160",
+        "47.3",
+        "A motor imagery dataset consisting of 109 volunteers performing 2 baseline tasks, motor movement, and motor imagery."
+      ],
+      [
+        "Raw EEG Data ( Trujillo, 2020 )",
+        "64",
+        "256",
+        "34.35",
+        "EEG was recorded during reported Information-Integration categorization and reported multidimensional Rule-Based categorization tasks."
+      ],
+      [
+        "Resting State ( Trujillo et al., 2017 )",
+        "64",
+        "256",
+        "3.04",
+        "A dataset comprising 22 subjects for a resting task of 8 mins with 4 mins of eyes closed and 4 mins of eyes open."
+      ],
+      [
+        "Siena Scalp EEG Database ( Detti et al., 2020 )",
+        "31",
+        "512",
+        "30.47",
+        "A database consisting of 14 patients."
+      ],
+      [
+        "SPIS Resting State ( Torkamani-Azar et al., 2020 )",
+        "64",
+        "2048",
+        "0.83",
+        "A dataset including 10 subjects, 2.5 minutes recording in eyes-closed and eyes-open prior to a 105-minute session of Sustained Attention to Response Task with fixed-sequence and varying ISIs."
+      ],
+      [
+        "Target Versus Non-Target ( Korczowski et al., 2019 )",
+        "32",
+        "512",
+        "16",
+        "A dataset including 50 subjects playing Brain Invaders, a visual P300 Brain-Computer Interface using oddball paradigm with adaptive Riemannian Geometry (no-calibration)."
+      ],
+      [
+        "Self-collected EEG corpus",
+        "62",
+        "1000",
+        "342.23",
+        "A mixed self-collected EEG datasets of more than 140 subjects under various conditions."
+      ]
+    ]
+  },
+  {
+    "index": 15,
+    "id": "A4.T7.2",
+    "caption": "Table 7: Hyperparameters for neural tokenizer.",
+    "rows": [
+      [
+        "Hyperparameters",
+        "Values"
+      ],
+      [
+        "Temporal Encoder",
+        "Iput channels",
+        "{1,16,16}"
+      ],
+      [
+        "Output channels",
+        "{16,16,16}"
+      ],
+      [
+        "Kernel size",
+        "{15,3,3}"
+      ],
+      [
+        "Stride",
+        "{8,1,1}"
+      ],
+      [
+        "Padding",
+        "{7,1,1}"
+      ],
+      [
+        "Transformer encoder layers",
+        "12"
+      ],
+      [
+        "Transformer decoder layers",
+        "3"
+      ],
+      [
+        "Hidden size",
+        "768"
+      ],
+      [
+        "MLP size",
+        "3072"
+      ],
+      [
+        "Attention head number",
+        "12"
+      ],
+      [
+        "Codebook size",
+        "8192 × \\times 128"
+      ],
+      [
+        "Batch size",
+        "512"
+      ],
+      [
+        "Peak learning rate",
+        "5e-5"
+      ],
+      [
+        "Minimal learning rate",
+        "1e-5"
+      ],
+      [
+        "Learning rate scheduler",
+        "Cosine"
+      ],
+      [
+        "Optimizer",
+        "AdamW"
+      ],
+      [
+        "Adam β \\beta",
+        "(0.9,0.999)"
+      ],
+      [
+        "Weight decay",
+        "1e-4"
+      ],
+      [
+        "Total epochs",
+        "50"
+      ],
+      [
+        "Warmup epochs",
+        "5"
+      ],
+      [
+        "Data overlap",
+        "None"
+      ],
+      [
+        "Gradient clipping",
+        "None"
+      ]
+    ]
+  },
+  {
+    "index": 16,
+    "id": "A4.T8.2",
+    "caption": "Table 8: Hyperparameters for autoregressive pre-training.",
+    "rows": [
+      [
+        "Hyperparameters",
+        "NeuroLM-B",
+        "NeuroLM-L",
+        "NeuroLM-XL"
+      ],
+      [
+        "Model size",
+        "254M",
+        "500M",
+        "1696M"
+      ],
+      [
+        "Transformer encoder layers",
+        "12",
+        "24",
+        "48"
+      ],
+      [
+        "Hidden size",
+        "768",
+        "1024",
+        "1600"
+      ],
+      [
+        "MLP size",
+        "3072",
+        "4096",
+        "6400"
+      ],
+      [
+        "Attention head number",
+        "12",
+        "16",
+        "25"
+      ],
+      [
+        "EEG batch size",
+        "480 (B), 512 (L, XL)"
+      ],
+      [
+        "Text batch size",
+        "32 (B), 64 (L, XL)"
+      ],
+      [
+        "Peak learning rate",
+        "6e-4"
+      ],
+      [
+        "Minimal learning rate",
+        "6e-5"
+      ],
+      [
+        "Learning rate scheduler",
+        "Cosine"
+      ],
+      [
+        "Optimizer",
+        "AdamW"
+      ],
+      [
+        "Adam β \\beta",
+        "(0.9,0.95)"
+      ],
+      [
+        "Weight decay",
+        "0.1"
+      ],
+      [
+        "Total epochs",
+        "20"
+      ],
+      [
+        "Warmup epochs",
+        "2"
+      ],
+      [
+        "Data overlap",
+        "None"
+      ],
+      [
+        "Gradient clipping",
+        "1"
+      ]
+    ]
+  },
+  {
+    "index": 17,
+    "id": "A4.T9.2",
+    "caption": "Table 9: Hyperparameters for instruction tuning.",
+    "rows": [
+      [
+        "Hyperparameters",
+        "Values"
+      ],
+      [
+        "Instruction batch size",
+        "512"
+      ],
+      [
+        "Text batch size",
+        "128"
+      ],
+      [
+        "Peak learning rate",
+        "5e-4 (B), 5e-5 (L), 2e-5 (XL)"
+      ],
+      [
+        "Minimal learning rate",
+        "5e-5 (B), 5e-6 (L), 2e-6 (XL)"
+      ],
+      [
+        "Learning rate scheduler",
+        "Cosine"
+      ],
+      [
+        "Optimizer",
+        "AdamW"
+      ],
+      [
+        "Adam β \\beta",
+        "(0.9,0.95)"
+      ],
+      [
+        "Weight decay",
+        "0.1"
+      ],
+      [
+        "Total epochs",
+        "5 (B, L), 3 (XL)"
+      ],
+      [
+        "Warmup ratio",
+        "0.1"
+      ],
+      [
+        "Gradient clipping",
+        "1"
+      ]
+    ]
+  },
+  {
+    "index": 18,
+    "id": "A7.T10.2.1",
+    "caption": "Table 10: Results on TUAB and TUEV.",
+    "rows": [
+      [
+        "Pre-trained Epochs",
+        "TUAB",
+        "TUEV"
+      ],
+      [
+        "Balanced Acc.",
+        "AUC-PR",
+        "AUROC",
+        "Balanced Acc.",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "5",
+        "0.7763 ± \\pm 0.0037",
+        "0.6891 ± \\pm 0.0040",
+        "0.7762 ± \\pm 0.0038",
+        "0.4609 ± \\pm 0.0696",
+        "0.3914 ± \\pm 0.0670",
+        "0.6975 ± \\pm 0.0249"
+      ],
+      [
+        "10",
+        "0.7738 ± \\pm 0.0040",
+        "0.6995 ± \\pm 0.0038",
+        "0.7647 ± \\pm 0.0143",
+        "0.4693 ± \\pm 0.0175",
+        "0.4625 ± \\pm 0.0091",
+        "0.7353 ± \\pm 0.038"
+      ],
+      [
+        "15",
+        "0.7780 ± \\pm 0.0050",
+        "0.6951 ± \\pm 0.0054",
+        "0.7735 ± \\pm 0.0112",
+        "0.4557 ± \\pm 0.0277",
+        "0.4216 ± \\pm 0.0215",
+        "0.7131 ± \\pm 0.0101"
+      ],
+      [
+        "20",
+        "0.7826 ± \\pm 0.0065",
+        "0.6975 ± \\pm 0.0081",
+        "0.7816 ± \\pm 0.0079",
+        "0.4560 ± \\pm 0.0048",
+        "0.4285 ± \\pm 0.0048",
+        "0.7153 ± \\pm 0.0028"
+      ]
+    ]
+  },
+  {
+    "index": 19,
+    "id": "A7.T11.2.1",
+    "caption": "Table 11: Results on SEED and HMC.",
+    "rows": [
+      [
+        "Pre-trained Epochs",
+        "SEED",
+        "HMC"
+      ],
+      [
+        "Balanced Acc.",
+        "Cohen’s Kappa",
+        "Weighted F1",
+        "Balanced Acc.",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "5",
+        "0.5641 ± \\pm 0.0103",
+        "0.3505 ± \\pm 0.0172",
+        "0.5679 ± \\pm 0.0123",
+        "0.6956 ± \\pm 0.0136",
+        "0.6269 ± \\pm 0.0053",
+        "0.7118 ± \\pm 0.0048"
+      ],
+      [
+        "10",
+        "0.5553 ± \\pm 0.0089",
+        "0.3376 ± \\pm 0.0143",
+        "0.5592 ± \\pm 0.0091",
+        "0.6763 ± \\pm 0.0054",
+        "0.6161 ± \\pm 0.0069",
+        "0.7065 ± \\pm 0.0057"
+      ],
+      [
+        "15",
+        "0.5543 ± \\pm 0.0156",
+        "0.3365 ± \\pm 0.0244",
+        "0.5572 ± \\pm 0.0164",
+        "0.6543 ± \\pm 0.0151",
+        "0.5991 ± \\pm 0.0153",
+        "0.6674 ± \\pm 0.0265"
+      ],
+      [
+        "20",
+        "0.5554 ± \\pm 0.0075",
+        "0.3393 ± \\pm 0.0117",
+        "0.5599 ± \\pm 0.0068",
+        "0.6737 ± \\pm 0.0050",
+        "0.6188 ± \\pm 0.0057",
+        "0.7126 ± \\pm 0.0034"
+      ]
+    ]
+  },
+  {
+    "index": 20,
+    "id": "A7.T12.2.1",
+    "caption": "Table 12: Results on Workload and TUSL.",
+    "rows": [
+      [
+        "Pre-trained Epochs",
+        "Workload",
+        "TUSL"
+      ],
+      [
+        "Balanced Acc.",
+        "AUC-PR",
+        "AUROC",
+        "Balanced Acc.",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "5",
+        "0.5816 ± \\pm 0.0235",
+        "0.5483 ± \\pm 0.0160",
+        "0.5815 ± \\pm 0.0236",
+        "0.5342 ± \\pm 0.0235",
+        "0.2950 ± \\pm 0.0345",
+        "0.5241 ± \\pm 0.0260"
+      ],
+      [
+        "10",
+        "0.6540 ± \\pm 0.0192",
+        "0.6123 ± \\pm 0.0165",
+        "0.6501 ± \\pm 0.0178",
+        "0.5920 ± \\pm 0.0560",
+        "0.3884 ± \\pm 0.0876",
+        "0.5984 ± \\pm 0.0574"
+      ],
+      [
+        "15",
+        "0.5701 ± \\pm 0.0282",
+        "0.5426 ± \\pm 0.0177",
+        "0.5682 ± \\pm 0.0255",
+        "0.5910 ± \\pm 0.0629",
+        "0.3915 ± \\pm 0.0999",
+        "0.5868 ± \\pm 0.0536"
+      ],
+      [
+        "20",
+        "0.6172 ± \\pm 0.0113",
+        "0.5824 ± \\pm 0.0080",
+        "0.6253 ± \\pm 0.0160",
+        "0.6734 ± \\pm 0.0436",
+        "0.5107 ± \\pm 0.0617",
+        "0.6743 ± \\pm 0.0394"
+      ]
+    ]
+  }
+]

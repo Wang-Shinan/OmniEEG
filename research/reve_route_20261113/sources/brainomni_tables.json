@@ -1,0 +1,1065 @@
+[
+  {
+    "index": 0,
+    "id": "S2.E1",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ time = ‖ 𝐗 − 𝐗 ^ ‖ , \\mathcal{L}_{\\text{time}}=||\\mathbf{X}-\\hat{\\mathbf{X}}||,",
+        "",
+        "(1)"
+      ]
+    ]
+  },
+  {
+    "index": 1,
+    "id": "S2.E2",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ freq = ‖ 𝐀 − 𝐀 ^ ‖ + ‖ 𝚽 − 𝚽 ^ ‖ ; \\mathcal{L}_{\\text{freq}}=||\\mathbf{A}-\\hat{\\mathbf{A}}||+||\\mathbf{\\Phi}-\\hat{\\mathbf{\\Phi}}||;",
+        "",
+        "(2)"
+      ]
+    ]
+  },
+  {
+    "index": 2,
+    "id": "S2.E3",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ pcc = e − PCC ​ ( 𝐗 , 𝐗 ^ ) . \\mathcal{L}_{\\text{pcc}}=e^{-\\text{PCC}(\\mathbf{X},\\hat{\\mathbf{X}})}.",
+        "",
+        "(3)"
+      ]
+    ]
+  },
+  {
+    "index": 3,
+    "id": "S2.E4",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ rvq = ∑ i = 1 N q ‖ 𝐳 i − 𝐳 q i ‖ 2 , \\mathcal{L}_{\\text{rvq}}=\\sum\\nolimits_{i=1}^{N_{q}}||\\mathbf{z}_{i}-\\mathbf{z}_{q_{i}}||^{2},",
+        "",
+        "(4)"
+      ]
+    ]
+  },
+  {
+    "index": 4,
+    "id": "S2.E5",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ token = ℒ time + ℒ freq + ℒ pcc + ℒ rvq . \\mathcal{L}_{\\text{token}}=\\mathcal{L}_{\\text{time}}+\\mathcal{L}_{\\text{freq}}+\\mathcal{L}_{\\text{pcc}}+\\mathcal{L}_{\\text{rvq}}.",
+        "",
+        "(5)"
+      ]
+    ]
+  },
+  {
+    "index": 5,
+    "id": "S2.E6",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ model = 1 M ​ ∑ i = 1 M ∑ j = 1 N q ℒ ce ​ ( q i ​ j , y i ​ j ) , \\mathcal{L}_{\\text{model}}=\\frac{1}{M}\\sum\\nolimits_{i=1}^{M}\\sum\\nolimits_{j=1}^{N_{q}}\\mathcal{L}_{\\text{ce}}(q_{ij},y_{ij}),",
+        "",
+        "(6)"
+      ]
+    ]
+  },
+  {
+    "index": 6,
+    "id": "S3.T1.5.1",
+    "caption": "Table 1 : Overview of the downstream datasets. Duration in seconds.",
+    "rows": [
+      [
+        "Modality",
+        "Task",
+        "Dataset",
+        "# Subject",
+        "# Channel",
+        "Duration",
+        "# Segment",
+        "# Class"
+      ],
+      [
+        "EEG",
+        "Alzheimer’s Disease",
+        "AD65 [ 41 ]",
+        "65",
+        "19",
+        "10.0",
+        "7013",
+        "2"
+      ],
+      [
+        "Depression",
+        "MDD [ 42 ]",
+        "35",
+        "20",
+        "10.0",
+        "7302",
+        "2"
+      ],
+      [
+        "Parkinson’s Disease",
+        "PD31 [ 54 ]",
+        "31",
+        "32",
+        "10.0",
+        "882",
+        "2"
+      ],
+      [
+        "Abnormal",
+        "TUAB [ 45 ]",
+        "2328",
+        "21",
+        "10.0",
+        "408853",
+        "2"
+      ],
+      [
+        "Event",
+        "TUEV [ 45 ]",
+        "294",
+        "21",
+        "5.0",
+        "112237",
+        "6"
+      ],
+      [
+        "Emotion",
+        "FACED [ 9 ]",
+        "123",
+        "30",
+        "10.0",
+        "10332",
+        "3"
+      ],
+      [
+        "Motor Imagery",
+        "WBCIC_SHU [ 81 ]",
+        "51",
+        "58",
+        "4.0",
+        "30591",
+        "2"
+      ],
+      [
+        "Motor Imagery",
+        "PhysioNet-MI [ 56 ]",
+        "109",
+        "64",
+        "4.0",
+        "19571",
+        "4"
+      ],
+      [
+        "MEG",
+        "Autism Spectrum Disorder",
+        "ASD74 [ 19 ]",
+        "74",
+        "306",
+        "10.0",
+        "12320",
+        "2"
+      ],
+      [
+        "EMEG",
+        "Motor Response",
+        "SomatoMotor [ 36 ]",
+        "5",
+        "372",
+        "2.0",
+        "1208",
+        "2"
+      ]
+    ]
+  },
+  {
+    "index": 7,
+    "id": "S4.T2.5.1",
+    "caption": "Table 2 : Baseline comparison on the eight EEG datasets. Balanced accuracy is reported with mean ± \\pm standard deviation. “PT” stands for whether the model involves pretraining. The best results are shown in bold, and the second-best results are underlined.",
+    "rows": [
+      [
+        "",
+        "# Param",
+        "PT",
+        "AD65",
+        "MDD",
+        "PD31",
+        "TUAB"
+      ],
+      [
+        "CNN-Transformer [ 50 ]",
+        "3.2M",
+        "✗",
+        "0.641 ± \\pm 0.100",
+        "0.709 ± \\pm 0.148",
+        "0.513 ± \\pm 0.028",
+        "0.809 ± \\pm 0.004"
+      ],
+      [
+        "ContraWR [ 83 ]",
+        "1.6M",
+        "✗",
+        "0.609 ± \\pm 0.038",
+        "0.706 ± \\pm 0.067",
+        "0.591 ± \\pm 0.011",
+        "0.806 ± \\pm 0.005"
+      ],
+      [
+        "SPaRCNet [ 34 ]",
+        "1.3M",
+        "✗",
+        "0.563 ± \\pm 0.057",
+        "0.764 ± \\pm 0.048",
+        "0.496 ± \\pm 0.124",
+        "0.789 ± \\pm 0.002"
+      ],
+      [
+        "ST-Transformer [ 68 ]",
+        "2.6M",
+        "✗",
+        "0.663 ± \\pm 0.011",
+        "0.786 ± \\pm 0.001",
+        "0.535 ± \\pm 0.028",
+        "0.811 ± \\pm 0.008"
+      ],
+      [
+        "LaBraM [ 32 ]",
+        "5.8M",
+        "✓",
+        "0.715 ± \\pm 0.065",
+        "0.843 ± \\pm 0.042",
+        "0.600 ± \\pm 0.109",
+        "0.807 ± \\pm 0.003"
+      ],
+      [
+        "CBraMod [ 76 ]",
+        "4.9M",
+        "✓",
+        "0.649 ± \\pm 0.006",
+        "0.811 ± \\pm 0.006",
+        "0.617 ± \\pm 0.162",
+        "0.773 ± \\pm 0.001"
+      ],
+      [
+        "BrainOmni_tiny",
+        "8.4M",
+        "✓",
+        "0.800 ± \\pm 0.035",
+        "0.834 ± \\pm 0.036",
+        "0.658 ± \\pm 0.062",
+        "0.816 ± \\pm 0.001"
+      ],
+      [
+        "BrainOmni_base",
+        "33M",
+        "✓",
+        "0.806 ± \\pm 0.053",
+        "0.841 ± \\pm 0.044",
+        "0.733 ± \\pm 0.102",
+        "0.813 ± \\pm 0.007"
+      ],
+      [
+        "",
+        "# Param",
+        "PT",
+        "TUEV",
+        "FACED",
+        "WBCIC_SHU",
+        "PhysioNet-MI"
+      ],
+      [
+        "CNN-Transformer [ 50 ]",
+        "3.2M",
+        "✗",
+        "0.312 ± \\pm 0.012",
+        "0.353 ± \\pm 0.008",
+        "0.618 ± \\pm 0.015",
+        "0.309 ± \\pm 0.009"
+      ],
+      [
+        "ContraWR [ 83 ]",
+        "1.6M",
+        "✗",
+        "0.342 ± \\pm 0.036",
+        "0.351 ± \\pm 0.007",
+        "0.509 ± \\pm 0.007",
+        "0.336 ± \\pm 0.033"
+      ],
+      [
+        "SPaRCNet [ 34 ]",
+        "1.3M",
+        "✗",
+        "0.357 ± \\pm 0.032",
+        "0.375 ± \\pm 0.010",
+        "0.738 ± \\pm 0.017",
+        "0.367 ± \\pm 0.015"
+      ],
+      [
+        "ST-Transformer [ 68 ]",
+        "2.6M",
+        "✗",
+        "0.374 ± \\pm 0.023",
+        "0.406 ± \\pm 0.008",
+        "0.782 ± \\pm 0.014",
+        "0.367 ± \\pm 0.035"
+      ],
+      [
+        "LaBraM [ 32 ]",
+        "5.8M",
+        "✓",
+        "0.596 ± \\pm 0.016",
+        "0.444 ± \\pm 0.015",
+        "0.819 ± \\pm 0.024",
+        "0.372 ± \\pm 0.011"
+      ],
+      [
+        "CBraMod [ 76 ]",
+        "4.9M",
+        "✓",
+        "0.416 ± \\pm 0.042",
+        "0.430 ± \\pm 0.021",
+        "0.532 ± \\pm 0.005",
+        "0.313 ± \\pm 0.009"
+      ],
+      [
+        "BrainOmni_tiny",
+        "8.4M",
+        "✓",
+        "0.597 ± \\pm 0.019",
+        "0.454 ± \\pm 0.012",
+        "0.818 ± \\pm 0.017",
+        "0.434 ± \\pm 0.006"
+      ],
+      [
+        "BrainOmni_base",
+        "33M",
+        "✓",
+        "0.618 ± \\pm 0.034",
+        "0.466 ± \\pm 0.008",
+        "0.819 ± \\pm 0.022",
+        "0.439 ± \\pm 0.011"
+      ]
+    ]
+  },
+  {
+    "index": 8,
+    "id": "S4.T3.5.1",
+    "caption": "Table 3 : Baseline comparison on the ASD74 (MEG) and SomatoMotor (EMEG). Balanced accuracy (BACC) and F1 score are reported in mean ± \\pm standard deviation. “PT” stands for whether the model involves pretraining. The best results are shown in bold and second-best results are underlined.",
+    "rows": [
+      [
+        "",
+        "# Param",
+        "PT",
+        "ASD74",
+        "SomatoMotor"
+      ],
+      [
+        "BACC",
+        "F1",
+        "BACC",
+        "F1"
+      ],
+      [
+        "CNN-Transformer [ 50 ]",
+        "3.2M",
+        "✗",
+        "0.508 ± \\pm 0.011",
+        "0.069 ± \\pm 0.074",
+        "0.508 ± \\pm 0.010",
+        "0.524 ± \\pm 0.066"
+      ],
+      [
+        "ContraWR [ 83 ]",
+        "1.6M",
+        "✗",
+        "0.533 ± \\pm 0.047",
+        "0.343 ± \\pm 0.246",
+        "0.505 ± \\pm 0.003",
+        "0.233 ± \\pm 0.222"
+      ],
+      [
+        "SPaRCNet [ 34 ]",
+        "1.3M",
+        "✗",
+        "0.565 ± \\pm 0.039",
+        "0.463 ± \\pm 0.047",
+        "0.548 ± \\pm 0.008",
+        "0.543 ± \\pm 0.037"
+      ],
+      [
+        "ST-Transformer [ 68 ]",
+        "2.6M",
+        "✗",
+        "0.532 ± \\pm 0.024",
+        "0.298 ± \\pm 0.122",
+        "0.624 ± \\pm 0.063",
+        "0.646 ± \\pm 0.094"
+      ],
+      [
+        "BrainOmni_tiny",
+        "8.4M",
+        "✓",
+        "0.606 ± \\pm 0.019",
+        "0.526 ± \\pm 0.024",
+        "0.787 ± \\pm 0.112",
+        "0.794 ± \\pm 0.105"
+      ],
+      [
+        "BrainOmni_base",
+        "33M",
+        "✓",
+        "0.624 ± \\pm 0.024",
+        "0.561 ± \\pm 0.047",
+        "0.801 ± \\pm 0.128",
+        "0.788 ± \\pm 0.150"
+      ]
+    ]
+  },
+  {
+    "index": 9,
+    "id": "S4.T4.5.1",
+    "caption": "Table 4 : Zero-shot reconstruction results of BrainTokenizer on unseen devices. “AMP” stands for amptitude MAE. PHASE stands for phase MAE. “ ↑ \\uparrow ” indicates the higher the better. “ ↓ \\downarrow ” indicates that the lower the better.",
+    "rows": [
+      [
+        "Modality",
+        "Data",
+        "Seen Device",
+        "MSE ↓ \\downarrow",
+        "MAE ↓ \\downarrow",
+        "AMP ↓ \\downarrow",
+        "PHASE ↓ \\downarrow",
+        "PCC ↑ \\uparrow"
+      ],
+      [
+        "EEG",
+        "our EEG Test Set",
+        "✓",
+        "0.404",
+        "0.449",
+        "0.142",
+        "1.506",
+        "0.748"
+      ],
+      [
+        "PerceiveImagine [ 6 ]",
+        "✗",
+        "0.343",
+        "0.415",
+        "0.137",
+        "1.457",
+        "0.802"
+      ],
+      [
+        "MEG",
+        "our MEG Test Set",
+        "✓",
+        "0.473",
+        "0.522",
+        "0.220",
+        "1.469",
+        "0.711"
+      ],
+      [
+        "Gloups-MEG [ 74 ]",
+        "✗",
+        "0.567",
+        "0.572",
+        "0.206",
+        "1.517",
+        "0.695"
+      ]
+    ]
+  },
+  {
+    "index": 10,
+    "id": "S4.T5.5.1",
+    "caption": "Table 5 : Comparision of BrainOmni models pretrained using EEG-only, MEG-only, and joint EMEG data. Tiny version is used for all models.",
+    "rows": [
+      [
+        "Dataset",
+        "TUAB",
+        "TUEV",
+        "ASD74",
+        "SomatoMotor"
+      ],
+      [
+        "Modality",
+        "EEG",
+        "EEG",
+        "MEG",
+        "EEG",
+        "MEG",
+        "EMEG"
+      ],
+      [
+        "EEG only",
+        "0.807 ± \\pm 0.006",
+        "0.555 ± \\pm 0.003",
+        "–",
+        "0.737 ± \\pm 0.042",
+        "–",
+        "–"
+      ],
+      [
+        "MEG only",
+        "–",
+        "–",
+        "0.530 ± \\pm 0.032",
+        "–",
+        "0.683 ± \\pm 0.168",
+        "–"
+      ],
+      [
+        "EMEG",
+        "0.816 ± \\pm 0.001",
+        "0.596 ± \\pm 0.019",
+        "0.606 ± \\pm 0.019",
+        "0.747 ± \\pm 0.088",
+        "0.786 ± \\pm 0.121",
+        "0.787 ± \\pm 0.112"
+      ]
+    ]
+  },
+  {
+    "index": 11,
+    "id": "S4.T6.5.1",
+    "caption": "Table 6 : Ablation study of sensor embedding (SE). Tiny version used. Balanced accuracy reported.",
+    "rows": [
+      [
+        "Model",
+        "TUAB",
+        "TUEV",
+        "AD65",
+        "ASD74",
+        "SomatoMotor"
+      ],
+      [
+        "BrainOmni",
+        "0.816 ± \\pm 0.001",
+        "0.597 ± \\pm 0.019",
+        "0.800 ± \\pm 0.035",
+        "0.606 ± \\pm 0.019",
+        "0.787 ± \\pm 0.112"
+      ],
+      [
+        "–w/o SE",
+        "0.785 ± \\pm 0.007",
+        "0.604 ± \\pm 0.018",
+        "0.730 ± \\pm 0.056",
+        "0.549 ± \\pm 0.007",
+        "0.643 ± \\pm 0.066"
+      ],
+      [
+        "Pure temporal",
+        "0.786 ± \\pm 0.003",
+        "0.538 ± \\pm 0.010",
+        "0.774 ± \\pm 0.060",
+        "0.575 ± \\pm 0.031",
+        "0.740 ± \\pm 0.099"
+      ]
+    ]
+  },
+  {
+    "index": 12,
+    "id": "A2.E7",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐲 ⁡ ( t ) = 𝐋𝐣 ⁡ ( t ) + 𝐧 ⁡ ( t ) \\mathbf{y}(t)=\\mathbf{L}\\mathbf{j}(t)+\\mathbf{n}(t)",
+        "",
+        "(7)"
+      ]
+    ]
+  },
+  {
+    "index": 13,
+    "id": "A2.E8",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "∇ ⋅ ( σ ( 𝐫 ) ∇ ϕ ( 𝐫 ) ) = ∇ ⋅ 𝐉 p ( 𝐫 ) \\nabla\\cdot(\\sigma(\\mathbf{r})\\nabla\\phi(\\mathbf{r}))=\\nabla\\cdot\\mathbf{J}_{p}(\\mathbf{r})",
+        "",
+        "(8)"
+      ]
+    ]
+  },
+  {
+    "index": 14,
+    "id": "A2.E9",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "V ( 𝐫 m ) = ∫ Ω G ( 𝐫 m , 𝐫 ′ ) ∇ ⋅ 𝐉 p ( 𝐫 ′ ) d 𝐫 ′ V(\\mathbf{r}_{m})=\\int_{\\Omega}G(\\mathbf{r}_{m},\\mathbf{r}^{\\prime})\\nabla\\cdot\\mathbf{J}_{p}(\\mathbf{r}^{\\prime})\\,d\\mathbf{r}^{\\prime}",
+        "",
+        "(9)"
+      ]
+    ]
+  },
+  {
+    "index": 15,
+    "id": "A2.E10",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐁 ⁡ ( 𝐫 m ) = μ 0 4 ​ π ​ ∫ Ω 𝐉 p ​ ( 𝐫 ′ ) × ( 𝐫 m − 𝐫 ′ ) | 𝐫 m − 𝐫 ′ | 3 ​ d ​ 𝐫 ′ \\mathbf{B}(\\mathbf{r}_{m})=\\frac{\\mu_{0}}{4\\pi}\\int_{\\Omega}\\frac{\\mathbf{J}_{p}(\\mathbf{r}^{\\prime})\\times(\\mathbf{r}_{m}-\\mathbf{r}^{\\prime})}{|\\mathbf{r}_{m}-\\mathbf{r}^{\\prime}|^{3}}\\,d\\mathbf{r}^{\\prime}",
+        "",
+        "(10)"
+      ]
+    ]
+  },
+  {
+    "index": 16,
+    "id": "A2.E11",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐣 ^ ​ ( t ) = arg ⁡ min 𝐣 ⁡ ‖ 𝐲 ⁡ ( t ) − 𝐋𝐣 ⁡ ( t ) ‖ 2 2 + λ 2 ​ ‖ 𝐣 ⁡ ( t ) ‖ 2 2 \\hat{\\mathbf{j}}(t)=\\arg\\min_{\\mathbf{j}}\\left\\|\\mathbf{y}(t)-\\mathbf{L}\\mathbf{j}(t)\\right\\|_{2}^{2}+\\lambda^{2}\\left\\|\\mathbf{j}(t)\\right\\|_{2}^{2}",
+        "",
+        "(11)"
+      ]
+    ]
+  },
+  {
+    "index": 17,
+    "id": "A2.E12",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐣 ^ ​ ( t ) = 𝐖𝐲 ⁡ ( t ) , where 𝐖 = 𝐋 ⊤ ​ ( 𝐋𝐋 ⊤ + λ 2 ​ 𝐂 n ) − 1 \\hat{\\mathbf{j}}(t)=\\mathbf{W}\\mathbf{y}(t),\\quad\\text{where}\\quad\\mathbf{W}=\\mathbf{L}^{\\top}\\left(\\mathbf{L}\\mathbf{L}^{\\top}+\\lambda^{2}\\mathbf{C}_{n}\\right)^{-1}",
+        "",
+        "(12)"
+      ]
+    ]
+  },
+  {
+    "index": 18,
+    "id": "A2.E13",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐋 w = 𝐂 n − 1 / 2 𝐋 , 𝐲 w ( t ) = 𝐂 n − 1 / 2 𝐲 ( t ) \\mathbf{L}_{w}=\\mathbf{C}_{n}^{-1/2}\\mathbf{L},\\quad\\mathbf{y}_{w}(t)=\\mathbf{C}_{n}^{-1/2}\\mathbf{y}(t)",
+        "",
+        "(13)"
+      ]
+    ]
+  },
+  {
+    "index": 19,
+    "id": "A2.E14",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐖 = 𝐆𝐋 w ⊤ ​ ( 𝐋 w ​ 𝐋 w ⊤ + λ 2 ​ 𝐈 ) − 1 \\mathbf{W}=\\mathbf{G}\\mathbf{L}_{w}^{\\top}\\left(\\mathbf{L}_{w}\\mathbf{L}_{w}^{\\top}+\\lambda^{2}\\mathbf{I}\\right)^{-1}",
+        "",
+        "(14)"
+      ]
+    ]
+  },
+  {
+    "index": 20,
+    "id": "A2.E15",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐣 ^ ​ ( t ) = 𝐖𝐲 ⁡ ( t ) , where 𝐖 = 𝐋 ⊤ ​ ( 𝐋𝐋 ⊤ + λ 2 ​ 𝐂 ​ n ) − 1 \\hat{\\mathbf{j}}(t)=\\mathbf{W}\\mathbf{y}(t),\\quad\\text{where}\\quad\\mathbf{W}=\\mathbf{L}^{\\top}\\left(\\mathbf{L}\\mathbf{L}^{\\top}+\\lambda^{2}\\mathbf{C}n\\right)^{-1}",
+        "",
+        "(15)"
+      ]
+    ]
+  },
+  {
+    "index": 21,
+    "id": "A2.E16",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐊 = 𝐙 time + 𝐕 ⁡ ( 𝐋 , 𝐒 ) \\mathbf{K}=\\mathbf{Z}_{\\text{time}}+\\mathbf{V}(\\mathbf{L},\\mathbf{S})",
+        "",
+        "(16)"
+      ]
+    ]
+  },
+  {
+    "index": 22,
+    "id": "A2.E17",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐖 θ ​ ( 𝐙 time , 𝐋 , 𝐒 ) = softmax ​ ( 𝐐𝐊 T ) d head \\mathbf{W}_{\\mathbf{\\theta}}(\\mathbf{Z}_{\\text{time}},\\mathbf{L},\\mathbf{S})=\\frac{\\text{softmax}(\\mathbf{QK}^{\\text{T}})}{\\sqrt{d_{\\text{head}}}}",
+        "",
+        "(17)"
+      ]
+    ]
+  },
+  {
+    "index": 23,
+    "id": "A8.T7.5.1",
+    "caption": "Table 7 : Balanced accuracy results of ablation study for latent source activity estimation (LSAE). For the model with LSAE, the BrainTokenizer compresses the channels into 16 channels uniformly.",
+    "rows": [
+      [
+        "",
+        "TUAB",
+        "PD31",
+        "AD65",
+        "ASD74",
+        "SomatoMotor"
+      ],
+      [
+        "tiny w/o NAE",
+        "0.814 ± \\pm 0.002",
+        "0.595 ± \\pm 0.051",
+        "0.792 ± \\pm 0.034",
+        "0.605 ± \\pm 0.052",
+        "0.805 ± \\pm 0.127"
+      ],
+      [
+        "tiny w/ NAE",
+        "0.816 ± \\pm 0.001",
+        "0.658 ± \\pm 0.062",
+        "0.800 ± \\pm 0.035",
+        "0.606 ± \\pm 0.019",
+        "0.787 ± \\pm 0.112"
+      ]
+    ]
+  },
+  {
+    "index": 24,
+    "id": "A8.T8.5.1",
+    "caption": "Table 8 : Results for freeze the backbone model when downstream training. Results with full finetuning also listed for comparison. BACC reported.",
+    "rows": [
+      [
+        "",
+        "",
+        "TUAB",
+        "TUEV",
+        "AD65"
+      ],
+      [
+        "LaBraM",
+        "Freeze",
+        "0.788 ± \\pm 0.005",
+        "0.394 ± \\pm 0.030",
+        "0.699 ± \\pm 0.025"
+      ],
+      [
+        "Full Finetune",
+        "0.807 ± \\pm 0.003",
+        "0.596 ± \\pm 0.016",
+        "0.706 ± \\pm 0.012"
+      ],
+      [
+        "CBraMod",
+        "Freeze",
+        "0.768 ± \\pm 0.001",
+        "0.398 ± \\pm 0.067",
+        "0.633 ± \\pm 0.003"
+      ],
+      [
+        "Full Finetune",
+        "0.773 ± \\pm 0.001",
+        "0.416 ± \\pm 0.042",
+        "0.649 ± \\pm 0.006"
+      ],
+      [
+        "BrainOmni_tiny",
+        "Freeze",
+        "0.806 ± \\pm 0.001",
+        "0.464 ± \\pm 0.021",
+        "0.772 ± \\pm 0.046"
+      ],
+      [
+        "Full Finetune",
+        "0.816 ± \\pm 0.001",
+        "0.597 ± \\pm 0.019",
+        "0.800 ± \\pm 0.035"
+      ],
+      [
+        "BrainOmni_base",
+        "Freeze",
+        "0.811 ± \\pm 0.001",
+        "0.489 ± \\pm 0.016",
+        "0.780 ± \\pm 0.058"
+      ],
+      [
+        "Full Finetune",
+        "0.813 ± \\pm 0.007",
+        "0.618 ± \\pm 0.034",
+        "0.806 ± \\pm 0.053"
+      ]
+    ]
+  },
+  {
+    "index": 25,
+    "id": "A9.T9.5",
+    "caption": "Table 9 : Hyperparameters for BrainTokenizer training",
+    "rows": [
+      [
+        "Hyperparameters",
+        "Values"
+      ],
+      [
+        "Brain Tokeniser",
+        "Window length",
+        "512"
+      ],
+      [
+        "N filters",
+        "32"
+      ],
+      [
+        "Ratios",
+        "[8, 4, 2]"
+      ],
+      [
+        "Kernel size",
+        "5"
+      ],
+      [
+        "Last Kernel size",
+        "5"
+      ],
+      [
+        "Hidden dim",
+        "256"
+      ],
+      [
+        "Codebook dim",
+        "256"
+      ],
+      [
+        "Codebook size",
+        "512"
+      ],
+      [
+        "Num quantizers",
+        "4"
+      ],
+      [
+        "Rotation trick",
+        "True"
+      ],
+      [
+        "Quantize optimize method",
+        "\"ema\""
+      ],
+      [
+        "Latent source numberz",
+        "16"
+      ],
+      [
+        "Attention head number",
+        "4"
+      ],
+      [
+        "Dropout",
+        "0.0"
+      ],
+      [
+        "Total batch per update",
+        "512"
+      ],
+      [
+        "Weight decay",
+        "1e-2"
+      ],
+      [
+        "Lr",
+        "2e-4"
+      ],
+      [
+        "Epochs",
+        "16"
+      ],
+      [
+        "Optimizer",
+        "Type",
+        "AdamW"
+      ],
+      [
+        "Betas",
+        "[0.5, 0.9]"
+      ],
+      [
+        "Eps",
+        "1e-5"
+      ],
+      [
+        "Scheduler",
+        "Type",
+        "WarmupCosineLR"
+      ],
+      [
+        "Warmup ratio",
+        "0.1"
+      ],
+      [
+        "Cos min ratio",
+        "0.05"
+      ]
+    ]
+  },
+  {
+    "index": 26,
+    "id": "A9.T10.5",
+    "caption": "Table 10 : Hyperparameters for BrainOmni training",
+    "rows": [
+      [
+        "Hyperparameters",
+        "BrainOmni-tiny",
+        "BrainOmni-base"
+      ],
+      [
+        "BrainOmni",
+        "Hidden dim",
+        "256",
+        "512"
+      ],
+      [
+        "Attention head number",
+        "8",
+        "16"
+      ],
+      [
+        "Attention depth",
+        "12",
+        "12"
+      ],
+      [
+        "Lr",
+        "5e-4",
+        "4e-4"
+      ],
+      [
+        "Overlap ratio",
+        "0.25"
+      ],
+      [
+        "Dropout",
+        "0.1"
+      ],
+      [
+        "Mask ratio",
+        "0.5"
+      ],
+      [
+        "Total batch per update",
+        "256"
+      ],
+      [
+        "Epochs",
+        "32"
+      ],
+      [
+        "Weight decay",
+        "5e-2"
+      ],
+      [
+        "Optimizer",
+        "Type",
+        "AdamW"
+      ],
+      [
+        "Betas",
+        "[0.9, 0.95]"
+      ],
+      [
+        "Eps",
+        "1e-6"
+      ],
+      [
+        "Scheduler",
+        "Type",
+        "WarmupCosineLR"
+      ],
+      [
+        "Warmup ratio",
+        "0.1"
+      ],
+      [
+        "Cos min ratio",
+        "0.1"
+      ]
+    ]
+  },
+  {
+    "index": 27,
+    "id": "A9.T11.5",
+    "caption": "Table 11 : Hyperparameters for downstream finetuning",
+    "rows": [
+      [
+        "Hyperparameters",
+        "Values"
+      ],
+      [
+        "Total batch per update",
+        "64"
+      ],
+      [
+        "Epochs",
+        "30"
+      ],
+      [
+        "Weight decay",
+        "5e-2"
+      ],
+      [
+        "Label smoothing",
+        "0.1"
+      ],
+      [
+        "Optimizer",
+        "Type",
+        "AdamW"
+      ],
+      [
+        "",
+        "Betas",
+        "[0.9, 0.95]"
+      ],
+      [
+        "",
+        "Eps",
+        "1e-6"
+      ],
+      [
+        "Scheduler",
+        "Type",
+        "WarmupCosineLR"
+      ],
+      [
+        "Warmup ratio",
+        "0.05"
+      ],
+      [
+        "Cos min ratio",
+        "0.1"
+      ]
+    ]
+  }
+]

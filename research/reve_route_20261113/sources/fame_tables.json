@@ -1,0 +1,2251 @@
+[
+  {
+    "index": 0,
+    "id": "Sx3.E1",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "‖ 𝐱 − 𝐱 ^ ‖ 2 2 ∝ ∑ f | X f − X ^ f | 2 = ∑ f | X f | 2 ​ | r f | 2 , \\|\\mathbf{x}-\\widehat{\\mathbf{x}}\\|_{2}^{2}\\propto\\sum_{f}\\left|X_{f}-\\widehat{X}_{f}\\right|^{2}=\\sum_{f}|X_{f}|^{2}|r_{f}|^{2},",
+        "",
+        "(1)"
+      ]
+    ]
+  },
+  {
+    "index": 1,
+    "id": "Sx3.E2",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐳 i = g ⁡ ( E θ ​ ( 𝐱 i ) ) , 𝐳 i ( f ) = g ⁡ ( E θ ​ ( ℱ f ​ ( 𝐱 i ) ) ) , \\mathbf{z}_{i}=g\\!\\left(E_{\\theta}(\\mathbf{x}_{i})\\right),\\qquad\\mathbf{z}_{i}^{(f)}=g\\!\\left(E_{\\theta}(\\mathcal{F}_{f}(\\mathbf{x}_{i}))\\right),",
+        "",
+        "(2)"
+      ]
+    ]
+  },
+  {
+    "index": 2,
+    "id": "Sx3.E3",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "W 1 ​ ( P full , P f ) = inf γ ∈ Π ⁡ ( P full , P f ) 𝔼 ( 𝐮 , 𝐯 ) ∼ γ ​ [ ‖ 𝐮 − 𝐯 ‖ 2 ] , W_{1}(P_{\\mathrm{full}},P_{f})=\\inf_{\\gamma\\in\\Pi(P_{\\mathrm{full}},P_{f})}\\mathbb{E}_{(\\mathbf{u},\\mathbf{v})\\sim\\gamma}\\left[\\|\\mathbf{u}-\\mathbf{v}\\|_{2}\\right],",
+        "",
+        "(3)"
+      ]
+    ]
+  },
+  {
+    "index": 3,
+    "id": "Sx3.E4",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐲 ^ i ( f ) = h f ​ ( 𝐳 i ) , 𝐲 i ( f ) = ℱ f ​ ( 𝐱 i ) . \\widehat{\\mathbf{y}}_{i}^{(f)}=h_{f}(\\mathbf{z}_{i}),\\qquad\\mathbf{y}_{i}^{(f)}=\\mathcal{F}_{f}(\\mathbf{x}_{i}).",
+        "",
+        "(4)"
+      ]
+    ]
+  },
+  {
+    "index": 4,
+    "id": "Sx3.E5",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℓ f = 1 N ​ ∑ i = 1 N ‖ h f ​ ( 𝐳 i ) − 𝐲 ~ i ( f ) ‖ 2 2 . \\ell_{f}=\\frac{1}{N}\\sum_{i=1}^{N}\\left\\|h_{f}(\\mathbf{z}_{i})-\\widetilde{\\mathbf{y}}_{i}^{(f)}\\right\\|_{2}^{2}.",
+        "",
+        "(5)"
+      ]
+    ]
+  },
+  {
+    "index": 5,
+    "id": "Sx3.E6",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "q f = log ⁡ ℓ f , q ¯ 𝒮 = 1 | 𝒮 | ​ ∑ f ∈ 𝒮 q f , q_{f}=\\log\\ell_{f},\\qquad\\overline{q}_{\\mathcal{S}}=\\frac{1}{|\\mathcal{S}|}\\sum_{f\\in\\mathcal{S}}q_{f},",
+        "",
+        "(6)"
+      ]
+    ]
+  },
+  {
+    "index": 6,
+    "id": "Sx3.E7",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "B low = 100 ​ [ exp ⁡ ( q ¯ ℱ high − q ¯ ℱ low ) − 1 ] . B_{\\mathrm{low}}=100\\left[\\exp\\!\\left(\\overline{q}_{\\mathcal{F}_{\\mathrm{high}}}-\\overline{q}_{\\mathcal{F}_{\\mathrm{low}}}\\right)-1\\right].",
+        "",
+        "(7)"
+      ]
+    ]
+  },
+  {
+    "index": 7,
+    "id": "Sx3.E8",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "I freq = 100 ​ [ exp ⁡ ( 1 | ℱ | ​ ∑ f ∈ ℱ ( q f − q ¯ ℱ ) 2 ) − 1 ] . I_{\\mathrm{freq}}=100\\left[\\exp\\!\\left(\\sqrt{\\frac{1}{|\\mathcal{F}|}\\sum_{f\\in\\mathcal{F}}\\left(q_{f}-\\overline{q}_{\\mathcal{F}}\\right)^{2}}\\right)-1\\right].",
+        "",
+        "(8)"
+      ]
+    ]
+  },
+  {
+    "index": 8,
+    "id": "Sx3.E9",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "q f = β 0 + β 1 ​ f + ε f q_{f}=\\beta_{0}+\\beta_{1}f+\\varepsilon_{f}",
+        "",
+        "(9)"
+      ]
+    ]
+  },
+  {
+    "index": 9,
+    "id": "Sx3.E10",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "S 10 = 100 ​ [ exp ⁡ ( 10 ​ β 1 ) − 1 ] . S_{10}=100\\left[\\exp(10\\beta_{1})-1\\right].",
+        "",
+        "(10)"
+      ]
+    ]
+  },
+  {
+    "index": 10,
+    "id": "Sx3.E11",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐳 = E θ ​ ( { 𝐩 ~ i } i = 1 N ) , 𝐩 ~ i = { 𝐩 i , m i = 0 , 𝐩 mask , m i = 1 , \\mathbf{z}=E_{\\theta}\\left(\\{\\widetilde{\\mathbf{p}}_{i}\\}_{i=1}^{N}\\right),\\qquad\\widetilde{\\mathbf{p}}_{i}=\\begin{cases}\\mathbf{p}_{i},&m_{i}=0,\\\\\n\\mathbf{p}_{\\mathrm{mask}},&m_{i}=1,\\end{cases}",
+        "",
+        "(11)"
+      ]
+    ]
+  },
+  {
+    "index": 11,
+    "id": "Sx3.E12",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "a c , f , u = log ⁡ ( | 𝒯 ​ ( 𝐱 ) c , f , u | 2 + ϵ ) , a_{c,f,u}=\\log\\left(\\left|\\mathcal{T}(\\mathbf{x})_{c,f,u}\\right|^{2}+\\epsilon\\right),",
+        "",
+        "(12)"
+      ]
+    ]
+  },
+  {
+    "index": 12,
+    "id": "Sx3.E13",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℬ = { B k } k = 1 K \\mathcal{B}=\\{B_{k}\\}_{k=1}^{K}",
+        "",
+        "(13)"
+      ]
+    ]
+  },
+  {
+    "index": 13,
+    "id": "Sx3.E14",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "A c , b , u = 1 | ℐ b | ​ ∑ f ∈ ℐ b a c , f , u . A_{c,b,u}=\\frac{1}{|\\mathcal{I}_{b}|}\\sum_{f\\in\\mathcal{I}_{b}}a_{c,f,u}.",
+        "",
+        "(14)"
+      ]
+    ]
+  },
+  {
+    "index": 14,
+    "id": "Sx3.E15",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "A ~ c , b , u = A c , b , u − μ b σ b + ϵ , b ∈ ℬ . \\widetilde{A}_{c,b,u}=\\frac{A_{c,b,u}-\\mu_{b}}{\\sigma_{b}+\\epsilon},\\qquad b\\in\\mathcal{B}.",
+        "",
+        "(15)"
+      ]
+    ]
+  },
+  {
+    "index": 15,
+    "id": "Sx3.E16",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐀 ^ = D ϕ ​ ( 𝐳 ) . \\widehat{\\mathbf{A}}=D_{\\phi}(\\mathbf{z}).",
+        "",
+        "(16)"
+      ]
+    ]
+  },
+  {
+    "index": 16,
+    "id": "Sx3.E17",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ FAME = 1 | ℬ | ​ ∑ b ∈ ℬ 1 | Ω b | ​ ∑ ( c , u ) ∈ Ω b ( A ^ c , b , u − A ~ c , b , u ) 2 , \\mathcal{L}_{\\mathrm{FAME}}=\\frac{1}{|\\mathcal{B}|}\\sum_{b\\in\\mathcal{B}}\\frac{1}{|\\Omega_{b}|}\\sum_{(c,u)\\in\\Omega_{b}}\\left(\\widehat{A}_{c,b,u}-\\widetilde{A}_{c,b,u}\\right)^{2},",
+        "",
+        "(17)"
+      ]
+    ]
+  },
+  {
+    "index": 17,
+    "id": "Sx4.T1.1.1",
+    "caption": "Table 1: Linear-probing performance across downstream EEG datasets. Balanced accuracy (BACC, %, mean ± \\pm standard deviation) is reported,\nwith higher values indicating better performance. Results achieving\nstate-of-the-art performance are highlighted. When both FAME-50M and\nFAME-1B outperform the best existing baseline on a dataset, both results\nare highlighted.",
+    "rows": [
+      [
+        "Dataset",
+        "BIOT",
+        "BrainOmni",
+        "CBraMod",
+        "EEGMamba",
+        "FEMBA",
+        "LaBraM",
+        "NeuroGPT",
+        "NeuroLM",
+        "REVE",
+        "FAME-50M",
+        "FAME-1B"
+      ],
+      [
+        "AD65",
+        "42.46 ± \\pm 8.48",
+        "45.48 ± \\pm 8.10",
+        "50.17 ± \\pm 13.86",
+        "37.89 ± \\pm 4.70",
+        "48.17 ± \\pm 11.59",
+        "41.05 ± \\pm 6.03",
+        "37.92 ± \\pm 2.35",
+        "33.51 ± \\pm 11.50",
+        "48.34 ± \\pm 13.08",
+        "48.67 ± \\pm 6.52",
+        "53.43 ± \\pm 1.87"
+      ],
+      [
+        "ADHD",
+        "54.07 ± \\pm 4.18",
+        "63.60 ± \\pm 8.96",
+        "61.95 ± \\pm 5.31",
+        "56.30 ± \\pm 7.84",
+        "59.48 ± \\pm 6.27",
+        "58.73 ± \\pm 8.37",
+        "71.06 ± \\pm 8.36",
+        "61.51 ± \\pm 9.84",
+        "62.97 ± \\pm 8.45",
+        "57.60 ± \\pm 5.99",
+        "86.39 ± \\pm 3.75"
+      ],
+      [
+        "Awakening",
+        "96.94 ± \\pm 1.89",
+        "96.33 ± \\pm 2.93",
+        "85.19 ± \\pm 6.12",
+        "73.91 ± \\pm 7.49",
+        "96.29 ± \\pm 2.06",
+        "95.52 ± \\pm 3.46",
+        "78.86 ± \\pm 3.98",
+        "85.48 ± \\pm 8.12",
+        "95.14 ± \\pm 3.01",
+        "92.52 ± \\pm 5.96",
+        "99.31 ± \\pm 0.17"
+      ],
+      [
+        "BCIC4-1",
+        "54.28 ± \\pm 7.55",
+        "51.65 ± \\pm 4.27",
+        "54.56 ± \\pm 7.84",
+        "48.31 ± \\pm 3.94",
+        "49.42 ± \\pm 1.54",
+        "51.52 ± \\pm 8.93",
+        "46.81 ± \\pm 3.69",
+        "49.45 ± \\pm 1.47",
+        "47.10 ± \\pm 11.18",
+        "56.87 ± \\pm 6.26",
+        "54.50 ± \\pm 2.02"
+      ],
+      [
+        "BCI Speech",
+        "21.41 ± \\pm 1.03",
+        "22.48 ± \\pm 1.89",
+        "28.62 ± \\pm 2.23",
+        "19.24 ± \\pm 1.63",
+        "20.85 ± \\pm 1.72",
+        "21.00 ± \\pm 1.12",
+        "19.97 ± \\pm 1.51",
+        "20.48 ± \\pm 1.23",
+        "22.44 ± \\pm 1.43",
+        "22.20 ± \\pm 1.67",
+        "23.76 ± \\pm 0.93"
+      ],
+      [
+        "BETA SSVEP",
+        "2.91 ± \\pm 0.39",
+        "3.53 ± \\pm 0.57",
+        "11.04 ± \\pm 1.74",
+        "3.01 ± \\pm 0.55",
+        "3.83 ± \\pm 0.44",
+        "3.38 ± \\pm 0.63",
+        "2.55 ± \\pm 0.36",
+        "3.32 ± \\pm 0.63",
+        "4.23 ± \\pm 0.61",
+        "7.17 ± \\pm 1.33",
+        "8.84 ± \\pm 2.68"
+      ],
+      [
+        "Benchmark SSVEP",
+        "7.26 ± \\pm 1.92",
+        "8.48 ± \\pm 1.74",
+        "40.52 ± \\pm 9.58",
+        "3.09 ± \\pm 0.78",
+        "5.45 ± \\pm 0.85",
+        "3.38 ± \\pm 0.84",
+        "2.73 ± \\pm 0.76",
+        "4.08 ± \\pm 1.71",
+        "6.03 ± \\pm 1.06",
+        "25.00 ± \\pm 5.81",
+        "42.13 ± \\pm 12.65"
+      ],
+      [
+        "Broderick CP 128",
+        "52.31 ± \\pm 13.05",
+        "40.58 ± \\pm 12.98",
+        "48.04 ± \\pm 29.94",
+        "44.78 ± \\pm 16.42",
+        "44.43 ± \\pm 11.24",
+        "45.18 ± \\pm 13.42",
+        "43.29 ± \\pm 12.85",
+        "47.94 ± \\pm 8.81",
+        "46.45 ± \\pm 15.22",
+        "42.40 ± \\pm 5.16",
+        "38.34 ± \\pm 3.13"
+      ],
+      [
+        "CIRE",
+        "51.45 ± \\pm 1.18",
+        "50.80 ± \\pm 2.03",
+        "53.71 ± \\pm 5.01",
+        "49.93 ± \\pm 0.24",
+        "50.49 ± \\pm 1.25",
+        "49.86 ± \\pm 1.77",
+        "50.33 ± \\pm 2.13",
+        "53.15 ± \\pm 3.68",
+        "51.69 ± \\pm 4.80",
+        "54.44 ± \\pm 0.35",
+        "56.95 ± \\pm 0.99"
+      ],
+      [
+        "DEAP Arousal",
+        "51.44 ± \\pm 4.24",
+        "52.24 ± \\pm 3.42",
+        "53.31 ± \\pm 4.60",
+        "50.99 ± \\pm 1.73",
+        "50.94 ± \\pm 2.86",
+        "51.37 ± \\pm 3.23",
+        "50.63 ± \\pm 2.06",
+        "52.41 ± \\pm 3.92",
+        "52.39 ± \\pm 1.67",
+        "48.78 ± \\pm 1.00",
+        "52.71 ± \\pm 1.00"
+      ],
+      [
+        "DEAP Valence",
+        "52.68 ± \\pm 2.95",
+        "53.08 ± \\pm 2.89",
+        "53.54 ± \\pm 2.95",
+        "50.94 ± \\pm 1.26",
+        "53.32 ± \\pm 2.33",
+        "52.56 ± \\pm 3.05",
+        "52.98 ± \\pm 2.32",
+        "52.32 ± \\pm 2.39",
+        "52.52 ± \\pm 3.70",
+        "50.17 ± \\pm 2.73",
+        "52.52 ± \\pm 0.86"
+      ],
+      [
+        "Depression Rest",
+        "54.07 ± \\pm 2.85",
+        "50.95 ± \\pm 0.71",
+        "52.90 ± \\pm 5.14",
+        "50.00 ± \\pm 0.01",
+        "53.29 ± \\pm 1.92",
+        "51.77 ± \\pm 1.69",
+        "51.73 ± \\pm 2.29",
+        "52.30 ± \\pm 2.27",
+        "51.74 ± \\pm 0.65",
+        "56.43 ± \\pm 5.51",
+        "54.26 ± \\pm 1.42"
+      ],
+      [
+        "DUAL FREQ SSVEP",
+        "3.08 ± \\pm 0.63",
+        "5.16 ± \\pm 1.20",
+        "8.56 ± \\pm 3.48",
+        "2.78 ± \\pm 0.44",
+        "3.72 ± \\pm 1.22",
+        "2.60 ± \\pm 0.86",
+        "2.91 ± \\pm 0.41",
+        "3.01 ± \\pm 0.82",
+        "3.58 ± \\pm 0.64",
+        "3.72 ± \\pm 0.30",
+        "5.89 ± \\pm 0.30"
+      ],
+      [
+        "EAV",
+        "18.18 ± \\pm 6.94",
+        "22.07 ± \\pm 9.72",
+        "27.05 ± \\pm 12.41",
+        "20.42 ± \\pm 8.19",
+        "19.25 ± \\pm 6.73",
+        "19.62 ± \\pm 7.46",
+        "18.10 ± \\pm 6.60",
+        "18.04 ± \\pm 6.70",
+        "20.91 ± \\pm 9.72",
+        "33.03 ± \\pm 2.75",
+        "42.83 ± \\pm 2.31"
+      ],
+      [
+        "EEG Mortality PD",
+        "65.95 ± \\pm 9.15",
+        "55.75 ± \\pm 3.66",
+        "59.18 ± \\pm 3.37",
+        "50.14 ± \\pm 0.28",
+        "52.31 ± \\pm 4.26",
+        "57.95 ± \\pm 5.53",
+        "52.12 ± \\pm 4.31",
+        "57.79 ± \\pm 6.54",
+        "58.94 ± \\pm 7.05",
+        "57.86 ± \\pm 4.00",
+        "54.59 ± \\pm 2.07"
+      ],
+      [
+        "EEG SVRec",
+        "50.52 ± \\pm 1.04",
+        "49.63 ± \\pm 0.75",
+        "50.69 ± \\pm 3.27",
+        "49.94 ± \\pm 0.70",
+        "50.13 ± \\pm 0.31",
+        "51.11 ± \\pm 6.35",
+        "49.73 ± \\pm 0.88",
+        "52.32 ± \\pm 4.81",
+        "49.11 ± \\pm 1.46",
+        "52.94 ± \\pm 2.10",
+        "53.91 ± \\pm 1.03"
+      ],
+      [
+        "FACED",
+        "14.85 ± \\pm 1.13",
+        "21.12 ± \\pm 1.62",
+        "49.98 ± \\pm 3.14",
+        "14.70 ± \\pm 0.75",
+        "17.60 ± \\pm 1.93",
+        "15.44 ± \\pm 1.01",
+        "15.46 ± \\pm 0.66",
+        "18.04 ± \\pm 2.02",
+        "20.59 ± \\pm 1.45",
+        "33.00 ± \\pm 1.66",
+        "43.10 ± \\pm 2.23"
+      ],
+      [
+        "HFO",
+        "60.66 ± \\pm 5.16",
+        "56.89 ± \\pm 3.10",
+        "59.94 ± \\pm 4.35",
+        "59.33 ± \\pm 5.41",
+        "54.14 ± \\pm 3.73",
+        "56.92 ± \\pm 1.62",
+        "56.28 ± \\pm 3.60",
+        "57.04 ± \\pm 3.24",
+        "59.78 ± \\pm 3.96",
+        "67.47 ± \\pm 8.89",
+        "79.24 ± \\pm 1.19"
+      ],
+      [
+        "ISRUC-S1",
+        "51.71 ± \\pm 3.45",
+        "55.20 ± \\pm 3.31",
+        "48.47 ± \\pm 4.53",
+        "34.99 ± \\pm 1.57",
+        "53.87 ± \\pm 3.74",
+        "50.81 ± \\pm 2.57",
+        "51.59 ± \\pm 3.97",
+        "51.04 ± \\pm 6.80",
+        "57.70 ± \\pm 4.49",
+        "62.96 ± \\pm 1.89",
+        "61.40 ± \\pm 0.30"
+      ],
+      [
+        "ISRUC-S2",
+        "23.70 ± \\pm 1.07",
+        "22.96 ± \\pm 2.78",
+        "20.44 ± \\pm 1.91",
+        "20.57 ± \\pm 1.44",
+        "25.71 ± \\pm 2.70",
+        "21.20 ± \\pm 1.16",
+        "25.57 ± \\pm 2.57",
+        "21.43 ± \\pm 1.11",
+        "22.96 ± \\pm 1.82",
+        "23.82 ± \\pm 1.61",
+        "26.37 ± \\pm 1.13"
+      ],
+      [
+        "ISRUC-S3",
+        "25.63 ± \\pm 3.75",
+        "25.61 ± \\pm 2.14",
+        "28.72 ± \\pm 4.01",
+        "23.80 ± \\pm 1.54",
+        "24.68 ± \\pm 0.88",
+        "26.52 ± \\pm 2.61",
+        "26.07 ± \\pm 3.57",
+        "25.44 ± \\pm 6.20",
+        "24.60 ± \\pm 0.37",
+        "25.11 ± \\pm 1.92",
+        "29.10 ± \\pm 1.05"
+      ],
+      [
+        "LEMON Age",
+        "50.52 ± \\pm 7.73",
+        "54.06 ± \\pm 4.45",
+        "56.76 ± \\pm 7.99",
+        "33.33 ± \\pm 0.00",
+        "51.40 ± \\pm 6.28",
+        "51.32 ± \\pm 8.19",
+        "47.38 ± \\pm 5.92",
+        "51.30 ± \\pm 6.75",
+        "52.78 ± \\pm 2.42",
+        "47.42 ± \\pm 5.68",
+        "76.73 ± \\pm 5.98"
+      ],
+      [
+        "LEMON Extraversion",
+        "48.10 ± \\pm 0.88",
+        "52.43 ± \\pm 3.09",
+        "49.08 ± \\pm 2.48",
+        "49.96 ± \\pm 0.26",
+        "48.42 ± \\pm 1.24",
+        "52.45 ± \\pm 4.27",
+        "45.79 ± \\pm 3.05",
+        "50.93 ± \\pm 2.57",
+        "49.50 ± \\pm 2.92",
+        "53.93 ± \\pm 1.93",
+        "49.70 ± \\pm 0.17"
+      ],
+      [
+        "LEMON Gender",
+        "57.76 ± \\pm 1.26",
+        "58.32 ± \\pm 0.77",
+        "71.97 ± \\pm 3.35",
+        "50.56 ± \\pm 0.25",
+        "57.91 ± \\pm 4.13",
+        "59.99 ± \\pm 5.05",
+        "53.50 ± \\pm 5.55",
+        "64.38 ± \\pm 5.65",
+        "61.28 ± \\pm 1.18",
+        "61.70 ± \\pm 10.65",
+        "66.03 ± \\pm 6.58"
+      ],
+      [
+        "Monitoring ErrP",
+        "49.96 ± \\pm 0.96",
+        "52.98 ± \\pm 1.78",
+        "54.21 ± \\pm 4.98",
+        "52.27 ± \\pm 0.94",
+        "50.91 ± \\pm 1.80",
+        "51.11 ± \\pm 2.47",
+        "50.73 ± \\pm 2.29",
+        "50.85 ± \\pm 1.14",
+        "50.99 ± \\pm 2.34",
+        "55.84 ± \\pm 4.14",
+        "60.54 ± \\pm 1.20"
+      ],
+      [
+        "MusicEEG",
+        "46.88 ± \\pm 2.90",
+        "49.70 ± \\pm 3.74",
+        "53.48 ± \\pm 4.73",
+        "50.80 ± \\pm 2.49",
+        "49.10 ± \\pm 3.46",
+        "49.24 ± \\pm 5.11",
+        "49.15 ± \\pm 5.12",
+        "50.04 ± \\pm 2.81",
+        "51.49 ± \\pm 3.33",
+        "54.09 ± \\pm 0.95",
+        "54.53 ± \\pm 2.73"
+      ],
+      [
+        "PD31",
+        "54.62 ± \\pm 7.47",
+        "49.52 ± \\pm 8.67",
+        "46.69 ± \\pm 18.85",
+        "39.85 ± \\pm 21.62",
+        "52.82 ± \\pm 18.72",
+        "47.27 ± \\pm 13.96",
+        "46.23 ± \\pm 15.96",
+        "51.23 ± \\pm 25.86",
+        "43.65 ± \\pm 23.53",
+        "55.28 ± \\pm 12.30",
+        "57.04 ± \\pm 8.30"
+      ],
+      [
+        "PEARL Neuro",
+        "45.34 ± \\pm 3.68",
+        "48.18 ± \\pm 2.68",
+        "49.63 ± \\pm 11.82",
+        "42.98 ± \\pm 1.41",
+        "44.61 ± \\pm 2.86",
+        "47.45 ± \\pm 3.12",
+        "43.45 ± \\pm 2.65",
+        "46.68 ± \\pm 1.73",
+        "47.70 ± \\pm 5.82",
+        "54.90 ± \\pm 4.22",
+        "57.52 ± \\pm 0.42"
+      ],
+      [
+        "PhysioNet MI",
+        "25.85 ± \\pm 2.10",
+        "33.52 ± \\pm 4.70",
+        "49.77 ± \\pm 1.64",
+        "27.11 ± \\pm 1.38",
+        "29.08 ± \\pm 1.82",
+        "28.13 ± \\pm 3.37",
+        "28.92 ± \\pm 1.83",
+        "30.53 ± \\pm 2.50",
+        "34.16 ± \\pm 2.66",
+        "45.14 ± \\pm 4.70",
+        "53.86 ± \\pm 0.81"
+      ],
+      [
+        "RestCog",
+        "36.35 ± \\pm 3.07",
+        "35.10 ± \\pm 2.64",
+        "42.19 ± \\pm 4.16",
+        "25.67 ± \\pm 1.28",
+        "33.39 ± \\pm 2.66",
+        "35.26 ± \\pm 2.37",
+        "29.05 ± \\pm 2.27",
+        "32.81 ± \\pm 2.53",
+        "36.89 ± \\pm 2.88",
+        "39.68 ± \\pm 1.18",
+        "41.10 ± \\pm 1.34"
+      ],
+      [
+        "SEED",
+        "50.43 ± \\pm 5.28",
+        "51.35 ± \\pm 5.94",
+        "58.71 ± \\pm 3.48",
+        "47.13 ± \\pm 4.48",
+        "51.62 ± \\pm 8.36",
+        "48.97 ± \\pm 4.48",
+        "45.06 ± \\pm 4.33",
+        "49.84 ± \\pm 3.43",
+        "56.88 ± \\pm 7.25",
+        "60.30 ± \\pm 1.31",
+        "57.15 ± \\pm 2.51"
+      ],
+      [
+        "SEED-IV",
+        "26.52 ± \\pm 5.02",
+        "37.86 ± \\pm 0.74",
+        "32.16 ± \\pm 1.51",
+        "27.40 ± \\pm 2.25",
+        "31.26 ± \\pm 2.90",
+        "34.94 ± \\pm 1.67",
+        "28.64 ± \\pm 1.51",
+        "32.08 ± \\pm 2.76",
+        "34.65 ± \\pm 2.89",
+        "35.02 ± \\pm 4.38",
+        "35.04 ± \\pm 1.00"
+      ],
+      [
+        "SEED-V",
+        "24.18 ± \\pm 2.62",
+        "26.48 ± \\pm 3.65",
+        "27.39 ± \\pm 4.46",
+        "20.55 ± \\pm 0.89",
+        "25.67 ± \\pm 3.31",
+        "23.07 ± \\pm 2.03",
+        "23.17 ± \\pm 1.26",
+        "23.75 ± \\pm 2.29",
+        "26.19 ± \\pm 3.97",
+        "25.29 ± \\pm 2.94",
+        "28.03 ± \\pm 1.83"
+      ],
+      [
+        "SEED-VII",
+        "15.79 ± \\pm 1.68",
+        "20.47 ± \\pm 1.16",
+        "18.49 ± \\pm 1.84",
+        "15.98 ± \\pm 2.30",
+        "18.37 ± \\pm 2.45",
+        "17.36 ± \\pm 1.45",
+        "16.57 ± \\pm 1.87",
+        "16.68 ± \\pm 1.84",
+        "18.72 ± \\pm 3.10",
+        "16.84 ± \\pm 1.09",
+        "18.77 ± \\pm 1.68"
+      ],
+      [
+        "SHU-MI",
+        "50.30 ± \\pm 1.69",
+        "53.85 ± \\pm 1.84",
+        "58.50 ± \\pm 4.43",
+        "50.81 ± \\pm 3.11",
+        "52.72 ± \\pm 5.68",
+        "49.94 ± \\pm 1.23",
+        "50.60 ± \\pm 1.77",
+        "52.09 ± \\pm 0.84",
+        "54.53 ± \\pm 3.11",
+        "57.48 ± \\pm 1.11",
+        "62.97 ± \\pm 0.34"
+      ],
+      [
+        "Siena EEG",
+        "67.00 ± \\pm 28.26",
+        "66.32 ± \\pm 28.29",
+        "75.28 ± \\pm 24.46",
+        "66.66 ± \\pm 28.86",
+        "66.65 ± \\pm 28.85",
+        "66.16 ± \\pm 28.01",
+        "66.64 ± \\pm 28.82",
+        "73.30 ± \\pm 29.11",
+        "62.07 ± \\pm 20.22",
+        "61.96 ± \\pm 10.91",
+        "51.64 ± \\pm 1.66"
+      ],
+      [
+        "SSVEP",
+        "0.62 ± \\pm 0.00",
+        "1.63 ± \\pm 0.61",
+        "2.81 ± \\pm 0.91",
+        "1.12 ± \\pm 0.51",
+        "0.74 ± \\pm 0.40",
+        "0.75 ± \\pm 0.21",
+        "0.71 ± \\pm 0.34",
+        "1.23 ± \\pm 0.33",
+        "4.43 ± \\pm 1.90",
+        "3.54 ± \\pm 2.04",
+        "8.85 ± \\pm 2.36"
+      ],
+      [
+        "TDBRAIN",
+        "38.38 ± \\pm 3.96",
+        "39.76 ± \\pm 0.10",
+        "41.49 ± \\pm 3.20",
+        "31.22 ± \\pm 0.71",
+        "40.44 ± \\pm 3.31",
+        "39.97 ± \\pm 3.61",
+        "36.28 ± \\pm 1.84",
+        "38.60 ± \\pm 0.60",
+        "30.11 ± \\pm 0.38",
+        "40.54 ± \\pm 1.77",
+        "48.61 ± \\pm 5.72"
+      ],
+      [
+        "TUAB",
+        "77.29 ± \\pm 2.20",
+        "74.19 ± \\pm 3.98",
+        "73.07 ± \\pm 1.80",
+        "68.92 ± \\pm 3.08",
+        "72.28 ± \\pm 6.54",
+        "74.78 ± \\pm 5.80",
+        "66.84 ± \\pm 3.54",
+        "72.35 ± \\pm 1.03",
+        "78.41 ± \\pm 0.23",
+        "67.87 ± \\pm 1.67",
+        "75.41 ± \\pm 1.86"
+      ],
+      [
+        "TUEV",
+        "66.25 ± \\pm 9.12",
+        "50.58 ± \\pm 2.35",
+        "62.56 ± \\pm 6.50",
+        "31.55 ± \\pm 7.60",
+        "46.48 ± \\pm 7.29",
+        "42.88 ± \\pm 12.93",
+        "31.33 ± \\pm 2.25",
+        "27.71 ± \\pm 1.95",
+        "53.47 ± \\pm 0.03",
+        "66.95 ± \\pm 12.63",
+        "80.70 ± \\pm 4.68"
+      ],
+      [
+        "Workload",
+        "28.29 ± \\pm 7.84",
+        "29.90 ± \\pm 4.93",
+        "16.00 ± \\pm 1.52",
+        "38.78 ± \\pm 2.17",
+        "31.49 ± \\pm 10.81",
+        "40.74 ± \\pm 4.63",
+        "29.03 ± \\pm 12.14",
+        "36.50 ± \\pm 3.37",
+        "9.27 ± \\pm 4.61",
+        "39.17 ± \\pm 2.08",
+        "43.62 ± \\pm 7.67"
+      ]
+    ]
+  },
+  {
+    "index": 18,
+    "id": "A1.T2.1",
+    "caption": "Table 2: Summary of the EEG datasets used for pretraining .\nThe number of channels refers to EEG channels unless otherwise\nindicated. “n/a” denotes information that was not explicitly\navailable in the dataset documentation.",
+    "rows": [
+      [
+        "Dataset",
+        "Task / paradigm",
+        "Subjects",
+        "Sessions",
+        "Classes",
+        "Channels",
+        "Sampling rate",
+        "Recording amount"
+      ],
+      [
+        "ds3690",
+        "Auditory cued reaction-time tasks, including passive listening,\nsimple reaction, and go/no-go conditions",
+        "75",
+        "n/a",
+        "n/a",
+        "64-channel system a",
+        "500 Hz",
+        "A 4-min passive task and two 8-min runs for each active task;\n240 active-task trials per subject"
+      ],
+      [
+        "ds3825",
+        "Visual object and concept perception using rapid serial visual\npresentation",
+        "50",
+        "n/a",
+        "1,854 concepts",
+        "64",
+        "1,000 Hz",
+        "Approximately 1 h per subject; more than 25,000 visual trials\nper subject"
+      ],
+      [
+        "ds3846",
+        "Haptic prediction-error and oddball task with visual,\nvibrotactile, and electrical muscle stimulation",
+        "19 b",
+        "n/a",
+        "2 trial types c",
+        "63 EEG + 1 EOG",
+        "1,000 Hz d",
+        "3,300 task trials from 11 subjects in the reported study"
+      ],
+      [
+        "ds3885",
+        "Static-image viewing with passive RSVP and aliveness\ncategorization",
+        "24",
+        "n/a",
+        "2",
+        "128",
+        "1,000 Hz",
+        "Eight blocks per subject; four passive-viewing and four\ncategorization blocks"
+      ],
+      [
+        "ds4043",
+        "Visual attention and temporal-expectation task using rapid\noverlaid grating sequences",
+        "20",
+        "n/a",
+        "n/a",
+        "64",
+        "1,000 Hz e",
+        "64 sequences per subject and 6,656 analyzed trials per subject"
+      ],
+      [
+        "ds4148",
+        "Resting-state and cognitive-state EEG, including subtraction,\nmusic listening, and memory",
+        "60",
+        "3",
+        "5",
+        "64",
+        "500 Hz",
+        "Three recording sessions per subject"
+      ],
+      [
+        "ds4152",
+        "Motor learning and sensorimotor timing during drumming-pattern\npractice",
+        "21",
+        "n/a",
+        "12 condition codes",
+        "31",
+        "1,000 Hz",
+        "72 trials per subject"
+      ],
+      [
+        "ds4264",
+        "Visuomotor ship-steering task under controller and environmental\nnoise",
+        "21",
+        "n/a",
+        "4 noise conditions",
+        "n/a",
+        "n/a",
+        "n/a"
+      ],
+      [
+        "ds4284",
+        "Value-based decision-making based on descriptions of\ncrowdfunding projects",
+        "n/a",
+        "n/a",
+        "2",
+        "n/a",
+        "n/a",
+        "Funding or non-funding decision for each project"
+      ],
+      [
+        "ds4315",
+        "Reinforcement-learning task following sad or neutral mood\nmanipulation",
+        "50",
+        "n/a",
+        "n/a f",
+        "66 g",
+        "500 Hz",
+        "Approximately 25 min per subject"
+      ],
+      [
+        "ds4356",
+        "Auditory brainstem responses to click, music, and speech stimuli",
+        "24 h",
+        "n/a",
+        "12 stimulus types i",
+        "34",
+        "10,000 Hz",
+        "Ten 1-min click trials and 40 trials for each of the 12\nmusic/speech stimulus types"
+      ],
+      [
+        "ds4357",
+        "Visual feature coding using RSVP presentation of Gabor-like\nstimuli and fixation-color-change detection",
+        "16",
+        "n/a",
+        "n/a",
+        "128 j",
+        "1,000 Hz",
+        "n/a"
+      ]
+    ]
+  },
+  {
+    "index": 19,
+    "id": "A2.T3.1",
+    "caption": "Table 3: Summary of downstream datasets and classification tasks . The segment length denotes the input duration used for each sample.",
+    "rows": [
+      [
+        "Dataset",
+        "Subjects",
+        "Channels",
+        "Classes",
+        "Length",
+        "Task"
+      ],
+      [
+        "AD65",
+        "88",
+        "19",
+        "3",
+        "2 s",
+        "Neurodegenerative disease classification"
+      ],
+      [
+        "ADHD",
+        "121",
+        "19",
+        "2",
+        "2 s",
+        "Healthy vs. ADHD classification"
+      ],
+      [
+        "Awakening",
+        "21",
+        "62",
+        "2",
+        "1 s",
+        "Awake vs. sedation-state classification"
+      ],
+      [
+        "BCI_Speech",
+        "25",
+        "64",
+        "5",
+        "3 s",
+        "Speech imagery classification"
+      ],
+      [
+        "BCIC4_1",
+        "7",
+        "59",
+        "2",
+        "1 s",
+        "Motor imagery classification"
+      ],
+      [
+        "BenchmarkSSVEP",
+        "21",
+        "60",
+        "40",
+        "2 s",
+        "SSVEP frequency classification"
+      ],
+      [
+        "Broderick_CP_128",
+        "33",
+        "128",
+        "2",
+        "1 s",
+        "Left–right auditory attention classification"
+      ],
+      [
+        "Broderick_Rev_128",
+        "25",
+        "128",
+        "2",
+        "1 s",
+        "Natural vs. time-reversed speech classification"
+      ],
+      [
+        "CIRE",
+        "38",
+        "128",
+        "2",
+        "2 s",
+        "Emotion/prosody classification"
+      ],
+      [
+        "DEAP_arousal",
+        "14",
+        "32",
+        "2",
+        "10 s",
+        "Emotion arousal classification"
+      ],
+      [
+        "DEAP_valence",
+        "32",
+        "32",
+        "2",
+        "10 s",
+        "Valence/preference classification"
+      ],
+      [
+        "Depression_rest",
+        "121",
+        "66",
+        "2",
+        "1 s",
+        "Depression severity grouping based on BDI"
+      ],
+      [
+        "DUAL_FREQ_SSVEP",
+        "14",
+        "64",
+        "40",
+        "1 s",
+        "Dual-frequency SSVEP classification"
+      ],
+      [
+        "EAV",
+        "41",
+        "30",
+        "10",
+        "10 s",
+        "Conversational emotion classification"
+      ],
+      [
+        "EEG_Mortality_PD",
+        "76",
+        "63",
+        "2",
+        "1 s",
+        "Mortality vs. survival classification"
+      ],
+      [
+        "EEG_SVRec",
+        "27",
+        "67",
+        "2",
+        "2 s",
+        "Valence/preference classification"
+      ],
+      [
+        "FACED_new",
+        "123",
+        "30",
+        "9",
+        "10 s",
+        "Fine-grained emotion classification"
+      ],
+      [
+        "HFO",
+        "29",
+        "18",
+        "2",
+        "1 s",
+        "High-frequency-oscillation classification"
+      ],
+      [
+        "ISRUC_S1",
+        "100",
+        "6",
+        "5",
+        "30 s",
+        "Sleep-stage classification"
+      ],
+      [
+        "ISRUC_S2",
+        "8",
+        "6",
+        "5",
+        "30 s",
+        "Sleep-stage classification"
+      ],
+      [
+        "ISRUC_S3",
+        "10",
+        "6",
+        "5",
+        "30 s",
+        "Sleep-stage classification"
+      ],
+      [
+        "LEMON_age",
+        "201",
+        "59",
+        "4",
+        "1 s",
+        "Age-group classification"
+      ],
+      [
+        "LEMON_extraversion",
+        "6",
+        "59",
+        "2",
+        "1 s",
+        "Extraversion classification"
+      ],
+      [
+        "LEMON_gender",
+        "201",
+        "59",
+        "2",
+        "1 s",
+        "Gender classification"
+      ],
+      [
+        "MDD",
+        "64",
+        "22",
+        "2",
+        "1 s",
+        "Healthy vs. major depressive disorder classification"
+      ],
+      [
+        "MonitoringErrP",
+        "6",
+        "64",
+        "2",
+        "1 s",
+        "Error-related-potential classification"
+      ],
+      [
+        "MusicEEG",
+        "31",
+        "19",
+        "2",
+        "1 s",
+        "Music-evoked emotion classification"
+      ],
+      [
+        "PD31",
+        "31",
+        "40",
+        "2",
+        "1 s",
+        "Healthy vs. Parkinson’s disease classification"
+      ],
+      [
+        "PEARL_Neuro",
+        "79",
+        "127",
+        "2",
+        "1 s",
+        "Context/task discrimination classification"
+      ],
+      [
+        "Physionet_MI",
+        "106",
+        "64",
+        "4",
+        "1 s",
+        "Motor imagery classification"
+      ],
+      [
+        "RestCog",
+        "59",
+        "61",
+        "5",
+        "1 s",
+        "Task-type classification"
+      ],
+      [
+        "SEED",
+        "15",
+        "62",
+        "3",
+        "10 s",
+        "Video-elicited emotion classification"
+      ],
+      [
+        "SEED_FRA",
+        "8",
+        "60",
+        "3",
+        "10 s",
+        "Emotion classification with French movie stimuli"
+      ],
+      [
+        "SEED_V",
+        "15",
+        "62",
+        "5",
+        "10 s",
+        "Audio-visual emotion classification"
+      ],
+      [
+        "SEED_VIG",
+        "23",
+        "16",
+        "3",
+        "8 s",
+        "Vigilance-state classification"
+      ],
+      [
+        "SEED_VII",
+        "20",
+        "62",
+        "7",
+        "10 s",
+        "Audio-visual emotion classification"
+      ],
+      [
+        "SEEDIV",
+        "15",
+        "62",
+        "4",
+        "10 s",
+        "Emotion classification with eye tracking"
+      ],
+      [
+        "SHU_MI",
+        "18",
+        "30",
+        "2",
+        "1 s",
+        "Motor imagery classification"
+      ],
+      [
+        "Siena_EEG",
+        "2",
+        "29",
+        "2",
+        "10 s",
+        "EEG abnormality detection"
+      ],
+      [
+        "SSVEP",
+        "13",
+        "9",
+        "160",
+        "3 s",
+        "SSVEP frequency classification"
+      ],
+      [
+        "TDBRAIN",
+        "1,259",
+        "26",
+        "4",
+        "2 s",
+        "Psychiatric phenotype classification"
+      ],
+      [
+        "TUAB",
+        "325",
+        "21",
+        "2",
+        "10 s",
+        "Clinical normal vs. abnormal EEG classification"
+      ],
+      [
+        "TUEV",
+        "449",
+        "26",
+        "6",
+        "5 s",
+        "EEG event classification"
+      ],
+      [
+        "Workload",
+        "6",
+        "61",
+        "3",
+        "2 s",
+        "Cognitive workload classification"
+      ]
+    ]
+  },
+  {
+    "index": 20,
+    "id": "A3.T4.1.1",
+    "caption": "Table 4: Summary of pretrained neural-signal models considered in this study .\nNR denotes information not reported in the original paper. Pretraining-scale\nstatistics are reported using the terminology and units provided by the\ncorresponding publications.",
+    "rows": [
+      [
+        "Model",
+        "Pretraining scale",
+        "Data scale",
+        "Parameters",
+        "Input",
+        "Pretraining objective",
+        "Backbone",
+        "Channel handling"
+      ],
+      [
+        "BENDR",
+        "14,987",
+        "27,062",
+        "157.1M",
+        "EEG",
+        "Contrastive predictive coding",
+        "Transformer",
+        "Fixed 10–20 channels"
+      ],
+      [
+        "BIOT",
+        "NR",
+        "NR",
+        "3.4M",
+        "EEG / ECG",
+        "Contrastive learning",
+        "Linear Transformer",
+        "Fixed 18-channel bipolar montage"
+      ],
+      [
+        "BrainOmni",
+        "6,550",
+        "1,997 EEG + 656 MEG",
+        "8.4M / 39.2M",
+        "EEG / MEG",
+        "Temporal masked reconstruction",
+        "Criss-Cross Transformer",
+        "Sensor encoder"
+      ],
+      [
+        "Brant",
+        "9",
+        "2,528",
+        "149.9M",
+        "iEEG",
+        "Masked autoencoding",
+        "Transformer",
+        "Subject-specific spatial encoder"
+      ],
+      [
+        "CBraMod",
+        "14,987",
+        "27,062",
+        "4.9M",
+        "EEG",
+        "Temporal masked reconstruction",
+        "Criss-Cross Transformer",
+        "Asymmetric conditional positional encoding"
+      ],
+      [
+        "EEGMamba",
+        "NR",
+        "16,724",
+        "3.3M",
+        "EEG",
+        "Temporal masked reconstruction",
+        "Mamba",
+        "Spatiotemporal adaptive module"
+      ],
+      [
+        "FEMBA",
+        "14,987",
+        "27,062",
+        "7.8M / 46.6M / 77.8M / 389M",
+        "EEG",
+        "Temporal masked reconstruction",
+        "Mamba",
+        "Fixed 10–20 channels"
+      ],
+      [
+        "LaBraM",
+        "NR",
+        "2,537.78",
+        "9.1M",
+        "EEG",
+        "Frequency-domain masked reconstruction",
+        "Transformer",
+        "Unified 10–20 channel vocabulary"
+      ],
+      [
+        "NeuroGPT",
+        "14,987",
+        "27,062",
+        "79.5M",
+        "EEG",
+        "Temporal masked reconstruction",
+        "GPT-2",
+        "Fixed 10–20 channels"
+      ],
+      [
+        "NeuroLM",
+        "15,444",
+        "27,762",
+        "255.1M / 500M / 1.69B",
+        "EEG",
+        "Multi-task instruction tuning / autoregressive modeling",
+        "Transformer",
+        "Unified 10–20 channel vocabulary"
+      ]
+    ]
+  },
+  {
+    "index": 21,
+    "id": "A3.E18",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐱 ∈ ℝ C × T , \\mathbf{x}\\in\\mathbb{R}^{C\\times T},",
+        "",
+        "(18)"
+      ]
+    ]
+  },
+  {
+    "index": 22,
+    "id": "A3.E19",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐅 ∈ ℝ B × D flat , \\mathbf{F}\\in\\mathbb{R}^{B\\times D_{\\mathrm{flat}}},",
+        "",
+        "(19)"
+      ]
+    ]
+  },
+  {
+    "index": 23,
+    "id": "A4.E20",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐗 ∈ ℝ B × S × L , \\mathbf{X}\\in\\mathbb{R}^{B\\times S\\times L},",
+        "",
+        "(20)"
+      ]
+    ]
+  },
+  {
+    "index": 24,
+    "id": "A4.E21",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "S = C ​ T , S=CT,",
+        "",
+        "(21)"
+      ]
+    ]
+  },
+  {
+    "index": 25,
+    "id": "A4.E22",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐈 ch ∈ { 0 , … , C − 1 } B × S \\mathbf{I}^{\\mathrm{ch}}\\in\\{0,\\ldots,C-1\\}^{B\\times S}",
+        "",
+        "(22)"
+      ]
+    ]
+  },
+  {
+    "index": 26,
+    "id": "A4.E23",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐈 time ∈ { 0 , … , T − 1 } B × S , \\mathbf{I}^{\\mathrm{time}}\\in\\{0,\\ldots,T-1\\}^{B\\times S},",
+        "",
+        "(23)"
+      ]
+    ]
+  },
+  {
+    "index": 27,
+    "id": "A4.E24",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐱 ~ i , s = Dropout ⁡ ( GELU ⁡ ( LN ⁡ ( 𝐖 tok ​ 𝐱 i , s + 𝐛 tok ) ) ) , \\widetilde{\\mathbf{x}}_{i,s}=\\operatorname{Dropout}\\left(\\operatorname{GELU}\\left(\\operatorname{LN}\\left(\\mathbf{W}_{\\mathrm{tok}}\\mathbf{x}_{i,s}+\\mathbf{b}_{\\mathrm{tok}}\\right)\\right)\\right),",
+        "",
+        "(24)"
+      ]
+    ]
+  },
+  {
+    "index": 28,
+    "id": "A4.E25",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐖 tok ∈ ℝ D × L , 𝐛 tok ∈ ℝ D , \\mathbf{W}_{\\mathrm{tok}}\\in\\mathbb{R}^{D\\times L},\\qquad\\mathbf{b}_{\\mathrm{tok}}\\in\\mathbb{R}^{D},",
+        "",
+        "(25)"
+      ]
+    ]
+  },
+  {
+    "index": 29,
+    "id": "A4.E26",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐄 ch ∈ ℝ C × D , \\mathbf{E}^{\\mathrm{ch}}\\in\\mathbb{R}^{C\\times D},",
+        "",
+        "(26)"
+      ]
+    ]
+  },
+  {
+    "index": 30,
+    "id": "A4.E27",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐄 time ∈ ℝ T × D . \\mathbf{E}^{\\mathrm{time}}\\in\\mathbb{R}^{T\\times D}.",
+        "",
+        "(27)"
+      ]
+    ]
+  },
+  {
+    "index": 31,
+    "id": "A4.E28",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐳 i , s ( 0 ) = 𝐱 ~ i , s + 𝐄 c i , s ch + 𝐄 t i , s time . \\mathbf{z}^{(0)}_{i,s}=\\widetilde{\\mathbf{x}}_{i,s}+\\mathbf{E}^{\\mathrm{ch}}_{c_{i,s}}+\\mathbf{E}^{\\mathrm{time}}_{t_{i,s}}.",
+        "",
+        "(28)"
+      ]
+    ]
+  },
+  {
+    "index": 32,
+    "id": "A4.E29",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐙 ( 0 ) ∈ ℝ B × S × D \\mathbf{Z}^{(0)}\\in\\mathbb{R}^{B\\times S\\times D}",
+        "",
+        "(29)"
+      ]
+    ]
+  },
+  {
+    "index": 33,
+    "id": "A4.E30",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐔 ( ℓ ) = 𝐙 ( ℓ − 1 ) + Dropout ⁡ ( MSA ⁡ ( LN ⁡ ( 𝐙 ( ℓ − 1 ) ) ) ) , \\mathbf{U}^{(\\ell)}=\\mathbf{Z}^{(\\ell-1)}+\\operatorname{Dropout}\\left(\\operatorname{MSA}\\left(\\operatorname{LN}\\left(\\mathbf{Z}^{(\\ell-1)}\\right)\\right)\\right),",
+        "",
+        "(30)"
+      ]
+    ]
+  },
+  {
+    "index": 34,
+    "id": "A4.E31",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐙 ( ℓ ) = 𝐔 ( ℓ ) + Dropout ⁡ ( FFN ⁡ ( LN ⁡ ( 𝐔 ( ℓ ) ) ) ) . \\mathbf{Z}^{(\\ell)}=\\mathbf{U}^{(\\ell)}+\\operatorname{Dropout}\\left(\\operatorname{FFN}\\left(\\operatorname{LN}\\left(\\mathbf{U}^{(\\ell)}\\right)\\right)\\right).",
+        "",
+        "(31)"
+      ]
+    ]
+  },
+  {
+    "index": 35,
+    "id": "A4.E32",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "MSA ⁡ ( 𝐙 ) = Concat ⁡ ( head 1 , … , head H ) ​ 𝐖 O , \\operatorname{MSA}(\\mathbf{Z})=\\operatorname{Concat}\\left(\\operatorname{head}_{1},\\ldots,\\operatorname{head}_{H}\\right)\\mathbf{W}^{O},",
+        "",
+        "(32)"
+      ]
+    ]
+  },
+  {
+    "index": 36,
+    "id": "A4.E33",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "head h = Softmax ⁡ ( 𝐐 h ​ 𝐊 h ⊤ D h ) ​ 𝐕 h . \\operatorname{head}_{h}=\\operatorname{Softmax}\\left(\\frac{\\mathbf{Q}_{h}\\mathbf{K}_{h}^{\\top}}{\\sqrt{D_{h}}}\\right)\\mathbf{V}_{h}.",
+        "",
+        "(33)"
+      ]
+    ]
+  },
+  {
+    "index": 37,
+    "id": "A4.E34",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐐 h = 𝐙𝐖 h Q , 𝐊 h = 𝐙𝐖 h K , 𝐕 h = 𝐙𝐖 h V , \\mathbf{Q}_{h}=\\mathbf{Z}\\mathbf{W}^{Q}_{h},\\qquad\\mathbf{K}_{h}=\\mathbf{Z}\\mathbf{W}^{K}_{h},\\qquad\\mathbf{V}_{h}=\\mathbf{Z}\\mathbf{W}^{V}_{h},",
+        "",
+        "(34)"
+      ]
+    ]
+  },
+  {
+    "index": 38,
+    "id": "A4.E35",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "FFN ⁡ ( 𝐳 ) = 𝐖 2 ​ GELU ⁡ ( 𝐖 1 ​ 𝐳 + 𝐛 1 ) + 𝐛 2 , \\operatorname{FFN}(\\mathbf{z})=\\mathbf{W}_{2}\\operatorname{GELU}\\left(\\mathbf{W}_{1}\\mathbf{z}+\\mathbf{b}_{1}\\right)+\\mathbf{b}_{2},",
+        "",
+        "(35)"
+      ]
+    ]
+  },
+  {
+    "index": 39,
+    "id": "A4.E36",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "D ff = r ​ D , D_{\\mathrm{ff}}=rD,",
+        "",
+        "(36)"
+      ]
+    ]
+  },
+  {
+    "index": 40,
+    "id": "A4.E37",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "D h = 512 8 = 64 . D_{h}=\\frac{512}{8}=64.",
+        "",
+        "(37)"
+      ]
+    ]
+  },
+  {
+    "index": 41,
+    "id": "A4.E38",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "D ff = 4 × 512 = 2048 . D_{\\mathrm{ff}}=4\\times 512=2048.",
+        "",
+        "(38)"
+      ]
+    ]
+  },
+  {
+    "index": 42,
+    "id": "A4.E39",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐙 ( N ) ∈ ℝ B × S × D . \\mathbf{Z}^{(N)}\\in\\mathbb{R}^{B\\times S\\times D}.",
+        "",
+        "(39)"
+      ]
+    ]
+  },
+  {
+    "index": 43,
+    "id": "A4.E40",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐨 i , s = 𝐖 out ​ GELU ⁡ ( 𝐖 h ​ 𝐳 i , s ( N ) + 𝐛 h ) + 𝐛 out , \\mathbf{o}_{i,s}=\\mathbf{W}_{\\mathrm{out}}\\operatorname{GELU}\\left(\\mathbf{W}_{\\mathrm{h}}\\mathbf{z}^{(N)}_{i,s}+\\mathbf{b}_{\\mathrm{h}}\\right)+\\mathbf{b}_{\\mathrm{out}},",
+        "",
+        "(40)"
+      ]
+    ]
+  },
+  {
+    "index": 44,
+    "id": "A4.E41",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐖 h ∈ ℝ D × D \\mathbf{W}_{\\mathrm{h}}\\in\\mathbb{R}^{D\\times D}",
+        "",
+        "(41)"
+      ]
+    ]
+  },
+  {
+    "index": 45,
+    "id": "A4.E42",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐖 out ∈ ℝ ( F ​ K ) × D \\mathbf{W}_{\\mathrm{out}}\\in\\mathbb{R}^{(FK)\\times D}",
+        "",
+        "(42)"
+      ]
+    ]
+  },
+  {
+    "index": 46,
+    "id": "A4.E43",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐎 ∈ ℝ B × S × ( F ​ K ) . \\mathbf{O}\\in\\mathbb{R}^{B\\times S\\times(FK)}.",
+        "",
+        "(43)"
+      ]
+    ]
+  },
+  {
+    "index": 47,
+    "id": "A4.E44",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐘 ^ = Reshape ⁡ ( 𝐎 ) ∈ ℝ B × S × F × K . \\widehat{\\mathbf{Y}}=\\operatorname{Reshape}(\\mathbf{O})\\in\\mathbb{R}^{B\\times S\\times F\\times K}.",
+        "",
+        "(44)"
+      ]
+    ]
+  },
+  {
+    "index": 48,
+    "id": "A4.T5.1",
+    "caption": "Table 5: Default configuration of the EEG pretraining model.",
+    "rows": [
+      [
+        "Component / hyperparameter",
+        "Value"
+      ],
+      [
+        "Token embedding dimension D D",
+        "512"
+      ],
+      [
+        "Number of Transformer layers N N",
+        "12"
+      ],
+      [
+        "Number of attention heads H H",
+        "8"
+      ],
+      [
+        "Dimension per attention head D h D_{h}",
+        "64"
+      ],
+      [
+        "MLP expansion ratio r r",
+        "4.0"
+      ],
+      [
+        "Feed-forward dimension D ff D_{\\mathrm{ff}}",
+        "2,048"
+      ],
+      [
+        "Dropout probability",
+        "0.1"
+      ],
+      [
+        "Transformer normalization",
+        "Pre-LN"
+      ],
+      [
+        "Transformer activation",
+        "GELU"
+      ],
+      [
+        "Positional representation",
+        "Channel + temporal embeddings"
+      ],
+      [
+        "Output strategy",
+        "Token-wise prediction"
+      ]
+    ]
+  },
+  {
+    "index": 49,
+    "id": "A4.E45",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "D h = D H = 2048 16 = 128 . D_{h}=\\frac{D}{H}=\\frac{2048}{16}=128.",
+        "",
+        "(45)"
+      ]
+    ]
+  },
+  {
+    "index": 50,
+    "id": "A4.E46",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "D ff = r ​ D = 4 × 2048 = 8192 . D_{\\mathrm{ff}}=rD=4\\times 2048=8192.",
+        "",
+        "(46)"
+      ]
+    ]
+  },
+  {
+    "index": 51,
+    "id": "A4.T6.1",
+    "caption": "Table 6: Configuration of the 1B-parameter EEG pretraining model.",
+    "rows": [
+      [
+        "Component / hyperparameter",
+        "Value"
+      ],
+      [
+        "Token embedding dimension D D",
+        "2048"
+      ],
+      [
+        "Number of Transformer layers N N",
+        "24"
+      ],
+      [
+        "Number of attention heads H H",
+        "16"
+      ],
+      [
+        "Dimension per attention head D h D_{h}",
+        "128"
+      ],
+      [
+        "MLP expansion ratio r r",
+        "4.0"
+      ],
+      [
+        "Feed-forward dimension D ff D_{\\mathrm{ff}}",
+        "8192"
+      ],
+      [
+        "Dropout probability",
+        "0.1"
+      ],
+      [
+        "Transformer normalization",
+        "Pre-LN"
+      ],
+      [
+        "Transformer activation",
+        "GELU"
+      ],
+      [
+        "Positional representation",
+        "Channel + temporal embeddings"
+      ],
+      [
+        "Output strategy",
+        "Token-wise prediction"
+      ]
+    ]
+  },
+  {
+    "index": 52,
+    "id": "A4.EGx1",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐗 ~ \\displaystyle\\widetilde{\\mathbf{X}}",
+        "= Tokenizer ⁡ ( 𝐗 ) , \\displaystyle=\\operatorname{Tokenizer}(\\mathbf{X}),",
+        "",
+        "(47)"
+      ],
+      [
+        "",
+        "𝐙 ( 0 ) \\displaystyle\\mathbf{Z}^{(0)}",
+        "= 𝐗 ~ + Embed ch ⁡ ( 𝐈 ch ) + Embed time ⁡ ( 𝐈 time ) , \\displaystyle=\\widetilde{\\mathbf{X}}+\\operatorname{Embed}_{\\mathrm{ch}}\\left(\\mathbf{I}^{\\mathrm{ch}}\\right)+\\operatorname{Embed}_{\\mathrm{time}}\\left(\\mathbf{I}^{\\mathrm{time}}\\right),",
+        "",
+        "(48)"
+      ],
+      [
+        "",
+        "𝐙 ( N ) \\displaystyle\\mathbf{Z}^{(N)}",
+        "= TransformerEncoder ⁡ ( 𝐙 ( 0 ) ) , \\displaystyle=\\operatorname{TransformerEncoder}\\left(\\mathbf{Z}^{(0)}\\right),",
+        "",
+        "(49)"
+      ],
+      [
+        "",
+        "𝐘 ^ \\displaystyle\\widehat{\\mathbf{Y}}",
+        "= Reshape ⁡ ( PredictionHead ⁡ ( 𝐙 ( N ) ) ) . \\displaystyle=\\operatorname{Reshape}\\left(\\operatorname{PredictionHead}\\left(\\mathbf{Z}^{(N)}\\right)\\right).",
+        "",
+        "(50)"
+      ]
+    ]
+  },
+  {
+    "index": 53,
+    "id": "A4.E51",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℝ B × S × L ⏟ input patches ⟶ ℝ B × S × D ⏟ token representations ⟶ ℝ B × S × F × K ⏟ time–frequency predictions . \\underbrace{\\mathbb{R}^{B\\times S\\times L}}_{\\text{input patches}}\\longrightarrow\\underbrace{\\mathbb{R}^{B\\times S\\times D}}_{\\text{token representations}}\\longrightarrow\\underbrace{\\mathbb{R}^{B\\times S\\times F\\times K}}_{\\text{time--frequency predictions}}.",
+        "",
+        "(51)"
+      ]
+    ]
+  },
+  {
+    "index": 54,
+    "id": "A5.E52",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐇 ( 9 ) ∈ ℝ B × N × D . \\mathbf{H}^{(9)}\\in\\mathbb{R}^{B\\times N\\times D}.",
+        "",
+        "(52)"
+      ]
+    ]
+  },
+  {
+    "index": 55,
+    "id": "A5.E53",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐡 = Flatten ⁡ ( 𝐇 ( 9 ) ) ∈ ℝ B × ( N ​ D ) . \\mathbf{h}=\\operatorname{Flatten}\\left(\\mathbf{H}^{(9)}\\right)\\in\\mathbb{R}^{B\\times(ND)}.",
+        "",
+        "(53)"
+      ]
+    ]
+  },
+  {
+    "index": 56,
+    "id": "A5.E54",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐙 = 𝐡𝐖 ⊤ + 𝐛 , \\mathbf{Z}=\\mathbf{h}\\mathbf{W}^{\\top}+\\mathbf{b},",
+        "",
+        "(54)"
+      ]
+    ]
+  },
+  {
+    "index": 57,
+    "id": "A5.E55",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "𝐖 ∈ ℝ K × N ​ D , 𝐛 ∈ ℝ K , \\mathbf{W}\\in\\mathbb{R}^{K\\times ND},\\qquad\\mathbf{b}\\in\\mathbb{R}^{K},",
+        "",
+        "(55)"
+      ]
+    ]
+  },
+  {
+    "index": 58,
+    "id": "A5.E56",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "p ⁡ ( y = k ∣ 𝐡 ) = exp ⁡ ( Z k ) ∑ j = 1 K exp ⁡ ( Z j ) . p(y=k\\mid\\mathbf{h})=\\frac{\\exp(Z_{k})}{\\sum_{j=1}^{K}\\exp(Z_{j})}.",
+        "",
+        "(56)"
+      ]
+    ]
+  },
+  {
+    "index": 59,
+    "id": "A5.E57",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ CE = − 1 B ∑ i = 1 B ∑ k = 1 K y i , k log p ( y i = k ∣ 𝐡 i ) , \\mathcal{L}_{\\mathrm{CE}}=-\\frac{1}{B}\\sum_{i=1}^{B}\\sum_{k=1}^{K}y_{i,k}\\log p(y_{i}=k\\mid\\mathbf{h}_{i}),",
+        "",
+        "(57)"
+      ]
+    ]
+  },
+  {
+    "index": 60,
+    "id": "A7.Ex1",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "h ⁡ ( x ) = W ​ Dropout ⁡ ( LayerNorm ⁡ ( x ) ) + b . h(x)=W\\operatorname{Dropout}(\\operatorname{LayerNorm}(x))+b.",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 61,
+    "id": "A8.T7.1.1",
+    "caption": "Table 7: Performance comparison on EEG downstream tasks. Results are reported as balanced accuracy (%). The best performance for each task is highlighted in bold.",
+    "rows": [
+      [
+        "Task",
+        "EEGNet",
+        "CBraMod",
+        "BIOT",
+        "LaBraM",
+        "LUNA",
+        "BENDR",
+        "REVE",
+        "FAME-50M",
+        "FAME-1B"
+      ],
+      [
+        "Audiovisual Stimulus",
+        "23.6 ± \\pm 1.8",
+        "34.6 ± \\pm 9.1",
+        "25.8 ± \\pm 3.2",
+        "39.9 ± \\pm 2.8",
+        "27.0 ± \\pm 3.9",
+        "44.9 ± \\pm 0.9",
+        "48.9 ± \\pm 5.4",
+        "44.5 ± \\pm 5.1",
+        "57.7 ± \\pm 4.1"
+      ],
+      [
+        "Mental Arithmetic",
+        "50.3 ± \\pm 2.7",
+        "70.0 ± \\pm 4.9",
+        "64.0 ± \\pm 3.4",
+        "68.3 ± \\pm 5.2",
+        "69.6 ± \\pm 1.4",
+        "62.2 ± \\pm 5.8",
+        "71.6 ± \\pm 0.9",
+        "74.3 ± \\pm 5.9",
+        "72.9 ± \\pm 4.4"
+      ],
+      [
+        "Depression Diagnosis",
+        "81.9 ± \\pm 3.6",
+        "85.9 ± \\pm 1.7",
+        "81.2 ± \\pm 6.9",
+        "86.3 ± \\pm 3.5",
+        "84.7 ± \\pm 1.7",
+        "86.9 ± \\pm 0.7",
+        "86.0 ± \\pm 0.8",
+        "86.1 ± \\pm 4.1",
+        "88.4 ± \\pm 3.3"
+      ],
+      [
+        "Dementia Diagnosis",
+        "44.2 ± \\pm 4.1",
+        "38.9 ± \\pm 5.8",
+        "45.3 ± \\pm 0.3",
+        "41.5 ± \\pm 0.7",
+        "42.1 ± \\pm 0.9",
+        "29.6 ± \\pm 4.9",
+        "42.1 ± \\pm 4.6",
+        "45.2 ± \\pm 0.8",
+        "39.6 ± \\pm 2.7"
+      ],
+      [
+        "Lrp",
+        "74.0 ± \\pm 0.4",
+        "78.0 ± \\pm 0.2",
+        "50.1 ± \\pm 0.3",
+        "77.9 ± \\pm 0.5",
+        "74.5 ± \\pm 0.6",
+        "70.5 ± \\pm 3.2",
+        "80.8 ± \\pm 1.3",
+        "76.8 ± \\pm 0.4",
+        "71.1 ± \\pm 0.5"
+      ],
+      [
+        "Mismatch Negativity",
+        "58.6 ± \\pm 0.8",
+        "58.9 ± \\pm 0.3",
+        "50.0 ± \\pm 0.1",
+        "58.6 ± \\pm 0.3",
+        "57.7 ± \\pm 0.7",
+        "50.2 ± \\pm 0.1",
+        "57.7 ± \\pm 1.8",
+        "58.6 ± \\pm 0.8",
+        "52.2 ± \\pm 2.4"
+      ],
+      [
+        "N170",
+        "68.9 ± \\pm 0.9",
+        "71.3 ± \\pm 1.1",
+        "50.1 ± \\pm 0.2",
+        "73.0 ± \\pm 0.4",
+        "68.8 ± \\pm 0.7",
+        "67.2 ± \\pm 1.1",
+        "76.5 ± \\pm 1.9",
+        "72.4 ± \\pm 0.9",
+        "68.5 ± \\pm 1.6"
+      ],
+      [
+        "N2pc",
+        "62.0 ± \\pm 0.6",
+        "62.0 ± \\pm 0.8",
+        "50.0 ± \\pm 0.1",
+        "61.6 ± \\pm 1.2",
+        "62.1 ± \\pm 1.2",
+        "56.3 ± \\pm 0.1",
+        "62.4 ± \\pm 0.8",
+        "64.9 ± \\pm 1.2",
+        "60.2 ± \\pm 3.0"
+      ],
+      [
+        "N400",
+        "64.6 ± \\pm 1.5",
+        "61.1 ± \\pm 0.5",
+        "49.7 ± \\pm 0.5",
+        "64.1 ± \\pm 1.6",
+        "63.2 ± \\pm 0.2",
+        "60.8 ± \\pm 2.5",
+        "63.8 ± \\pm 0.7",
+        "61.7 ± \\pm 0.7",
+        "61.2 ± \\pm 1.2"
+      ],
+      [
+        "SSVEP",
+        "8.5 ± \\pm 0.9",
+        "80.1 ± \\pm 9.6",
+        "58.4 ± \\pm 1.9",
+        "96.6 ± \\pm 0.7",
+        "12.6 ± \\pm 0.4",
+        "9.7 ± \\pm 4.2",
+        "96.6 ± \\pm 0.8",
+        "95.9 ± \\pm 1.2",
+        "93.2 ± \\pm 3.0"
+      ],
+      [
+        "Mental Imagery",
+        "29.6 ± \\pm 1.7",
+        "20.6 ± \\pm 1.1",
+        "26.6 ± \\pm 1.0",
+        "21.2 ± \\pm 0.3",
+        "21.2 ± \\pm 0.3",
+        "21.8 ± \\pm 0.7",
+        "26.3 ± \\pm 0.5",
+        "21.4 ± \\pm 1.0",
+        "23.3 ± \\pm 0.5"
+      ],
+      [
+        "Schizophrenia Diagnosis",
+        "71.0 ± \\pm 4.9",
+        "54.0 ± \\pm 2.8",
+        "55.9 ± \\pm 3.6",
+        "61.9 ± \\pm 1.8",
+        "64.5 ± \\pm 0.6",
+        "57.9 ± \\pm 0.2",
+        "47.2 ± \\pm 5.0",
+        "67.7 ± \\pm 3.0",
+        "64.7 ± \\pm 4.0"
+      ],
+      [
+        "Emotion",
+        "23.2 ± \\pm 0.9",
+        "30.5 ± \\pm 2.6",
+        "12.2 ± \\pm 1.3",
+        "26.7 ± \\pm 0.5",
+        "32.5 ± \\pm 10.1",
+        "12.7 ± \\pm 1.6",
+        "31.7 ± \\pm 2.1",
+        "28.6 ± \\pm 0.1",
+        "37.3 ± \\pm 0.7"
+      ],
+      [
+        "Average score",
+        "50.8",
+        "57.4",
+        "47.6",
+        "59.8",
+        "52.3",
+        "48.5",
+        "60.9",
+        "61.4",
+        "60.8"
+      ]
+    ]
+  }
+]

@@ -1,0 +1,287 @@
+[
+  {
+    "file": "sources/adabrain.html",
+    "bytes": 338604,
+    "sha256": "ba2e78f26cf45b13a08fc2b584f6b072d46f93ccab5f5b601f99c2a99f2b5291"
+  },
+  {
+    "file": "sources/adabrain.txt",
+    "bytes": 86422,
+    "sha256": "f9bc410fa97171a10a5fb494aaba6fc5955460f00b3ca72438e17fbb485dda46"
+  },
+  {
+    "file": "sources/adabrain_readme.md",
+    "bytes": 10493,
+    "sha256": "b05c0fa9fa6c1be58e9351d2b4dc0350641a08478ca4eb13f739092431db3038"
+  },
+  {
+    "file": "sources/adabrain_tables.json",
+    "bytes": 22903,
+    "sha256": "fc373eb99866816da901116b7ff5480bc55f2108720c9714e1cc1c9969fbf81e"
+  },
+  {
+    "file": "sources/bendr.html",
+    "bytes": 254583,
+    "sha256": "046ef3f6d0b01d91fe15e41b934a16a014d51ab162535af162e33d8ebe89f0fa"
+  },
+  {
+    "file": "sources/bendr.txt",
+    "bytes": 85818,
+    "sha256": "b1eef172a34718510018fb55461bcb35e806a35fa9fe4ae7d2140ae9df2bcd9a"
+  },
+  {
+    "file": "sources/biot.html",
+    "bytes": 265873,
+    "sha256": "41529a3a70a4f4111fb1264be026664149408264118801711151843dc9c2670e"
+  },
+  {
+    "file": "sources/biot.txt",
+    "bytes": 74297,
+    "sha256": "5d0d1928f4b36c170cdc4c1323eb281d93912df87de9f4d5c77d6f7f919a4e3e"
+  },
+  {
+    "file": "sources/brainomni.html",
+    "bytes": 333638,
+    "sha256": "5c2cc09d665442465a5856d6d97089620176915fde2e97110552a2d0420b0ad2"
+  },
+  {
+    "file": "sources/brainomni.txt",
+    "bytes": 87637,
+    "sha256": "db2723832410a2a0880044cc5438ddd460ec5dbccca82a29e36775d767d02c2e"
+  },
+  {
+    "file": "sources/brainomni_tables.json",
+    "bytes": 22298,
+    "sha256": "e18b6e41e02e878d84c2d08c2ec8a01a2a0798b167fd0d11bc499807c6c6a972"
+  },
+  {
+    "file": "sources/cbramod.html",
+    "bytes": 597231,
+    "sha256": "1f4dc1973a07df0f0a7b54a44af0d0067de96ae2a60e432d243d51584a304324"
+  },
+  {
+    "file": "sources/cbramod.txt",
+    "bytes": 136903,
+    "sha256": "a62031ce958796d570595c73d797b01fe28c7f5304cfd6e547e84bcb0c4bbef1"
+  },
+  {
+    "file": "sources/cbramod_tables.json",
+    "bytes": 54394,
+    "sha256": "b3df81e9572773d3c64fb42971cb268771317ed39665cb87a719913726f42633"
+  },
+  {
+    "file": "sources/csbrain.html",
+    "bytes": 674124,
+    "sha256": "01f7dce71ee4e7c82576a839c16508ef56cff90817196c7a0fdb40ab4342953d"
+  },
+  {
+    "file": "sources/csbrain.txt",
+    "bytes": 133270,
+    "sha256": "e0a5c7c8122b854b1c7ff66bd79ef1328e4f4d832515310958a165148c29efcd"
+  },
+  {
+    "file": "sources/csbrain_tables.json",
+    "bytes": 47090,
+    "sha256": "69b521f219e5906b47469c9ed967148f0055a1951910364f4c573619452acfd1"
+  },
+  {
+    "file": "sources/echo.html",
+    "bytes": 355256,
+    "sha256": "f17a0b2469c6c8c965c32ea0828f49e24333e88f0b02954880a42b50110d60d2"
+  },
+  {
+    "file": "sources/echo.txt",
+    "bytes": 87963,
+    "sha256": "678f094d8905feec3c6acb1cdd6592703b2c44d78b1114d8cd5e6bac8a23a9e8"
+  },
+  {
+    "file": "sources/echo_tables.json",
+    "bytes": 27222,
+    "sha256": "07656a085ee370291957e2391073030c312605abb43f57ad7c8194d0c84a387e"
+  },
+  {
+    "file": "sources/eegconformer_readme.md",
+    "bytes": 2203,
+    "sha256": "2c121f6b86dd2d0ba9b4fb27ba719628dd7f9b65f70082bf49db95b3f051e56e"
+  },
+  {
+    "file": "sources/eegnet.html",
+    "bytes": 294405,
+    "sha256": "3965aab367da763d67b4d91d99e1eb7cb3238dd5902aa393346e8e270725d7e2"
+  },
+  {
+    "file": "sources/eegnet.txt",
+    "bytes": 95175,
+    "sha256": "3ac0be2a1c1228f0d9cd53fa1a6d4e2e4d87703fc2de4e688d78bff4fe177fa7"
+  },
+  {
+    "file": "sources/eegpt.pdf",
+    "bytes": 8649213,
+    "sha256": "6e988e2e66e7d729d62a86cc529ca6aa632f282c7b5078c5e373dbb328e6cb94"
+  },
+  {
+    "file": "sources/fame-page-19.png",
+    "bytes": 338156,
+    "sha256": "fe84085dacf66f44e3df0ef34ba2fc77feae66a094160734d8a68995f6eae0e4"
+  },
+  {
+    "file": "sources/fame.html",
+    "bytes": 597565,
+    "sha256": "41bf6132ba6599bee32bcebe6580009567fa5eb977f5c08be52f6f5fc7e97d0c"
+  },
+  {
+    "file": "sources/fame.pdf",
+    "bytes": 4315407,
+    "sha256": "fd696adef5b32508e6a9178d7a5ca77c4b4eee49faab5caf750f49239bf8bb2b"
+  },
+  {
+    "file": "sources/fame.txt",
+    "bytes": 107937,
+    "sha256": "fc6989afb86f215e4cf73d6511adc77f9db1a8f505448a1f87294b10379e92d2"
+  },
+  {
+    "file": "sources/fame_mae_comparison.png",
+    "bytes": 66709,
+    "sha256": "84328d25f7aab47bd2f63ba3b5f7d24c7959f196c740b619ee9743c04bd6c478"
+  },
+  {
+    "file": "sources/fame_tables.json",
+    "bytes": 53041,
+    "sha256": "893a34125c1d08971037e7ffa1346cd2c956aa974ea012186f2355ebdc90b5e6"
+  },
+  {
+    "file": "sources/labram.html",
+    "bytes": 328632,
+    "sha256": "7639a998f8b4a996a7430d13477335b6ce3eaee1aa16ae8eb5cf8695b6ca627b"
+  },
+  {
+    "file": "sources/labram.txt",
+    "bytes": 86120,
+    "sha256": "9f82e7e5bd5d359317ef1faaa99d0ad4a534c4982e31a1b24521798236d6f105"
+  },
+  {
+    "file": "sources/neuralbench-model-scatter-data.json",
+    "bytes": 33391,
+    "sha256": "6c2afcf95c2772000fa5ce5222845493638d32f849de13328083801847d34d09"
+  },
+  {
+    "file": "sources/neuralbench-results-data.json",
+    "bytes": 70677,
+    "sha256": "11b0d2c2cba533caa61d0fc5a289461db29113ad61eb8cd8a820165a641d76fa"
+  },
+  {
+    "file": "sources/neuralbench-results-table.js",
+    "bytes": 16385,
+    "sha256": "63a4d5d78c50e2b55edbf988d108af1e951cf8a7e3117547724ddfb7dc6dae61"
+  },
+  {
+    "file": "sources/neuralbench.html",
+    "bytes": 412826,
+    "sha256": "f0b2938e84940e13b61c84f63337de0855a6511a37eb729666e4b4faeb65ec29"
+  },
+  {
+    "file": "sources/neuralbench.txt",
+    "bytes": 105060,
+    "sha256": "89ea6d9201fb9f44e2f95b5260021f98a8d9c6e14fbd8a201b0b3c1fb6cc2ba8"
+  },
+  {
+    "file": "sources/neuralbench_site.html",
+    "bytes": 274,
+    "sha256": "abae11db6c28c8dfcddf34004fd8892faffc4ac67c0d6965bdb78da7e316432d"
+  },
+  {
+    "file": "sources/neuralbench_tables.json",
+    "bytes": 17526,
+    "sha256": "4e2e411e99d8dae80e47e002be5570227c5e3452275ef5ea2fe7cea6097c9019"
+  },
+  {
+    "file": "sources/neuroai_tree.json",
+    "bytes": 217384,
+    "sha256": "2a17401473ca4dbe1d4a37471a362318bd42fc78f9fbefcfdd96baea6b75ac41"
+  },
+  {
+    "file": "sources/neurolm.html",
+    "bytes": 318491,
+    "sha256": "887c6592162a5dabf8e1014f8ab1fd60988097dd5f7c6ca67bbf5dbf0ada8895"
+  },
+  {
+    "file": "sources/neurolm.txt",
+    "bytes": 69555,
+    "sha256": "a7fdad59b31cdd2608de6a4203b672be3a6718c78e028302def928398a35498b"
+  },
+  {
+    "file": "sources/neurolm_tables.json",
+    "bytes": 25706,
+    "sha256": "794e185e36e35de744fc2cee4a3b291a0d77d379686cd05dce24a979ed5486b0"
+  },
+  {
+    "file": "sources/omnieeg.html",
+    "bytes": 1045323,
+    "sha256": "ba48c7fea8a2f41d80e4b8c65901424a16939743ac311261d0a4187bedc977e4"
+  },
+  {
+    "file": "sources/omnieeg.txt",
+    "bytes": 94870,
+    "sha256": "d4ca6a92717932b57db6146a67158a52ac4418856890904c57af26b1315958ca"
+  },
+  {
+    "file": "sources/omnieeg_tables.json",
+    "bytes": 68335,
+    "sha256": "38c6a0f64ea6ebec8c328cc185dcd34549b534f734a03fee0f170390f626962c"
+  },
+  {
+    "file": "sources/reve-page-9.png",
+    "bytes": 285363,
+    "sha256": "9d5f9d36750e8100441530be2b93b8238c2182a1e6fb749d7d4d8d6219c1ec9b"
+  },
+  {
+    "file": "sources/reve.html",
+    "bytes": 582854,
+    "sha256": "7a6f58c3e85ac1982cefc1697145f44f0f3a63a7c2d8944d30cd3a24ef5f572c"
+  },
+  {
+    "file": "sources/reve.pdf",
+    "bytes": 2848108,
+    "sha256": "c573315b5dd3d72c6014c233b0a5134dea9aa7ca589574ae2c3025b0ff7f1444"
+  },
+  {
+    "file": "sources/reve.rst",
+    "bytes": 2015,
+    "sha256": "1b16d7bb978ed4f92580e737df1ac80efe68d6d138ab8094239ee2acfb5ed826"
+  },
+  {
+    "file": "sources/reve.txt",
+    "bytes": 137020,
+    "sha256": "87559b26fa6d3382756542a8ef33a93d27ecd9cbc3d4a692195a7546bb672023"
+  },
+  {
+    "file": "sources/reve_project.html",
+    "bytes": 108258,
+    "sha256": "fdf8c98431b983c0c7eedc38f442391541246669bbf2ff59773235aea03eaf49"
+  },
+  {
+    "file": "sources/reve_readme.md",
+    "bytes": 5985,
+    "sha256": "627d2ed9b85d33a4a406439935f8e7b313c7da70067538a5d8473011be188ce3"
+  },
+  {
+    "file": "sources/reve_tables.json",
+    "bytes": 39996,
+    "sha256": "02a10cddac8eff6e30ce9362c2da751537a2d7b32dd46648a4fe4e36f65c58ba"
+  },
+  {
+    "file": "sources/unimind.html",
+    "bytes": 470374,
+    "sha256": "fcd2a8373a818ac213aaeb93a9036c4aded236f8e9169582c6ee71df25d72298"
+  },
+  {
+    "file": "sources/unimind.txt",
+    "bytes": 77579,
+    "sha256": "faf2c47c19f6999bc3f2b2f285a076d022d6536d1bf05a7d3beb6477a040ece4"
+  },
+  {
+    "file": "sources/unimind_project.html",
+    "bytes": 19663,
+    "sha256": "ee2aa83ac2704dc857742503b54fc9e063ef86787cc85772ad6d29a6725994f5"
+  }
+]

@@ -1,0 +1,1814 @@
+[
+  {
+    "index": 0,
+    "id": "S2.E1",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "ℒ = 1 | 𝐏 m | ​ ∑ i ∈ 𝐏 m ‖ 𝐏 ^ m ( i ) − 𝐏 m ( i ) ‖ 1 \\mathcal{L}=\\frac{1}{|\\mathbf{P}_{\\text{m}}|}\\sum_{i\\in\\mathbf{P}_{\\text{m}}}\\left\\lVert\\mathbf{\\hat{P}}_{\\text{m}}^{(i)}-\\mathbf{P}_{\\text{m}}^{(i)}\\right\\rVert_{1}",
+        "",
+        "(1)"
+      ]
+    ]
+  },
+  {
+    "index": 1,
+    "id": "S3.T1.2",
+    "caption": "Table 1: Overview of downstream tasks and datasets.",
+    "rows": [
+      [
+        "Task",
+        "Dataset",
+        "# Channels",
+        "Duration",
+        "# Samples",
+        "Rate",
+        "# Classes"
+      ],
+      [
+        "Motor Imagery",
+        "PhysioNet-MI",
+        "64",
+        "4s",
+        "9,837",
+        "160Hz",
+        "4"
+      ],
+      [
+        "",
+        "BCIC-IV-2a",
+        "22",
+        "4s",
+        "5,184",
+        "250Hz",
+        "4"
+      ],
+      [
+        "Event Type",
+        "TUEV",
+        "16",
+        "5s",
+        "112,491",
+        "256Hz",
+        "6"
+      ],
+      [
+        "Abnormal detection",
+        "TUAB",
+        "16",
+        "10s",
+        "409,455",
+        "256Hz",
+        "2"
+      ],
+      [
+        "Sleep staging",
+        "HMC",
+        "4",
+        "30s",
+        "137,243",
+        "256 Hz",
+        "5"
+      ],
+      [
+        "",
+        "ISRUC",
+        "6",
+        "30s",
+        "89,240",
+        "200Hz",
+        "5"
+      ],
+      [
+        "Emotion recognition",
+        "FACED",
+        "32",
+        "10s",
+        "10,332",
+        "250Hz",
+        "9"
+      ],
+      [
+        "Mental disorder",
+        "Mumtaz",
+        "19",
+        "5s",
+        "7,143",
+        "256Hz",
+        "2"
+      ],
+      [
+        "Mental stress",
+        "MAT",
+        "20",
+        "5s",
+        "1,707",
+        "500Hz",
+        "2"
+      ],
+      [
+        "Imagined speech",
+        "BCIC2020-3",
+        "64",
+        "3s",
+        "6,000",
+        "256Hz",
+        "5"
+      ]
+    ]
+  },
+  {
+    "index": 2,
+    "id": "S4.T2.2.1",
+    "caption": "Table 2: Balanced accuracy ( ± \\pm std) of different methods across 9 EEG classification task",
+    "rows": [
+      [
+        "Methods",
+        "TUAB",
+        "TUEV",
+        "PhysioNetMI",
+        "BCI-IV-2a",
+        "FACED"
+      ],
+      [
+        "EEGNet",
+        "0.7642 ± \\pm 0.0036",
+        "0.3876 ± \\pm 0.0143",
+        "0.5814 ± \\pm 0.0125",
+        "0.4482 ± \\pm 0.0094",
+        "0.4090 ± \\pm 0.0122"
+      ],
+      [
+        "EEGConformer",
+        "0.7758 ± \\pm 0.0049",
+        "0.4074 ± \\pm 0.0164",
+        "0.6049 ± \\pm 0.0104",
+        "0.4696 ± \\pm 0.0106",
+        "0.4559 ± \\pm 0.0125"
+      ],
+      [
+        "SPaRCNet",
+        "0.7896 ± \\pm 0.0018",
+        "0.4161 ± \\pm 0.0262",
+        "0.5932 ± \\pm 0.0152",
+        "0.4635 ± \\pm 0.0117",
+        "0.4673 ± \\pm 0.0155"
+      ],
+      [
+        "ContraWR",
+        "0.7746 ± \\pm 0.0041",
+        "0.4384 ± \\pm 0.0349",
+        "0.5892 ± \\pm 0.0133",
+        "0.4678 ± \\pm 0.0125",
+        "0.4887 ± \\pm 0.0078"
+      ],
+      [
+        "CNN-Transformer",
+        "0.7777 ± \\pm 0.0022",
+        "0.4087 ± \\pm 0.0161",
+        "0.6053 ± \\pm 0.0118",
+        "0.4600 ± \\pm 0.0108",
+        "0.4697 ± \\pm 0.0132"
+      ],
+      [
+        "FFCL",
+        "0.7848 ± \\pm 0.0038",
+        "0.3979 ± \\pm 0.0104",
+        "0.5726 ± \\pm 0.0092",
+        "0.4470 ± \\pm 0.0143",
+        "0.4673 ± \\pm 0.0158"
+      ],
+      [
+        "ST-Transformer",
+        "0.7966 ± \\pm 0.0023",
+        "0.3984 ± \\pm 0.0228",
+        "0.6035 ± \\pm 0.0081",
+        "0.4575 ± \\pm 0.0145",
+        "0.4810 ± \\pm 0.0079"
+      ],
+      [
+        "BIOT",
+        "0.7959 ± \\pm 0.0057",
+        "0.5281 ± \\pm 0.0225",
+        "0.6153 ± \\pm 0.0154",
+        "0.4748 ± \\pm 0.0093",
+        "0.5118 ± \\pm 0.0118"
+      ],
+      [
+        "LaBraM-Base",
+        "0.8140 ± \\pm 0.0019",
+        "0.6409 ± \\pm 0.0065",
+        "0.6173 ± \\pm 0.0122",
+        "0.4869 ± \\pm 0.0085",
+        "0.5273 ± \\pm 0.0107"
+      ],
+      [
+        "CbraMod",
+        "0.8289 ± \\pm 0.0022",
+        "0.6671 ± \\pm 0.0107",
+        "0.6417 ± \\pm 0.0091",
+        "0.5138 ± \\pm 0.0066",
+        "0.5509 ± \\pm 0.0089"
+      ],
+      [
+        "REVE-Base",
+        "0.8315 ± \\pm 0.0014",
+        "0.6759 ± \\pm 0.0229",
+        "0.6480 ± \\pm 0.0140",
+        "0.6396 ± \\pm 0.0095",
+        "0.5646 ± \\pm 0.0164"
+      ],
+      [
+        "",
+        "ISRUC",
+        "Mumtaz",
+        "MAT",
+        "BCI-2020-3",
+        "Average"
+      ],
+      [
+        "EEGNet",
+        "0.7154 ± \\pm 0.0121",
+        "0.9232 ± \\pm 0.0104",
+        "0.6770 ± \\pm 0.0116",
+        "0.4413 ± \\pm 0.0096",
+        "0.5941 ± \\pm 0.0037"
+      ],
+      [
+        "EEGConformer",
+        "0.7400 ± \\pm 0.0133",
+        "0.9308 ± \\pm 0.0117",
+        "0.6805 ± \\pm 0.0123",
+        "0.4506 ± \\pm 0.0133",
+        "0.6128 ± \\pm 0.0044"
+      ],
+      [
+        "SPaRCNet",
+        "0.7487 ± \\pm 0.0075",
+        "0.9316 ± \\pm 0.0095",
+        "0.6879 ± \\pm 0.0107",
+        "0.4426 ± \\pm 0.0156",
+        "0.6156 ± \\pm 0.0047"
+      ],
+      [
+        "ContraWR",
+        "0.7402 ± \\pm 0.0126",
+        "0.9195 ± \\pm 0.0115",
+        "0.6631 ± \\pm 0.0097",
+        "0.4257 ± \\pm 0.0162",
+        "0.6119 ± \\pm 0.0053"
+      ],
+      [
+        "CNN-Transformer",
+        "0.7363 ± \\pm 0.0087",
+        "0.9305 ± \\pm 0.0068",
+        "0.6779 ± \\pm 0.0268",
+        "0.4533 ± \\pm 0.0092",
+        "0.6133 ± \\pm 0.0045"
+      ],
+      [
+        "FFCL",
+        "0.7277 ± \\pm 0.0182",
+        "0.9314 ± \\pm 0.0038",
+        "0.6798 ± \\pm 0.0142",
+        "0.4678 ± \\pm 0.0197",
+        "0.6085 ± \\pm 0.0044"
+      ],
+      [
+        "ST-Transformer",
+        "0.7381 ± \\pm 0.0205",
+        "0.9135 ± \\pm 0.0103",
+        "0.6631 ± \\pm 0.0173",
+        "0.4126 ± \\pm 0.0122",
+        "0.6071 ± \\pm 0.0048"
+      ],
+      [
+        "BIOT",
+        "0.7527 ± \\pm 0.0121",
+        "0.9358 ± \\pm 0.0052",
+        "0.6875 ± \\pm 0.0186",
+        "0.4920 ± \\pm 0.0086",
+        "0.6438 ± \\pm 0.0044"
+      ],
+      [
+        "LaBraM-Base",
+        "0.7633 ± \\pm 0.0102",
+        "0.9409 ± \\pm 0.0079",
+        "0.6909 ± \\pm 0.0125",
+        "0.5060 ± \\pm 0.0155",
+        "0.6653 ± \\pm 0.0031"
+      ],
+      [
+        "CBraMod",
+        "0.7865 ± \\pm 0.0110",
+        "0.9560 ± \\pm 0.0056",
+        "0.7256 ± \\pm 0.0132",
+        "0.5373 ± \\pm 0.0108",
+        "0.6898 ± \\pm 0.0031"
+      ],
+      [
+        "REVE-Base",
+        "0.7819 ± \\pm 0.0078 2 2 2 NB: our preprocessing pipeline is different from the baseline and fixes a potential bug",
+        "0.9644 ± \\pm 0.0097",
+        "0.7660 ± \\pm 0.0355",
+        "0.5635 ± \\pm 0.0123",
+        "0.7150 ± \\pm 0.0057"
+      ]
+    ]
+  },
+  {
+    "index": 3,
+    "id": "S4.T3.2",
+    "caption": "Table 3: Impact of pretraining (PT) and weight freezing on REVE and baselines for PhysioNet-MI",
+    "rows": [
+      [
+        "",
+        "PhysioNet-MI, 4-class"
+      ],
+      [
+        "Settings",
+        "Balanced Accuracy",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "CBraMod (w/ PT)",
+        "0.6417 ± \\pm 0.0091",
+        "0.5222 ± \\pm 0.0169",
+        "0.6427 ± \\pm 0.0100"
+      ],
+      [
+        "BIOT (w/ PT)",
+        "0.6153 ± \\pm 0.0154",
+        "0.4875 ± \\pm 0.0272",
+        "0.6158 ± \\pm 0.0197"
+      ],
+      [
+        "LaBraM-Base (w/ PT)",
+        "0.6173 ± \\pm 0.0122",
+        "0.4912 ± \\pm 0.0192",
+        "0.6177 ± \\pm 0.0141"
+      ],
+      [
+        "REVE-Base (w/ PT)",
+        "0.6480 ± \\pm 0.0140",
+        "0.5306 ± \\pm 0.0187",
+        "0.6484 ± \\pm 0.0170"
+      ],
+      [
+        "CBraMod (w/o PT)",
+        "0.6196 ± \\pm 0.0143",
+        "0.4994 ± \\pm 0.0289",
+        "0.6289 ± \\pm 0.0179"
+      ],
+      [
+        "REVE-Base (w/o PT)",
+        "0.5409 ± \\pm 0.0094",
+        "0.3879 ± \\pm 0.0125",
+        "0.5421 ± \\pm 0.0101"
+      ],
+      [
+        "Cbramod (Frozen)",
+        "0.3845 ± \\pm 0.0345",
+        "0.2983 ± \\pm 0.0498",
+        "0.3946 ± \\pm 0.0378"
+      ],
+      [
+        "BIOT (Frozen)",
+        "0.3698 ± \\pm 0.0318",
+        "0.2703 ± \\pm 0.0472",
+        "0.3723 ± \\pm 0.0364"
+      ],
+      [
+        "LaBraM (Frozen)",
+        "0.3715 ± \\pm 0.0458",
+        "0.2814 ± \\pm 0.0586",
+        "0.3796 ± \\pm 0.0472"
+      ],
+      [
+        "REVE-Base (Frozen)",
+        "0.5371 ± \\pm 0.0052",
+        "0.3827 ± \\pm 0.0070",
+        "0.5376 ± \\pm 0.0033"
+      ]
+    ]
+  },
+  {
+    "index": 4,
+    "id": "S4.T4.4.1",
+    "caption": "Table 4: Linear probing results on downstream tasks for REVE and CBraMod models with (Pool) and without pooling across multiple EEG downstream tasks. Best results are highlighted in bold. To ensure a fair comparison, we reproduced CBraMod ( Wang et al., 2024b ) using their official code and pretrained checkpoint, carefully following their classification pipeline (notably, no pooling) and matched architectural details to avoid any bias.",
+    "rows": [
+      [
+        "Dataset",
+        "REVE-B (Pool)",
+        "REVE-B",
+        "REVE-L (Pool)",
+        "REVE-L",
+        "CBraMod (Pool)",
+        "CBraMod"
+      ],
+      [
+        "Mumtaz",
+        "0.962 ± 0.003",
+        "0.931 ± 0.021",
+        "0.985 ± 0.006",
+        "0.980 ± 0.009",
+        "0.859 ± 0.009",
+        "0.907 ± 0.027"
+      ],
+      [
+        "M. Arithmetic",
+        "0.725 ± 0.010",
+        "0.740 ± 0.073",
+        "0.712 ± 0.008",
+        "0.665 ± 0.103",
+        "0.500 ± 0.000",
+        "0.605 ± 0.020"
+      ],
+      [
+        "TUAB",
+        "0.810 ± 0.007",
+        "0.809 ± 0.004",
+        "0.821 ± 0.004",
+        "0.809 ± 0.004",
+        "0.500 ± 0.000",
+        "0.500 ± 0.000"
+      ],
+      [
+        "PhysioNetMI",
+        "0.537 ± 0.005",
+        "0.510 ± 0.012",
+        "0.551 ± 0.001",
+        "0.617 ± 0.000",
+        "0.256 ± 0.002",
+        "0.531 ± 0.015"
+      ],
+      [
+        "BCIC-IV-2a",
+        "0.432 ± 0.004",
+        "0.517 ± 0.015",
+        "0.534 ± 0.001",
+        "0.603 ± 0.011",
+        "0.287 ± 0.023",
+        "0.376 ± 0.006"
+      ],
+      [
+        "ISRUC",
+        "0.697 ± 0.011",
+        "0.662 ± 0.030",
+        "0.743 ± 0.004",
+        "0.758 ± 0.001",
+        "0.407 ± 0.049",
+        "0.430 ± 0.043"
+      ],
+      [
+        "HMC",
+        "0.647 ± 0.008",
+        "0.604 ± 0.008",
+        "0.703 ± 0.003",
+        "0.710 ± 0.007",
+        "0.368 ± 0.001",
+        "0.538 ± 0.009"
+      ],
+      [
+        "BCIC2020-3",
+        "0.234 ± 0.009",
+        "0.390 ± 0.017",
+        "0.274 ± 0.001",
+        "0.378 ± 0.021",
+        "0.214 ± 0.003",
+        "0.374 ± 0.007"
+      ],
+      [
+        "TUEV",
+        "0.592 ± 0.008",
+        "0.508 ± 0.073",
+        "0.630 ± 0.003",
+        "0.550 ± 0.014",
+        "0.219 ± 0.009",
+        "0.482 ± 0.037"
+      ],
+      [
+        "Faced",
+        "0.240 ± 0.010",
+        "0.422 ± 0.028",
+        "0.283 ± 0.003",
+        "0.469 ± 0.007",
+        "0.117 ± 0.005",
+        "0.261 ± 0.013"
+      ],
+      [
+        "Avg.",
+        "0.586",
+        "0.609",
+        "0.623",
+        "0.654",
+        "0.373",
+        "0.501"
+      ]
+    ]
+  },
+  {
+    "index": 5,
+    "id": "A1.T5.2",
+    "caption": "Table 5: Exhaustive list of all hyperparameter values",
+    "rows": [
+      [
+        "Variable",
+        "Meaning",
+        "Value"
+      ],
+      [
+        "Data preprocessing"
+      ],
+      [
+        "w w",
+        "Window size",
+        "1 1 s"
+      ],
+      [
+        "o o",
+        "Overlap",
+        "0.1 0.1 s"
+      ],
+      [
+        "σ noise \\sigma_{\\text{noise}}",
+        "Position noise std",
+        "0.25 0.25 cm"
+      ],
+      [
+        "Masking parameters"
+      ],
+      [
+        "M r M_{r}",
+        "Total masking ratio",
+        "55 % 55\\%"
+      ],
+      [
+        "R s R_{s}",
+        "Spatial masking radius",
+        "3 ​ cm 3\\,\\text{cm}"
+      ],
+      [
+        "R t R_{t}",
+        "Temporal masking radius",
+        "3 ​ seconds 3\\,\\text{seconds}"
+      ],
+      [
+        "D r D_{r}",
+        "Dropout ratio",
+        "10 % 10\\%"
+      ],
+      [
+        "R d R_{d}",
+        "Dropout spatial radius",
+        "4 ​ cm 4\\,\\text{cm}"
+      ],
+      [
+        "Training dynamics"
+      ],
+      [
+        "",
+        "Optimizer",
+        "StableAdamW"
+      ],
+      [
+        "",
+        "Scheduler",
+        "Warmup Stable Decay"
+      ],
+      [
+        "η \\eta",
+        "Peak learning rate",
+        "η = 2.4 ⋅ 10 − 4 \\eta=2.4\\cdot 10^{-4}"
+      ],
+      [
+        "β 1 , β 2 \\beta_{1},\\beta_{2}",
+        "Momentum constants",
+        "0.9 , 0.95 0.9,0.95"
+      ],
+      [
+        "ε \\varepsilon",
+        "Numerical stability bias",
+        "10 − 9 10^{-9}"
+      ],
+      [
+        "σ init \\sigma_{\\text{init}}",
+        "Initialization std",
+        "0.02 0.02"
+      ],
+      [
+        "",
+        "Batch size",
+        "4,096 4,096"
+      ],
+      [
+        "λ \\lambda",
+        "Secondary loss multiplier",
+        "0.1 0.1"
+      ]
+    ]
+  },
+  {
+    "index": 6,
+    "id": "A1.T6.2",
+    "caption": "Table 6: Summary of encoder configurations for different sizes",
+    "rows": [
+      [
+        "Size",
+        "depth",
+        "n_heads",
+        "dim",
+        "params (M)",
+        "n freq n_{\\text{freq}}"
+      ],
+      [
+        "Small",
+        "4",
+        "8",
+        "512",
+        "12",
+        "4"
+      ],
+      [
+        "Base",
+        "22",
+        "8",
+        "512",
+        "69",
+        "4"
+      ],
+      [
+        "Large",
+        "22",
+        "19",
+        "1250",
+        "408",
+        "5"
+      ]
+    ]
+  },
+  {
+    "index": 7,
+    "id": "A2.T7.2",
+    "caption": "Table 7: Detailed overview of the pretraining datasets.",
+    "rows": [
+      [
+        "Group",
+        "Subjects",
+        "Duration (hours)",
+        "Datasets"
+      ],
+      [
+        "Category"
+      ],
+      [
+        "BCI",
+        "791",
+        "457",
+        "28"
+      ],
+      [
+        "Cognition",
+        "4,193",
+        "10,376",
+        "56"
+      ],
+      [
+        "Clinic",
+        "19,290",
+        "50,581",
+        "8"
+      ],
+      [
+        "Platform"
+      ],
+      [
+        "TUH",
+        "14,987",
+        "26,847",
+        "1"
+      ],
+      [
+        "Physionet",
+        "607",
+        "22,707",
+        "2"
+      ],
+      [
+        "OpenNeuro",
+        "4153",
+        "10,194",
+        "56"
+      ],
+      [
+        "MOABB",
+        "711",
+        "384",
+        "27"
+      ],
+      [
+        "Other",
+        "3,802",
+        "1,250",
+        "6"
+      ],
+      [
+        "Channels"
+      ],
+      [
+        "[ 3 − 30 [ [3-30[",
+        "19,871",
+        "50,870",
+        "31"
+      ],
+      [
+        "[ 30 − 80 [ [30-80[",
+        "1,781",
+        "1,516",
+        "48"
+      ],
+      [
+        "[ 80 − 129 ] [80-129]",
+        "2,622",
+        "9,027",
+        "13"
+      ],
+      [
+        "Total",
+        "24,274",
+        "61,415",
+        "92"
+      ]
+    ]
+  },
+  {
+    "index": 8,
+    "id": "A3.T8.2",
+    "caption": "Table 8: The results of different methods on emotion recognition (FACED, 9-class).",
+    "rows": [
+      [
+        "Methods",
+        "Balanced Accuracy",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "EEGNet",
+        "0.4090 ± \\pm 0.0122",
+        "0.3342 ± \\pm 0.0251",
+        "0.4124 ± \\pm 0.0141"
+      ],
+      [
+        "EEGConformer",
+        "0.4559 ± \\pm 0.0125",
+        "0.3858 ± \\pm 0.0186",
+        "0.4514 ± \\pm 0.0107"
+      ],
+      [
+        "SPaRCNet",
+        "0.4673 ± \\pm 0.0155",
+        "0.3978 ± \\pm 0.0289",
+        "0.4729 ± \\pm 0.0133"
+      ],
+      [
+        "ContraWR",
+        "0.4887 ± \\pm 0.0078",
+        "0.4231 ± \\pm 0.0151",
+        "0.4884 ± \\pm 0.0074"
+      ],
+      [
+        "CNN-Transformer",
+        "0.4697 ± \\pm 0.0132",
+        "0.4017 ± \\pm 0.0168",
+        "0.4720 ± \\pm 0.0125"
+      ],
+      [
+        "FFCL",
+        "0.4673 ± \\pm 0.0158",
+        "0.3987 ± \\pm 0.0383",
+        "0.4699 ± \\pm 0.0145"
+      ],
+      [
+        "ST-Transformer",
+        "0.4810 ± \\pm 0.0079",
+        "0.4137 ± \\pm 0.0133",
+        "0.4795 ± \\pm 0.0096"
+      ],
+      [
+        "BIOT",
+        "0.5118 ± \\pm 0.0118",
+        "0.4476 ± \\pm 0.0254",
+        "0.5136 ± \\pm 0.0112"
+      ],
+      [
+        "LaBraM-Base",
+        "0.5273 ± \\pm 0.0107",
+        "0.4698 ± \\pm 0.0188",
+        "0.5288 ± \\pm 0.0102"
+      ],
+      [
+        "CBraMod",
+        "0.5509 ± \\pm 0.0089",
+        "0.5041 ± \\pm 0.0122",
+        "0.5618 ± \\pm 0.0093"
+      ],
+      [
+        "REVE-Base (ours)",
+        "0.5646 ± \\pm 0.0164",
+        "0.5080 ± \\pm 0.0191",
+        "0.5659 ± \\pm 0.0172"
+      ]
+    ]
+  },
+  {
+    "index": 9,
+    "id": "A3.T9.2",
+    "caption": "Table 9: The results of different methods on mental disorder diagnosis (Mumtaz2016, 2-class).",
+    "rows": [
+      [
+        "Methods",
+        "Balanced Accuracy",
+        "AUC-PR",
+        "AUROC"
+      ],
+      [
+        "EEGNet",
+        "0.9232 ± \\pm 0.0104",
+        "0.9626 ± \\pm 0.0095",
+        "0.9639 ± \\pm 0.0093"
+      ],
+      [
+        "EEGConformer",
+        "0.9308 ± \\pm 0.0117",
+        "0.9684 ± \\pm 0.0105",
+        "0.9702 ± \\pm 0.0101"
+      ],
+      [
+        "SPaRCNet",
+        "0.9316 ± \\pm 0.0095",
+        "0.9754 ± \\pm 0.0065",
+        "0.9781 ± \\pm 0.0083"
+      ],
+      [
+        "ContraWR",
+        "0.9195 ± \\pm 0.0115",
+        "0.9589 ± \\pm 0.0102",
+        "0.9621 ± \\pm 0.0092"
+      ],
+      [
+        "CNN-Transformer",
+        "0.9305 ± \\pm 0.0068",
+        "0.9757 ± \\pm 0.0074",
+        "0.9742 ± \\pm 0.0059"
+      ],
+      [
+        "FFCL",
+        "0.9314 ± \\pm 0.0038",
+        "0.9717 ± \\pm 0.0021",
+        "0.9753 ± \\pm 0.0033"
+      ],
+      [
+        "ST-Transformer",
+        "0.9135 ± \\pm 0.0103",
+        "0.9578 ± \\pm 0.0086",
+        "0.9594 ± \\pm 0.0059"
+      ],
+      [
+        "BIOT",
+        "0.9358 ± \\pm 0.0052",
+        "0.9736 ± \\pm 0.0034",
+        "0.9758 ± \\pm 0.0042"
+      ],
+      [
+        "LaBraM-Base",
+        "0.9409 ± \\pm 0.0079",
+        "0.9798 ± \\pm 0.0093",
+        "0.9782 ± \\pm 0.0057"
+      ],
+      [
+        "CBraMod",
+        "0.9560 ± \\pm 0.0056",
+        "0.9923 ± \\pm 0.0032",
+        "0.9921 ± \\pm 0.0025"
+      ],
+      [
+        "REVE-Base (ours)",
+        "0.9644 ± \\pm 0.0097",
+        "0.9961 ± \\pm 0.0013",
+        "0.9957 ± \\pm 0.0015"
+      ]
+    ]
+  },
+  {
+    "index": 10,
+    "id": "A3.T10.2",
+    "caption": "Table 10: The results of different methods on mental stress detection (MAT, 2-class).",
+    "rows": [
+      [
+        "Methods",
+        "Balanced Accuracy",
+        "AUC-PR",
+        "AUROC"
+      ],
+      [
+        "EEGNet",
+        "0.6770 ± \\pm 0.0116",
+        "0.5763 ± \\pm 0.0102",
+        "0.7321 ± \\pm 0.0108"
+      ],
+      [
+        "EEGConformer",
+        "0.6805 ± \\pm 0.0123",
+        "0.5829 ± \\pm 0.0134",
+        "0.7424 ± \\pm 0.0128"
+      ],
+      [
+        "SPaRCNet",
+        "0.6879 ± \\pm 0.0107",
+        "0.5825 ± \\pm 0.0193",
+        "0.7418 ± \\pm 0.0132"
+      ],
+      [
+        "ContraWR",
+        "0.6631 ± \\pm 0.0097",
+        "0.5787 ± \\pm 0.0164",
+        "0.7332 ± \\pm 0.0082"
+      ],
+      [
+        "CNN-Transformer",
+        "0.6779 ± \\pm 0.0268",
+        "0.5777 ± \\pm 0.0285",
+        "0.7258 ± \\pm 0.0336"
+      ],
+      [
+        "FFCL",
+        "0.6798 ± \\pm 0.0142",
+        "0.5786 ± \\pm 0.0266",
+        "0.7330 ± \\pm 0.0198"
+      ],
+      [
+        "ST-Transformer",
+        "0.6631 ± \\pm 0.0173",
+        "0.5672 ± \\pm 0.0259",
+        "0.7132 ± \\pm 0.0174"
+      ],
+      [
+        "BIOT",
+        "0.6875 ± \\pm 0.0186",
+        "0.6004 ± \\pm 0.0195",
+        "0.7536 ± \\pm 0.0144"
+      ],
+      [
+        "LaBraM-Base",
+        "0.6909 ± \\pm 0.0125",
+        "0.5999 ± \\pm 0.0155",
+        "0.7721 ± \\pm 0.0093"
+      ],
+      [
+        "CBraMod",
+        "0.7256 ± \\pm 0.0132",
+        "0.6267 ± \\pm 0.0099",
+        "0.7905 ± \\pm 0.0073"
+      ],
+      [
+        "REVE-Base (ours)",
+        "0.7660 ± \\pm 0.0355",
+        "0.7470 ± \\pm 0.0807",
+        "0.8450 ± \\pm 0.0514"
+      ]
+    ]
+  },
+  {
+    "index": 11,
+    "id": "A3.T11.2",
+    "caption": "Table 11: The results of different methods on imagined speech classification (BCIC2020-3, 5-class).",
+    "rows": [
+      [
+        "Methods",
+        "Balanced Accuracy",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "EEGNet",
+        "0.4413 ± \\pm 0.0096",
+        "0.3016 ± \\pm 0.0123",
+        "0.4413 ± \\pm 0.0102"
+      ],
+      [
+        "EEGConformer",
+        "0.4506 ± \\pm 0.0133",
+        "0.3133 ± \\pm 0.0183",
+        "0.4488 ± \\pm 0.0154"
+      ],
+      [
+        "SPaRCNet",
+        "0.4426 ± \\pm 0.0156",
+        "0.3033 ± \\pm 0.0233",
+        "0.4420 ± \\pm 0.0108"
+      ],
+      [
+        "ContraWR",
+        "0.4257 ± \\pm 0.0162",
+        "0.3078 ± \\pm 0.0218",
+        "0.4407 ± \\pm 0.0182"
+      ],
+      [
+        "CNN-Transformer",
+        "0.4533 ± \\pm 0.0092",
+        "0.3166 ± \\pm 0.0118",
+        "0.4506 ± \\pm 0.0127"
+      ],
+      [
+        "FFCL",
+        "0.4678 ± \\pm 0.0197",
+        "0.3301 ± \\pm 0.0359",
+        "0.4689 ± \\pm 0.0205"
+      ],
+      [
+        "ST-Transformer",
+        "0.4126 ± \\pm 0.0122",
+        "0.2941 ± \\pm 0.0159",
+        "0.4247 ± \\pm 0.0138"
+      ],
+      [
+        "BIOT",
+        "0.4920 ± \\pm 0.0086",
+        "0.3650 ± \\pm 0.0176",
+        "0.4917 ± \\pm 0.0079"
+      ],
+      [
+        "LaBraM-Base",
+        "0.5060 ± \\pm 0.0155",
+        "0.3800 ± \\pm 0.0242",
+        "0.5054 ± \\pm 0.0205"
+      ],
+      [
+        "CBraMod",
+        "0.5373 ± \\pm 0.0108",
+        "0.4216 ± \\pm 0.0163",
+        "0.5383 ± \\pm 0.0096"
+      ],
+      [
+        "REVE-Base (ours)",
+        "0.5635 ± \\pm 0.0123",
+        "0.4543 ± \\pm 0.0154",
+        "0.5633 ± \\pm 0.0124"
+      ]
+    ]
+  },
+  {
+    "index": 12,
+    "id": "A3.T12.2",
+    "caption": "Table 12: The results of different methods on Motor Imagery classification.",
+    "rows": [
+      [
+        "",
+        "PhysioNet-MI, 4-class",
+        "BCIC-IV-2a, 4-class"
+      ],
+      [
+        "Methods",
+        "Balanced Accuracy",
+        "Cohen’s Kappa",
+        "Weighted F1",
+        "Balanced Accuracy",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "EEGNet",
+        "0.5814 ± \\pm 0.0125",
+        "0.4468 ± \\pm 0.0199",
+        "0.5796 ± \\pm 0.0115",
+        "0.4482 ± \\pm 0.0094",
+        "0.2693 ± \\pm 0.0121",
+        "0.4226 ± \\pm 0.0108"
+      ],
+      [
+        "EEGConformer",
+        "0.6049 ± \\pm 0.0104",
+        "0.4736 ± \\pm 0.0171",
+        "0.6062 ± \\pm 0.0095",
+        "0.4696 ± \\pm 0.0106",
+        "0.2924 ± \\pm 0.0141",
+        "0.4533 ± \\pm 0.0128"
+      ],
+      [
+        "SPaRCNet",
+        "0.5932 ± \\pm 0.0152",
+        "0.4564 ± \\pm 0.0234",
+        "0.5937 ± \\pm 0.0147",
+        "0.4635 ± \\pm 0.0117",
+        "0.2847 ± \\pm 0.0147",
+        "0.4432 ± \\pm 0.0126"
+      ],
+      [
+        "ContraWR",
+        "0.5892 ± \\pm 0.0133",
+        "0.4527 ± \\pm 0.0248",
+        "0.5918 ± \\pm 0.0116",
+        "0.4678 ± \\pm 0.0125",
+        "0.2905 ± \\pm 0.0160",
+        "0.4413 ± \\pm 0.0142"
+      ],
+      [
+        "(CNN-Transformer",
+        "0.6053 ± \\pm 0.0118",
+        "0.4725 ± \\pm 0.0223",
+        "0.6041 ± \\pm 0.0105",
+        "0.4600 ± \\pm 0.0108",
+        "0.2800 ± \\pm 0.0148",
+        "0.4460 ± \\pm 0.0114"
+      ],
+      [
+        "FFCL",
+        "0.5726 ± \\pm 0.0092",
+        "0.4323 ± \\pm 0.0182",
+        "0.5701 ± \\pm 0.0079",
+        "0.4470 ± \\pm 0.0143",
+        "0.2627 ± \\pm 0.0176",
+        "0.4238 ± \\pm 0.0139"
+      ],
+      [
+        "ST-Transformer",
+        "0.6035 ± \\pm 0.0081",
+        "0.4712 ± \\pm 0.0199",
+        "0.6053 ± \\pm 0.0075",
+        "0.4575 ± \\pm 0.0145",
+        "0.2733 ± \\pm 0.0198",
+        "0.4471 ± \\pm 0.0142"
+      ],
+      [
+        "BIOT",
+        "0.6153 ± \\pm 0.0154",
+        "0.4875 ± \\pm 0.0272",
+        "0.6158 ± \\pm 0.0197",
+        "0.4748 ± \\pm 0.0093",
+        "0.2997 ± \\pm 0.0139",
+        "0.4607 ± \\pm 0.0125"
+      ],
+      [
+        "LaBraM-Base",
+        "0.6173 ± \\pm 0.0122",
+        "0.4912 ± \\pm 0.0192",
+        "0.6177 ± \\pm 0.0141",
+        "0.4869 ± \\pm 0.0085",
+        "0.3159 ± \\pm 0.0154",
+        "0.4758 ± \\pm 0.0103"
+      ],
+      [
+        "CBraMod",
+        "0.6417 ± \\pm 0.0091",
+        "0.5222 ± \\pm 0.0169",
+        "0.6427 ± \\pm 0.0100",
+        "0.5138 ± \\pm 0.0066",
+        "0.3518 ± \\pm 0.0094",
+        "0.4984 ± \\pm 0.0085"
+      ],
+      [
+        "REVE-Base (ours)",
+        "0.6480 ± \\pm 0.0140",
+        "0.5306 ± \\pm 0.0187",
+        "0.6484 ± \\pm 0.0170",
+        "0.6396 ± \\pm 0.0095",
+        "0.5194 ± \\pm 0.0126",
+        "0.6339 ± \\pm 0.0110"
+      ]
+    ]
+  },
+  {
+    "index": 13,
+    "id": "A3.T13.4",
+    "caption": "Table 13: The results of different methods on sleep staging (ISRUC, 5-class). * In the baseline code, a chin electrode might have been used instead of an EEG one; REVE results are reported without it.",
+    "rows": [
+      [
+        "Methods",
+        "Balanced Accuracy",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "EEGNet",
+        "0.7154 ± \\pm 0.0121",
+        "0.7040 ± \\pm 0.0173",
+        "0.7513 ± \\pm 0.0124"
+      ],
+      [
+        "EEGConformer",
+        "0.7400 ± \\pm 0.0133",
+        "0.7143 ± \\pm 0.0162",
+        "0.7634 ± \\pm 0.0151"
+      ],
+      [
+        "SPaRCNet",
+        "0.7487 ± \\pm 0.0075",
+        "0.7097 ± \\pm 0.0132",
+        "0.7624 ± \\pm 0.0092"
+      ],
+      [
+        "ContraWR",
+        "0.7402 ± \\pm 0.0126",
+        "0.7178 ± \\pm 0.0156",
+        "0.7610 ± \\pm 0.0137"
+      ],
+      [
+        "CNN-Transformer",
+        "0.7363 ± \\pm 0.0087",
+        "0.7129 ± \\pm 0.0121",
+        "0.7719 ± \\pm 0.0105"
+      ],
+      [
+        "FFCL",
+        "0.7277 ± \\pm 0.0182",
+        "0.7016 ± \\pm 0.0291",
+        "0.7614 ± \\pm 0.0197"
+      ],
+      [
+        "ST-Transformer",
+        "0.7381 ± \\pm 0.0205",
+        "0.7013 ± \\pm 0.0352",
+        "0.7681 ± \\pm 0.0175"
+      ],
+      [
+        "DeepSleepNet",
+        "0.7419 ± \\pm 0.0144",
+        "0.7036 ± \\pm 0.0241",
+        "0.7643 ± \\pm 0.0122"
+      ],
+      [
+        "USleep",
+        "0.7586 ± \\pm 0.0116",
+        "0.7209 ± \\pm 0.0143",
+        "0.7805 ± \\pm 0.0105"
+      ],
+      [
+        "BIOT",
+        "0.7527 ± \\pm 0.0121",
+        "0.7192 ± \\pm 0.0231",
+        "0.7790 ± \\pm 0.0146"
+      ],
+      [
+        "LaBraM-Base",
+        "0.7633 ± \\pm 0.0102",
+        "0.7231 ± \\pm 0.0182",
+        "0.7810 ± \\pm 0.0133"
+      ],
+      [
+        "CBraMod",
+        "0.7865 ± \\pm 0.0110",
+        "0.7442 ± \\pm 0.0152",
+        "0.8011 ± \\pm 0.0099"
+      ],
+      [
+        "REVE-Base *",
+        "0.7819 ± \\pm 0.0078",
+        "0.7500 ± \\pm 0.0156",
+        "0.8005 ± \\pm 0.0135"
+      ]
+    ]
+  },
+  {
+    "index": 14,
+    "id": "A3.T14.4",
+    "caption": "Table 14: The results of different methods on sleep staging (HMC, 5-class).",
+    "rows": [
+      [
+        "Methods",
+        "Balanced Accuracy",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "SPaRCNet",
+        "0.4756 ± \\pm 0.1109",
+        "0.3147 ± \\pm 0.1315",
+        "0.4108 ± \\pm 0.1310"
+      ],
+      [
+        "ContraWR",
+        "0.4242 ± \\pm 0.0541",
+        "0.2340 ± \\pm 0.0554",
+        "0.2987 ± \\pm 0.0288"
+      ],
+      [
+        "CNN-Transformer",
+        "0.6573 ± \\pm 0.0141",
+        "0.5961 ± \\pm 0.0105",
+        "0.6896 ± \\pm 0.0065"
+      ],
+      [
+        "FFCL",
+        "0.4427 ± \\pm 0.0702",
+        "0.2542 ± \\pm 0.0654",
+        "0.2902 ± \\pm 0.0485"
+      ],
+      [
+        "ST-Transformer",
+        "0.2559 ± \\pm 0.0141",
+        "0.0503 ± \\pm 0.0183",
+        "0.1428 ± \\pm 0.0122"
+      ],
+      [
+        "BIOT",
+        "0.6862 ± \\pm 0.0041",
+        "0.6295 ± \\pm 0.0113",
+        "0.7091 ± \\pm 0.0147"
+      ],
+      [
+        "LaBraM-Base",
+        "0.7286 ± \\pm 0.0101",
+        "0.6812 ± \\pm 0.0073",
+        "0.7554 ± \\pm 0.0024"
+      ],
+      [
+        "REVE-Base",
+        "0.7401 ± \\pm 0.0075",
+        "0.6982 ± \\pm 0.0078",
+        "0.7638 ± \\pm 0.0074"
+      ]
+    ]
+  },
+  {
+    "index": 15,
+    "id": "A3.T15.4",
+    "caption": "Table 15: The results of different methods on event type classification (TUEV, 6-class).",
+    "rows": [
+      [
+        "Methods",
+        "Balanced Accuracy",
+        "Cohen’s Kappa",
+        "Weighted F1"
+      ],
+      [
+        "EEGNet",
+        "0.3876 ± \\pm 0.0143",
+        "0.3577 ± \\pm 0.0155",
+        "0.6539 ± \\pm 0.0120"
+      ],
+      [
+        "EEGConformer",
+        "0.4074 ± \\pm 0.0164",
+        "0.3967 ± \\pm 0.0195",
+        "0.6983 ± \\pm 0.0152"
+      ],
+      [
+        "SPaRCNet",
+        "0.4161 ± \\pm 0.0262",
+        "0.4233 ± \\pm 0.0181",
+        "0.7024 ± \\pm 0.0104"
+      ],
+      [
+        "ContraWR",
+        "0.4384 ± \\pm 0.0349",
+        "0.3912 ± \\pm 0.0237",
+        "0.6893 ± \\pm 0.0136"
+      ],
+      [
+        "CNN-Transformer",
+        "0.4087 ± \\pm 0.0161",
+        "0.3815 ± \\pm 0.0134",
+        "0.6854 ± \\pm 0.0293"
+      ],
+      [
+        "FFCL",
+        "0.3979 ± \\pm 0.0104",
+        "0.3732 ± \\pm 0.0188",
+        "0.6783 ± \\pm 0.0120"
+      ],
+      [
+        "ST-Transformer",
+        "0.3984 ± \\pm 0.0228",
+        "0.3765 ± \\pm 0.0306",
+        "0.6823 ± \\pm 0.0190"
+      ],
+      [
+        "BIOT",
+        "0.5281 ± \\pm 0.0225",
+        "0.5273 ± \\pm 0.0249",
+        "0.7492 ± \\pm 0.0082"
+      ],
+      [
+        "LaBraM-Base",
+        "0.6409 ± \\pm 0.0065",
+        "0.6637 ± \\pm 0.0093",
+        "0.8312 ± \\pm 0.0052"
+      ],
+      [
+        "LaBraM-Large",
+        "0.6581 ± \\pm 0.0156",
+        "0.6622 ± \\pm 0.0136",
+        "0.8315 ± \\pm 0.0040"
+      ],
+      [
+        "LaBraM-Huge",
+        "0.6616 ± \\pm 0.0170",
+        "0.6745 ± \\pm 0.0195",
+        "0.8329 ± \\pm 0.0086"
+      ],
+      [
+        "CBraMod",
+        "0.6671 ± \\pm 0.0107",
+        "0.6772 ± \\pm 0.0096",
+        "0.8342 ± \\pm 0.0064"
+      ],
+      [
+        "REVE-Base (ours)",
+        "0.6759 ± \\pm 0.0229",
+        "0.6783 ± \\pm 0.0199",
+        "0.8451 ± \\pm 0.0129"
+      ]
+    ]
+  },
+  {
+    "index": 16,
+    "id": "A3.T16.4",
+    "caption": "Table 16: The results of different methods on abnormal detection (TUAB, 2-class).",
+    "rows": [
+      [
+        "Methods",
+        "Balanced Accuracy",
+        "AUC-PR",
+        "AUROC"
+      ],
+      [
+        "EEGNet",
+        "0.7642 ± \\pm 0.0036",
+        "0.8299 ± \\pm 0.0043",
+        "0.8412 ± \\pm 0.0031"
+      ],
+      [
+        "EEGConformer",
+        "0.7758 ± \\pm 0.0049",
+        "0.8427 ± \\pm 0.0054",
+        "0.8445 ± \\pm 0.0038"
+      ],
+      [
+        "SPaRCNet",
+        "0.7896 ± \\pm 0.0018",
+        "0.8414 ± \\pm 0.0018",
+        "0.8676 ± \\pm 0.0012"
+      ],
+      [
+        "ContraWR",
+        "0.7746 ± \\pm 0.0041",
+        "0.8421 ± \\pm 0.0104",
+        "0.8456 ± \\pm 0.0074"
+      ],
+      [
+        "CNN-Transformer",
+        "0.7777 ± \\pm 0.0022",
+        "0.8433 ± \\pm 0.0039",
+        "0.8461 ± \\pm 0.0013"
+      ],
+      [
+        "FFCL",
+        "0.7848 ± \\pm 0.0038",
+        "0.8448 ± \\pm 0.0065",
+        "0.8569 ± \\pm 0.0051"
+      ],
+      [
+        "ST-Transformer",
+        "0.7966 ± \\pm 0.0023",
+        "0.8521 ± \\pm 0.0026",
+        "0.8707 ± \\pm 0.0019"
+      ],
+      [
+        "BIOT",
+        "0.7959 ± \\pm 0.0057",
+        "0.8792 ± \\pm 0.0023",
+        "0.8815 ± \\pm 0.0043"
+      ],
+      [
+        "LaBraM-Base",
+        "0.8140 ± \\pm 0.0019",
+        "0.8965 ± \\pm 0.0016",
+        "0.9022 ± \\pm 0.0009"
+      ],
+      [
+        "LaBraM-Large",
+        "0.8226 ± \\pm 0.0015",
+        "0.9130 ± \\pm 0.0005",
+        "0.9127 ± \\pm 0.0005"
+      ],
+      [
+        "LaBraM-Huge",
+        "0.8258 ± \\pm 0.0011",
+        "0.9204 ± \\pm 0.0011",
+        "0.9162 ± \\pm 0.0016"
+      ],
+      [
+        "CBraMod",
+        "0.8289 ± \\pm 0.0022",
+        "0.9258 ± \\pm 0.0008",
+        "0.9227 ± \\pm 0.0011"
+      ],
+      [
+        "REVE-Base (ours)",
+        "0.8315 ± \\pm 0.0014",
+        "0.9281 ± \\pm 0.0009",
+        "0.9245 ± \\pm 0.0013"
+      ]
+    ]
+  },
+  {
+    "index": 17,
+    "id": "A4.T17.2",
+    "caption": "Table 17: Effect of 2nd loss during pretraining and finetuning. The reported metric is balanced accuracy. Best results per dataset are in bold.",
+    "rows": [
+      [
+        "",
+        "LP",
+        "FT"
+      ],
+      [
+        "Dataset",
+        "No 2nd loss",
+        "+ 2nd loss",
+        "No 2nd loss",
+        "+ 2nd loss"
+      ],
+      [
+        "Mumtaz",
+        "0.818 ± \\pm 0.043",
+        "0.920 ± \\pm 0.018",
+        "0.818 ± \\pm 0.043",
+        "0.922 ± \\pm 0.018"
+      ],
+      [
+        "TUAB",
+        "0.797 ± \\pm 0.004",
+        "0.802 ± \\pm 0.005",
+        "0.803 ± \\pm 0.003",
+        "0.810 ± \\pm 0.005"
+      ],
+      [
+        "ISRUC",
+        "0.699 ± \\pm 0.006",
+        "0.625 ± \\pm 0.003",
+        "0.777 ± \\pm 0.002",
+        "0.770 ± \\pm 0.002"
+      ],
+      [
+        "HMC",
+        "0.598 ± \\pm 0.008",
+        "0.591 ± \\pm 0.005",
+        "0.713 ± \\pm 0.011",
+        "0.723 ± \\pm 0.005"
+      ],
+      [
+        "BCIC2020-3",
+        "0.234 ± \\pm 0.009",
+        "0.237 ± \\pm 0.008",
+        "0.390 ± \\pm 0.017",
+        "0.481 ± \\pm 0.008"
+      ],
+      [
+        "TUEV",
+        "0.442 ± \\pm 0.060",
+        "0.520 ± \\pm 0.005",
+        "0.533 ± \\pm 0.024",
+        "0.623 ± \\pm 0.011"
+      ],
+      [
+        "PhysioNetMI",
+        "0.379 ± \\pm 0.058",
+        "0.533 ± \\pm 0.019",
+        "0.563 ± \\pm 0.011",
+        "0.583 ± \\pm 0.009"
+      ],
+      [
+        "Faced",
+        "0.220 ± \\pm 0.008",
+        "0.233 ± \\pm 0.004",
+        "0.302 ± \\pm 0.016",
+        "0.410 ± \\pm 0.004"
+      ],
+      [
+        "Avg.",
+        "0.523",
+        "0.558",
+        "0.612",
+        "0.665"
+      ]
+    ]
+  },
+  {
+    "index": 18,
+    "id": "A4.T18.2",
+    "caption": "Table 18: Performance comparison across different masking ratios (0.25, 0.55, 0.75) between block masking strategy and random masking, evaluated for full fine-tuning versus frozen embeddings. We display the average balanced accuracy on the small model over eight downstream tasks.",
+    "rows": [
+      [
+        "",
+        "Frozen",
+        "Full Fine-Tuning"
+      ],
+      [
+        "Masking Ratio",
+        "Random",
+        "Block",
+        "Random",
+        "Block"
+      ],
+      [
+        "0.25",
+        "0.523",
+        "0.513",
+        "0.612",
+        "0.602"
+      ],
+      [
+        "0.55",
+        "0.550",
+        "0.558",
+        "0.643",
+        "0.665"
+      ],
+      [
+        "0.75",
+        "0.519",
+        "0.546",
+        "0.606",
+        "0.655"
+      ]
+    ]
+  },
+  {
+    "index": 19,
+    "id": "A4.T19.4",
+    "caption": "Table 19: Ablation study on PhysioNetMI and Mental Arithmetic datasets. The reported metric is balanced accuracy, with the average computed across both tasks, with the Base model. * Note that the learnable positional encoding matches the baseline, but does not allow for the extension to larger time windows or unseen spatial configurations.",
+    "rows": [
+      [
+        "Ablated component",
+        "PhysionetMI",
+        "Mental Arithmetic",
+        "Average"
+      ],
+      [
+        "Learnable PE *",
+        "0.650 ± \\pm 0.0113",
+        "0.752 ± \\pm 0.0421",
+        "0.701 ± \\pm 0.0218"
+      ],
+      [
+        "MLP4D",
+        "0.637 ± \\pm 0.0056",
+        "0.717 ± \\pm 0.0425",
+        "0.677 ± \\pm 0.0214"
+      ],
+      [
+        "Position noise",
+        "0.628 ± \\pm 0.0084",
+        "0.692 ± \\pm 0.0665",
+        "0.660 ± \\pm 0.0335"
+      ],
+      [
+        "Dropout block masking",
+        "0.645 ± \\pm 0.0155",
+        "0.678 ± \\pm 0.0521",
+        "0.662 ± \\pm 0.0272"
+      ],
+      [
+        "Temporal block masking",
+        "0.646 ± \\pm 0.0155",
+        "0.723 ± \\pm 0.0422",
+        "0.685 ± \\pm 0.0225"
+      ],
+      [
+        "Base Performance",
+        "0.6480 ± \\pm 0.0140",
+        "0.7660 ± \\pm 0.0355",
+        "0.707 ± \\pm 0.0191"
+      ]
+    ]
+  },
+  {
+    "index": 20,
+    "id": "A4.T20.2",
+    "caption": "Table 20: Ablation study on activation functions and normalization layers (GEGLU vs. GELU, RMSNorm vs. LayerNorm). We report downstream balanced accuracy after pretraining the REVE-Small model with each configuration.",
+    "rows": [
+      [
+        "Dataset",
+        "GEGLU + RMSNorm",
+        "GELU + RMSNorm",
+        "GEGLU + LayerNorm"
+      ],
+      [
+        "BCIC-IV-2a",
+        "0.581 ± \\pm 0.012",
+        "0.560 ± \\pm 0.018",
+        "0.537 ± \\pm 0.018"
+      ],
+      [
+        "TUEV",
+        "0.623 ± \\pm 0.011",
+        "0.592 ± \\pm 0.010",
+        "0.577 ± \\pm 0.034"
+      ],
+      [
+        "PhysioNetMI",
+        "0.583 ± \\pm 0.009",
+        "0.586 ± \\pm 0.009",
+        "0.559 ± \\pm 0.007"
+      ],
+      [
+        "Avg.",
+        "0.596",
+        "0.579",
+        "0.558"
+      ]
+    ]
+  },
+  {
+    "index": 21,
+    "id": "A5.T21.2",
+    "caption": "Table 21: Performance of REVE-Base under sparse input configurations. Balanced accuracy is reported for PhysionetMI (Left–Right) and imagined speech tasks as the number of EEG channels is progressively reduced.",
+    "rows": [
+      [
+        "Channels",
+        "PhysionetMI L-R",
+        "Speech"
+      ],
+      [
+        "64",
+        "0.824 ± \\pm 0.008",
+        "0.565 ± \\pm 0.016"
+      ],
+      [
+        "32",
+        "0.808 ± \\pm 0.007",
+        "0.490 ± \\pm 0.094"
+      ],
+      [
+        "16",
+        "0.787 ± \\pm 0.008",
+        "0.469 ± \\pm 0.014"
+      ],
+      [
+        "8",
+        "0.781 ± \\pm 0.006",
+        "0.294 ± \\pm 0.063"
+      ],
+      [
+        "4",
+        "0.728 ± \\pm 0.009",
+        "0.258 ± \\pm 0.019"
+      ],
+      [
+        "2",
+        "0.700 ± \\pm 0.025",
+        "0.228 ± \\pm 0.006"
+      ],
+      [
+        "1",
+        "0.660 ± \\pm 0.019",
+        "0.209 ± \\pm 0.008"
+      ]
+    ]
+  },
+  {
+    "index": 22,
+    "id": "A5.T22.4",
+    "caption": "Table 22: Few-shot performance of REVE-Base on BCI IV-2a dataset",
+    "rows": [
+      [
+        "N-shots",
+        "1",
+        "2",
+        "5",
+        "10",
+        "20"
+      ],
+      [
+        "REVE-Base (PT)",
+        "0.588 ± \\pm 1.45",
+        "0.601 ± \\pm 0.001",
+        "0.652 ± \\pm 0.013",
+        "0.688 ± \\pm 0.010",
+        "0.723 ± \\pm 0.010"
+      ],
+      [
+        "REVE-Base (XFT)",
+        "0.605 ± \\pm 1.12",
+        "0.645 ± \\pm 0.009",
+        "0.705 ± \\pm 0.009",
+        "0.768 ± \\pm 0.009",
+        "0.817 ± \\pm 0.004"
+      ]
+    ]
+  },
+  {
+    "index": 23,
+    "id": "A6.Ex1",
+    "caption": "",
+    "rows": [
+      [
+        "",
+        "τ = D ⋅ ( 6 ​ N + 12 ​ L ​ H ​ Q ​ T ) P ⋅ η \\tau=\\frac{D\\cdot(6N+12LHQT)}{P\\cdot\\eta}",
+        ""
+      ]
+    ]
+  }
+]
